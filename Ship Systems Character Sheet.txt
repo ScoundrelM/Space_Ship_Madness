@@ -1,0 +1,172 @@
+﻿
+
+
+
+
+        Name
+		
+		The player can designate the system's name or it defaults to a standard number.
+		
+		
+		Ship Name
+		The Name of the ship the system is in.
+
+
+		Room Name
+        The name of the room the system is in.
+
+		
+		Mass
+
+		The Mass of the system
+
+
+        Operational
+
+		Is the system on.
+
+
+        Max Hit Points
+
+		What is the maximum amount of damage the system can take.
+
+
+        Current Hit Points
+
+		THe current level of hit points remaining
+
+
+        maxHackPoints
+
+		The number of Hack points a system has at the start of each hacking attempt.
+
+
+        currentHackPoints
+
+		The current level of hack points.
+
+
+        operationalHitPointThreshold
+
+		How many hit points can it lose before breaking
+
+
+        operationalHackPointThreshold
+
+		how many hack points need to be taken away to shut down the system and require a reboot.
+
+
+        canSpark
+        
+		Can the system spark and potentially damage the operator or those nearby.
+		
+		
+		canExplode
+
+		Can the system explode and potentially damage the operator or those nearby.
+
+
+        canBurn
+
+		Can the system heat up and potentially damage the operator or those nearby.
+
+
+        currentTemperature
+
+		The current temperature of the system, effects the air temperature in the room and potentially the operator.
+
+        maxTemperature
+
+		How hot the system can get before it starts to take damage.
+
+
+        overHeatDamage
+
+		How much damage is done per tick per degree of overheating.
+
+
+        powerGeneration
+
+		How Much power the generator puts out per tick given enough fuel.
+
+
+        efficiency
+
+		The amount of fuel consumed per power unit produced.
+
+
+        fuelLevel
+
+		The amount of fuel in this system.
+
+
+		maxFuelLevel
+        
+		The maximum fuel amount the system can store.
+		
+
+		isDestroyed
+        
+		Is the system irrepairably damaged.
+		
+		
+		destructionHitPointThreshold
+        
+		How many hit points does it take to destroy this system.
+		
+		
+		isBroken
+
+		Is the system damaged and need repair before it can be used again.
+
+
+        breakHitPointThreshold
+        
+		How much damage the system can take before it shuts down and needs repair.
+		
+		
+		operationalPowerConsumption
+
+		How much power does it use when operating.
+
+		
+        currentPowerStored
+        
+		How much power is stored in the systems power buffer.
+		
+		
+		maxPowerStorage
+
+		How much power the system can store in its buffer.
+
+
+        powerSupplyHierarchyPosition
+
+		The priority ranking of the system for power distribution in the event that not enough power is being generated.
+
+		
+        //engine stats
+        
+		thrust
+
+		The amount of thrust provided by the engine
+
+        //shield stats
+        damageReduction
+        shieldPoints
+        shieldRechargeRate//maximum recharge per tick
+        shieldEfficiency//power units per shield point restored
+
+        //Weaponry stats
+        reloadRate
+        weaponType
+        weaponEfficiency//power/ammo used per shot
+
+
+        //Fabricator stats
+        //need variable for known schematics for fabricator
+        fabricatorEfficiency
+
+        //Medibay stats
+        healRate//max healing per tick
+        healEfficiency//power units required per health point

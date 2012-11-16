@@ -1,0 +1,86 @@
+﻿This file contains the template of a room and the different types of room.
+
+
+		Room Type
+
+		This is chosen from the list of possible rooms.
+
+		Fighter Cockpit
+		Bridge
+		Engineering
+		Life Support
+		Comms
+		Fire Control
+		Medibay
+		Shuttle Bay
+		Cargo Hold
+		
+		Here are some further room types to be developed later on
+		Passenger Pod
+		Cabin
+		Escape Pod
+		
+
+        Room Name
+
+		If the player wishes they may name rooms, otherwise it defaults to a standard room designation.
+
+
+		System Slots
+        
+		How Many Systems can be installed in the room.
+
+
+		Ship Class Restrictions
+
+		What classes of ships can have this room.
+
+
+		Predetermined Systems
+
+		A list of systems that come with the room, each consuming a system slot.
+
+				
+        Oxygen Level
+
+		The current oxygenlevel in the room, determines whether crew can breathe.
+
+
+        Bulkhead Hit Points
+        
+		How Many Hitpoints the room has.
+		
+		
+		Air Pressure
+
+		The pressure of the air in the room, relates to breathability.
+
+
+        Air Scrubber
+
+		The interface between the life support system and the oxygen levels.
+
+
+        Heat Exchanger
+
+		The interface between the life support system and the air temperature.
+
+
+        Air Temperature
+
+		The air temperature in the room, effected by the heat generated from systems.
+
+
+        Bulkhead Mass
+
+		The mass of the rooms bulkhead
+
+
+        Bulkhead Compromised
+
+		Is the room exposed to conditions in the ship's structure.
+
+
+		Bulkhead Hit Points Structural Integrity Threshold
+
+		The damage required to compromise the bulkhead of the room
