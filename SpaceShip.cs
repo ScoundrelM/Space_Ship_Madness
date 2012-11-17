@@ -53,6 +53,7 @@ namespace SSGMadNess
         public bool exteriorStructureCompromised { get; set; }
         public bool destroyed { get; set; }
         public int spaceShipPowerOverhead { get; set; }
+        public int powerPool { get; set; }
         //public string[] requiredRooms { get; set; }
     }
 
