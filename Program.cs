@@ -39,6 +39,8 @@ namespace SSGMadNess
 
                 ReportingMethods.shipStatusReport(playerSpaceShip);
 
+                testingMethods.testPowerSystem(playerSpaceShip);
+
                 Console.ReadLine();                             
         }
     }
