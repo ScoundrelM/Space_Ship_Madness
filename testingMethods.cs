@@ -31,7 +31,7 @@ namespace SSGMadNess
 
                 if (playerSpaceShip.shipType == "Fighter")
                 {
-                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0) ;
+                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0) 
                     {
                         keepGoing = false;
                     }

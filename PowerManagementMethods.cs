@@ -743,7 +743,7 @@ namespace SSGMadNess
             return systemCount;
         }
 
-
+ 
         public static void distributePowerPool(SpaceShip playerSpaceShip) // unfinished
         {
             if (playerSpaceShip.powerPool >= playerSpaceShip.spaceShipPowerOverhead)
