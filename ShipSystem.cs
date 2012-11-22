@@ -27,8 +27,9 @@ namespace SSGMadNess
             this.canBurn = true;
             this.canExplode = true;
             this.canSpark = true;
-            this.efficiency = 0;
+            this.efficiency = 4;
             this.fuelLevel = 0;
+            this.maxFuelLevel = 50;
             this.powerGeneration = 0;
             this.isBroken = false;
             this.breakHitPointThreshold = 10;

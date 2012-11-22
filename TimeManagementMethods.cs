@@ -14,6 +14,7 @@ namespace SSGMadNess
         }
         public static void executePowerTick(SpaceShip playerSpaceShip)
         {
+            PowerManagementMethods.calculatePowerRequirementForTick(playerSpaceShip);
             PowerManagementMethods.primeGeneratorWithFuel(playerSpaceShip);
             PowerManagementMethods.runGenerator(playerSpaceShip);
             PowerManagementMethods.distributePowerPool(playerSpaceShip);

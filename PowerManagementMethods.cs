@@ -107,17 +107,19 @@ namespace SSGMadNess
             }
 
             playerSpaceShip.spaceShipPowerOverhead = powerRequirementRunningTotal;
+
+            Console.WriteLine("Power Overhead this tick: " + powerRequirementRunningTotal);
         }
 
 
-        public static void primeGeneratorWithFuel(SpaceShip playerSpaceShip)
+        public void primeGeneratorWithFuel(SpaceShip playerSpaceShip)
         {
             int fuelRequrement = playerSpaceShip.engineering.powerGenerator.maxFuelLevel - playerSpaceShip.engineering.powerGenerator.fuelLevel;
 
             if (playerSpaceShip.engineering.fuelStore.fuelLevel > 0)
             {
 
-                if (fuelRequrement < playerSpaceShip.engineering.powerGenerator.fuelLevel)
+                if (fuelRequrement <= playerSpaceShip.engineering.fuelStore.fuelLevel)
                 {
                     playerSpaceShip.engineering.powerGenerator.fuelLevel = playerSpaceShip.engineering.powerGenerator.maxFuelLevel;
                     playerSpaceShip.engineering.fuelStore.fuelLevel = playerSpaceShip.engineering.fuelStore.fuelLevel - fuelRequrement;
@@ -144,16 +146,20 @@ namespace SSGMadNess
         {
             int fuelInput = playerSpaceShip.engineering.powerGenerator.fuelLevel;
 
-            if (fuelInput > 0)
-            {
-                playerSpaceShip.powerPool = fuelInput * playerSpaceShip.engineering.powerGenerator.efficiency;
-                playerSpaceShip.powerPool = playerSpaceShip.powerPool + playerSpaceShip.engineering.powerGenerator.currentPowerStored;
-            }
-
             if (fuelInput == 0)
             {
                 Console.WriteLine("Not enough fuel to run generator.");
             }
+            
+
+            if (fuelInput > 0)
+            {
+                playerSpaceShip.powerPool = fuelInput * playerSpaceShip.engineering.powerGenerator.efficiency;
+                playerSpaceShip.powerPool = playerSpaceShip.powerPool + playerSpaceShip.engineering.powerGenerator.currentPowerStored;
+                playerSpaceShip.engineering.powerGenerator.fuelLevel = 0;
+            }
+
+            Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
         }
 
         public static void abundantSupplySystemPowerHierarchy(SpaceShip playerSpaceShip, int powerHierarchyPosition)
@@ -559,7 +565,7 @@ namespace SSGMadNess
         public static void dishOutHierarchyOverflowPowerpacket(SpaceShip playerSpaceShip, int systemMaxPowerStored, int systemCurrentPowerStored)
         {
             int powerStorageSpace = systemMaxPowerStored - systemCurrentPowerStored;
-
+            Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
             if (playerSpaceShip.powerPool > 0)
             {
                 if (powerStorageSpace < playerSpaceShip.powerPool)
@@ -574,6 +580,8 @@ namespace SSGMadNess
                     playerSpaceShip.powerPool = 0;
                 }
             }
+
+            Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
         }
 
         public static void dishOutHierarchyBasePowerpacket(SpaceShip playerSpaceShip, int systemPowerOverhead, int systemCurrentPowerStored)
@@ -581,6 +589,7 @@ namespace SSGMadNess
 
             if (playerSpaceShip.powerPool > 0)
             {
+                Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
                 if (playerSpaceShip.powerPool > systemPowerOverhead)
                 {
                     playerSpaceShip.powerPool = playerSpaceShip.powerPool - systemPowerOverhead;
@@ -598,6 +607,8 @@ namespace SSGMadNess
                         systemCurrentPowerStored = 0;
                     }
                 }
+
+                Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
             }
 
             if (playerSpaceShip.powerPool <= 0)
