@@ -21,7 +21,6 @@ namespace SSGMadNess
             this.heatExchangerInterface = true;
             this.bulkheadCompromised = false;
             this.bulkheadHitPointsStructuralIntegrityThreshold = 20;
-
             this.pilotControls = null;
             this.shields = null;
             this.aI = null;
@@ -79,6 +78,10 @@ namespace SSGMadNess
         public ShipSystem hangar { get; set; }
         public ShipSystem repairBay { get; set; }
         public ShipSystem heatExchanger { get; set; }
+        public ShipSystem powerDistributor { get; set; }
+
+        
+
     }
 }
 

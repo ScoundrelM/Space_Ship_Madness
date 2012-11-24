@@ -200,6 +200,7 @@ namespace SSGMadNess
                 playerSpaceShip.fighterCockpit.transmitter = new ShipSystem("Transmitter", playerSpaceShip.fighterCockpit.roomType);
                 playerSpaceShip.fighterCockpit.receiver = new ShipSystem("Receiver", playerSpaceShip.fighterCockpit.roomType);
                 playerSpaceShip.fighterCockpit.cryptography = new ShipSystem("Cryptography", playerSpaceShip.fighterCockpit.roomType);
+                playerSpaceShip.fighterCockpit.powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.fighterCockpit.roomType);
 
             }
 
@@ -236,6 +237,7 @@ namespace SSGMadNess
                 playerSpaceShip.engineering.fabricator = new ShipSystem("Fabricator", playerSpaceShip.engineering.roomType);
                 playerSpaceShip.engineering.wasteDisposal = new ShipSystem("Waste Disposal", playerSpaceShip.engineering.roomType);
                 playerSpaceShip.engineering.fuelStore = new ShipSystem("Fuel Store", playerSpaceShip.engineering.roomType);
+                playerSpaceShip.engineering.powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.engineering.roomType);
                 //playerSpaceShip.engineering.airScrubber = new ShipSystem ("Air Scrubber", playerSpaceShip.bridge.roomType);
                 //playerSpaceShip.engineering.gravityGenerator = new ShipSystem ("Gravity Generator", playerSpaceShip.bridge.roomType);
                 //playerSpaceShip.engineering.temperatureControl = new ShipSystem ("Temperature Control", playerSpaceShip.bridge.roomType);

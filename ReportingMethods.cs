@@ -39,7 +39,7 @@ namespace SSGMadNess
             if (shipSystem != null)
             {
                 Console.WriteLine(shipSystem.systemName);
-                Console.WriteLine(shipSystem.systemName + " in " + shipSystem.systemIsIn + " has a mass of " + shipSystem.mass);
+                Console.WriteLine(shipSystem.systemName + " in " + shipSystem.systemRoomName + " has a mass of " + shipSystem.mass);
 
                 //playerSpaceShip.bridge.pilotControls = new ShipSystem ("Pilot Controls", playerSpaceShip.bridge.roomType);
                 //playerSpaceShip.bridge.shields = new ShipSystem ("Shields", playerSpaceShip.bridge.roomType);
