@@ -31,7 +31,7 @@ namespace SSGMadNess
 
                 if (playerSpaceShip.shipType == "Fighter")
                 {
-                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0) 
+                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0 && playerSpaceShip.powerPool <= 0) 
                     {
                         keepGoing = false;
                     }
@@ -39,7 +39,7 @@ namespace SSGMadNess
 
                 if (playerSpaceShip.shipType != "Fighter")
                 {
-                    if (playerSpaceShip.engineering.fuelStore.fuelLevel <= 0)
+                    if (playerSpaceShip.engineering.fuelStore.fuelLevel <= 0 && playerSpaceShip.powerPool <= 0)
                     {
                         keepGoing = false;
                     }

@@ -18,6 +18,7 @@ namespace SSGMadNess
             PowerManagementMethods.primeGeneratorWithFuel(playerSpaceShip);
             PowerManagementMethods.runGenerator(playerSpaceShip);
             PowerManagementMethods.distributePowerPool(playerSpaceShip);
+            PowerManagementMethods.powerBleed(playerSpaceShip);
         }
 
         static void executeSystemTick()
