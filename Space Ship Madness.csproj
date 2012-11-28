@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PowerHierarchy.cs" />
     <Compile Include="RoomMethods.cs" />
     <Compile Include="ReportingMethods.cs" />
     <Compile Include="testingMethods.cs" />

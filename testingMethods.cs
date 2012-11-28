@@ -29,9 +29,15 @@ namespace SSGMadNess
             {
                 TimeManagementMethods.executePowerTick(playerSpaceShip);
 
+                //ReportingMethods.shipSystemReport(playerSpaceShip.fighterCockpit.aI);
+                //ReportingMethods.shipSystemReport(playerSpaceShip.engineering.shields);
+                //ReportingMethods.shipSystemReport(playerSpaceShip.bridge.aI);
+                
+
                 if (playerSpaceShip.shipType == "Fighter")
                 {
-                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0 && playerSpaceShip.powerPool <= 0) 
+                    int storedSystemPower = PowerManagementMethods.calculateStoredSystemPower(playerSpaceShip);
+                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0 && playerSpaceShip.powerPool <= 0 &&  storedSystemPower <= 0) 
                     {
                         keepGoing = false;
                     }
@@ -39,7 +45,8 @@ namespace SSGMadNess
 
                 if (playerSpaceShip.shipType != "Fighter")
                 {
-                    if (playerSpaceShip.engineering.fuelStore.fuelLevel <= 0 && playerSpaceShip.powerPool <= 0)
+                    int storedSystemPower = PowerManagementMethods.calculateStoredSystemPower(playerSpaceShip);
+                    if (playerSpaceShip.engineering.fuelStore.fuelLevel <= 0 && playerSpaceShip.powerPool <= 0 && storedSystemPower <= 0)
                     {
                         keepGoing = false;
                     }

@@ -18,7 +18,7 @@ namespace SSGMadNess
                 this.maxHitPoints = 1000;
                 this.maxTemperature = 3000;
                 this.operationalHitPointThreshold = 25;
-                this.maxPowerStorage = 1000;
+                this.maxPowerStorage = 100;
                 this.canBurn = false;
                 this.canExplode = false;
                 this.canSpark = true;
@@ -26,7 +26,7 @@ namespace SSGMadNess
                 this.maxHackPoints = 1000;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 5;
             }
 
             if (systemName == "A.I.")
@@ -35,7 +35,7 @@ namespace SSGMadNess
                 this.maxHitPoints = 100;
                 this.maxTemperature = 90;
                 this.operationalHitPointThreshold = 50;
-                this.maxPowerStorage = 1000;
+                this.maxPowerStorage = 100;
                 this.canBurn = false;
                 this.canExplode = false;
                 this.canSpark = true;
@@ -43,7 +43,7 @@ namespace SSGMadNess
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 5;
                 this.breakHitPointThreshold = 25;
-                this.operationalPowerConsumption = 100;
+                this.operationalPowerConsumption = 5;
             }
 
             if (systemName == "Shields")
@@ -77,7 +77,7 @@ namespace SSGMadNess
                 this.maxHitPoints = 10000;
                 this.maxTemperature = 50000;
                 this.operationalHitPointThreshold = 1000;
-                this.maxPowerStorage = 1000;
+                this.maxPowerStorage = 0;
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
@@ -85,7 +85,7 @@ namespace SSGMadNess
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 1;
                 this.breakHitPointThreshold = 500;
-                this.operationalPowerConsumption = 0;
+                this.operationalPowerConsumption = 1;
             }
 
             //not filled in yet past this point
@@ -95,16 +95,16 @@ namespace SSGMadNess
                 this.powerGeneration = 0; //don't accidentally remove
                 this.fuelLevel = 0;//don't accidentally remove
                 this.maxFuelLevel = 50;//don't accidentally remove
-                this.efficiency = 4;//don't accidentally remove
+                this.efficiency = 50;//don't accidentally remove
                 this.mass = 10;
                 this.maxHitPoints = 100;
                 this.maxTemperature = 300;
                 this.operationalHitPointThreshold = 20;
-                this.maxPowerStorage = 10;
+                this.maxPowerStorage = 0;
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 5;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
@@ -122,11 +122,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 6;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Waste Disposal")
@@ -139,11 +139,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 7;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Fuel Store")
@@ -155,15 +155,15 @@ namespace SSGMadNess
             this.maxHitPoints = 100;
             this.maxTemperature = 300;
             this.operationalHitPointThreshold = 20;
-            this.maxPowerStorage = 10;
+            this.maxPowerStorage = 0;
             this.canBurn = true;
             this.canExplode = true;
             this.canSpark = true;
-            this.powerSupplyHierarchyPosition = 0;
+            this.powerSupplyHierarchyPosition = 8;
             this.maxHackPoints = 100;
             this.overHeatDamage = 2;
             this.breakHitPointThreshold = 10;
-            this.operationalPowerConsumption = 10;
+            this.operationalPowerConsumption = 0;
 
             }
 
@@ -177,11 +177,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 9;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Gravity Generator")
@@ -194,11 +194,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 10;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Temperature Control")
@@ -211,11 +211,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 11;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Transmitter")
@@ -228,11 +228,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 12;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Receiver")
@@ -245,11 +245,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 13;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Cryptography")
@@ -262,11 +262,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 14;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Weapons Targeting")
@@ -282,11 +282,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 15;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Weapons Firing")
@@ -302,11 +302,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 16;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Surgery Table")
@@ -321,11 +321,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 17;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Hangar")
@@ -338,11 +338,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 18;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Repair Bay")
@@ -355,11 +355,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 19;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             if (systemName == "Power Distributor")
@@ -372,11 +372,11 @@ namespace SSGMadNess
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
-                this.powerSupplyHierarchyPosition = 0;
+                this.powerSupplyHierarchyPosition = 20;
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
-                this.operationalPowerConsumption = 10;
+                this.operationalPowerConsumption = 1;
             }
 
             this.currentHackPoints = maxHackPoints;
