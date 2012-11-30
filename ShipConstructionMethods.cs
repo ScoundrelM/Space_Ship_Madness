@@ -415,7 +415,7 @@ namespace SSGMadNess
                 shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.engineering.bulkheadMass;
                 shipMassRunningTotal = shipMassRunningTotal +
                 playerSpaceShip.engineering.shields.mass +
-                playerSpaceShip.engineering.engines.operationalPowerConsumption +
+                playerSpaceShip.engineering.engines.systemOperationalPowerConsumption +
                 playerSpaceShip.engineering.powerGenerator.mass +
                 playerSpaceShip.engineering.fabricator.mass +
                 playerSpaceShip.engineering.wasteDisposal.mass +

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace SSGMadNess
 {
     class Room
@@ -80,8 +81,67 @@ namespace SSGMadNess
         public ShipSystem heatExchanger { get; set; }
         public ShipSystem powerDistributor { get; set; }
 
-        
+        public List<ShipSystem> getSystems()
+        {
+           var systems = new ShipSystem[] { powerGenerator,
+										 fabricator,
+										 wasteDisposal,
+										 fuelStore,
+										 airScrubber,
+										 gravityGenerator,
+										 temperatureControl,
+										 transmitter,
+										 receiver,
+										 cryptography,
+										 weaponsTargeting,
+										 weaponsFiring,
+										 surgeryTable,
+										 hangar,
+										 repairBay,
+										 heatExchanger,
+										 powerDistributor };
 
+            return systems.Where(s => s != null).ToList();
+        }
+
+        public int roomSystemCount()
+        {
+            return getSystems().Count();
+        }
+
+        public int roomOperationalPowerConsumption()
+                {
+                    return getSystems().Sum(systems => systems.systemOperationalPowerConsumption);
+                    //return (
+                    //        from system in getSystems()
+                    //        where system.isOperational
+                    //        select system.systemOperationalPowerConsumption
+                    //        )
+                    //        .Sum();
+
+                }
+        public List<KeyValuePair<string,int>> roomPowerHierarchyPositions()
+        {
+            var hierarchy = new List<KeyValuePair<string, int>> {};
+            
+            
+            List<ShipSystem> thisRoomsSystems = getSystems(); 
+            
+            
+            foreach (ShipSystem shipSystem in thisRoomsSystems)
+            {
+                hierarchy.Add(shipSystem.systemPowerHierarchyPosition());
+            }
+            
+            return hierarchy;
+        }
+
+        public int roomStoredPower()
+        {
+            return getSystems().Sum(systems => systems.currentPowerStored);
+        }
     }
 }
 
+//return getRooms().Sum(room => room.roomOperationalPowerConsumption());
+//;list.Add(new KeyValuePair<string, int>("Cat", 1));

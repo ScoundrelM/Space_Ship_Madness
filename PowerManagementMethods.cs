@@ -7,283 +7,13 @@ namespace SSGMadNess
 {
     class PowerManagementMethods
     {
-        public static void calculatePowerRequirementForTick(SpaceShip playerSpaceShip)
-        {
-            int powerRequirementRunningTotal = 0;
 
-            // Find system level power consumption.
+        //public static void calculatePowerRequirementForTick(SpaceShip playerSpaceShip)
+        //{
+        //    playerSpaceShip.spaceShipPowerOverhead = playerSpaceShip.shipOperationalPowerConsumption();
 
-            if (playerSpaceShip.fighterCockpit != null)
-            {
-                checkSystemOperational(playerSpaceShip.fighterCockpit.pilotControls);
-
-                if (playerSpaceShip.fighterCockpit.pilotControls.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fighterCockpit.pilotControls.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.fighterCockpit.temperatureControl);
-
-                if (playerSpaceShip.fighterCockpit.temperatureControl.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fighterCockpit.temperatureControl.operationalPowerConsumption;
-
-                }
-
-                checkSystemOperational(playerSpaceShip.fighterCockpit.airScrubber);
-
-                if (playerSpaceShip.fighterCockpit.airScrubber.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fighterCockpit.airScrubber.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.fighterCockpit.heatExchanger);
-
-                if (playerSpaceShip.fighterCockpit.heatExchanger.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fighterCockpit.heatExchanger.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.fighterCockpit.shields);
-
-                if (playerSpaceShip.fighterCockpit.shields.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fighterCockpit.shields.operationalPowerConsumption;
-                }
-
-            }
-
-            if (playerSpaceShip.bridge != null)
-            {
-                checkSystemOperational(playerSpaceShip.bridge.pilotControls);
-
-                if (playerSpaceShip.bridge.pilotControls.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.bridge.pilotControls.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.bridge.aI);
-
-                if (playerSpaceShip.bridge.aI.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.bridge.aI.operationalPowerConsumption;
-                }
-
-            }
-
-            if (playerSpaceShip.engineering != null)
-            {
-                checkSystemOperational(playerSpaceShip.engineering.powerDistributor);
-
-                if (playerSpaceShip.engineering.powerDistributor.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.engineering.powerDistributor.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.engines);
-
-                if (playerSpaceShip.engineering.engines.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.engineering.engines.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.powerGenerator);
-
-                if (playerSpaceShip.engineering.powerGenerator.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.engineering.powerGenerator.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.fabricator);
-
-                if (playerSpaceShip.engineering.fabricator.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.engineering.fabricator.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.fabricator);
-
-                if (playerSpaceShip.engineering.fabricator.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.engineering.fabricator.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.wasteDisposal);
-
-                if (playerSpaceShip.engineering.wasteDisposal.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.engineering.wasteDisposal.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.fuelStore);
-
-                if (playerSpaceShip.engineering.fuelStore.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.engineering.fuelStore.operationalPowerConsumption;
-                }
-
-            }
-
-            if (playerSpaceShip.lifeSupport != null)
-            {
-                checkSystemOperational(playerSpaceShip.lifeSupport.airScrubber);
-
-                if (playerSpaceShip.lifeSupport.airScrubber.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.lifeSupport.airScrubber.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.lifeSupport.gravityGenerator);
-
-                if (playerSpaceShip.lifeSupport.gravityGenerator.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.lifeSupport.gravityGenerator.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.lifeSupport.temperatureControl);
-
-                if (playerSpaceShip.lifeSupport.temperatureControl.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.lifeSupport.temperatureControl.operationalPowerConsumption;
-                }
-
-            }
-
-            if (playerSpaceShip.comms != null)
-            {
-                checkSystemOperational(playerSpaceShip.comms.transmitter);
-
-                if (playerSpaceShip.comms.transmitter.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.comms.transmitter.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.comms.receiver);
-
-                if (playerSpaceShip.comms.receiver.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.comms.receiver.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.comms.cryptography);
-
-                if (playerSpaceShip.comms.cryptography.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.comms.cryptography.operationalPowerConsumption;
-                }
-            }
-
-            if (playerSpaceShip.fireControl != null)
-            {
-
-                checkSystemOperational(playerSpaceShip.fireControl.weaponsTargeting);
-
-                if (playerSpaceShip.fireControl.weaponsTargeting.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fireControl.weaponsTargeting.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.fireControl.weaponsFiring);
-
-                if (playerSpaceShip.fireControl.weaponsFiring.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fireControl.weaponsFiring.operationalPowerConsumption;
-                }
-
-
-            }
-
-            if (playerSpaceShip.fireControl2 != null)
-            {
-
-                checkSystemOperational(playerSpaceShip.fireControl2.weaponsTargeting);
-
-                if (playerSpaceShip.fireControl2.weaponsTargeting.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fireControl2.weaponsTargeting.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.fireControl2.weaponsFiring);
-
-                if (playerSpaceShip.fireControl2.weaponsFiring.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fireControl2.weaponsFiring.operationalPowerConsumption;
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl3 != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl3.weaponsTargeting);
-
-                if (playerSpaceShip.fireControl3.weaponsTargeting.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fireControl3.weaponsTargeting.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.fireControl3.weaponsFiring);
-
-                if (playerSpaceShip.fireControl3.weaponsFiring.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fireControl3.weaponsFiring.operationalPowerConsumption;
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl4 != null)
-            {
-
-                checkSystemOperational(playerSpaceShip.fireControl4.weaponsTargeting);
-
-                if (playerSpaceShip.fireControl4.weaponsTargeting.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fireControl4.weaponsTargeting.operationalPowerConsumption;
-                }
-
-                checkSystemOperational(playerSpaceShip.fireControl4.weaponsFiring);
-
-                if (playerSpaceShip.fireControl4.weaponsFiring.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.fireControl4.weaponsFiring.operationalPowerConsumption;
-                }
-
-            }
-
-            if (playerSpaceShip.medibay != null)
-            {
-                checkSystemOperational(playerSpaceShip.medibay.surgeryTable);
-
-                if (playerSpaceShip.medibay.surgeryTable.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.medibay.surgeryTable.operationalPowerConsumption;
-                }
-            }
-
-            if (playerSpaceShip.cargoHold != null)
-            {
-
-            }
-
-            if (playerSpaceShip.shuttleBay != null)
-            {
-
-                checkSystemOperational(playerSpaceShip.shuttleBay.hangar);
-
-                if (playerSpaceShip.shuttleBay.hangar.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.shuttleBay.hangar.operationalPowerConsumption;
-                }
-
-                if (playerSpaceShip.shuttleBay.repairBay.isOperational == true)
-                {
-                    powerRequirementRunningTotal = powerRequirementRunningTotal + playerSpaceShip.shuttleBay.repairBay.operationalPowerConsumption;
-                }
-            }
-
-            playerSpaceShip.spaceShipPowerOverhead = powerRequirementRunningTotal;
-
-            Console.WriteLine("Power Overhead this tick: " + powerRequirementRunningTotal);
-        }
+        //    Console.WriteLine("Power Overhead this tick: " + playerSpaceShip.spaceShipPowerOverhead);
+        //}
 
         public static void primeGeneratorWithFuel(SpaceShip playerSpaceShip)
         {
@@ -317,25 +47,12 @@ namespace SSGMadNess
 
         }
 
-        public static void checkSystemOperational(ShipSystem shipSystem)
-        {
-            if (shipSystem.isSwitchedOn == false || shipSystem.isBroken == true || shipSystem.isDestroyed == true)
-            {
-                shipSystem.isOperational = false;
-            }
-
-            if (shipSystem.isSwitchedOn == true && shipSystem.isBroken == false && shipSystem.isDestroyed == false)
-            {
-                shipSystem.isOperational = true;
-            }
-
-        }
 
         public static void runGenerator(SpaceShip playerSpaceShip)
         {
             int fuelInput = playerSpaceShip.engineering.powerGenerator.fuelLevel;
 
-            if (playerSpaceShip.engineering.powerGenerator.isOperational == true)
+            if (playerSpaceShip.engineering.powerGenerator.isOperational)
             {
                 if (fuelInput <= 0)
                 {
@@ -354,767 +71,768 @@ namespace SSGMadNess
             Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
         }
 
-        public static void abundantSupplySystemPowerHierarchy(SpaceShip playerSpaceShip, int powerHierarchyPosition)
-        {
-            //checkPowerSystemHierarchy(playerSpaceShip);
-
-            if (playerSpaceShip.fighterCockpit != null)
-            {
-                checkSystemOperational(playerSpaceShip.fighterCockpit.pilotControls);
-                if (playerSpaceShip.fighterCockpit.pilotControls.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.pilotControls.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.pilotControls);
-                }
-                checkSystemOperational(playerSpaceShip.fighterCockpit.pilotControls);
-                if (playerSpaceShip.fighterCockpit.temperatureControl.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.temperatureControl.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.temperatureControl);
-                }
-                checkSystemOperational(playerSpaceShip.fighterCockpit.pilotControls);
-                if (playerSpaceShip.fighterCockpit.airScrubber.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.airScrubber.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.airScrubber);
-                }
-                checkSystemOperational(playerSpaceShip.fighterCockpit.pilotControls);
-                if (playerSpaceShip.fighterCockpit.heatExchanger.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.heatExchanger.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.heatExchanger);
-                }
-                checkSystemOperational(playerSpaceShip.fighterCockpit.pilotControls);
-                if (playerSpaceShip.fighterCockpit.shields.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.shields.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.shields);
-                }
-
-            }
-
-            if (playerSpaceShip.bridge != null)
-            {
-                checkSystemOperational(playerSpaceShip.bridge.pilotControls);
-                if (playerSpaceShip.bridge.pilotControls.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.bridge.pilotControls.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.bridge.pilotControls);
-                }
-                checkSystemOperational(playerSpaceShip.bridge.aI);
-                if (playerSpaceShip.bridge.aI.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.bridge.aI.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.bridge.aI);
-                }
-            }
-
-            if (playerSpaceShip.engineering != null)
-            {
-                checkSystemOperational(playerSpaceShip.engineering.shields);
-                if (playerSpaceShip.engineering.shields.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.shields.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.shields);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.engines);
-                if (playerSpaceShip.engineering.engines.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.engines.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.engines);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.powerDistributor);
-                if (playerSpaceShip.engineering.powerDistributor.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.powerDistributor.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.powerDistributor);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.powerGenerator);
-                if (playerSpaceShip.engineering.powerGenerator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.powerGenerator.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.powerGenerator);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.fabricator);
-                if (playerSpaceShip.engineering.fabricator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.fabricator.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.fabricator);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.wasteDisposal);
-                if (playerSpaceShip.engineering.wasteDisposal.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.wasteDisposal.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.wasteDisposal);
-                }
-            }
-
-            if (playerSpaceShip.lifeSupport != null)
-            {
-                checkSystemOperational(playerSpaceShip.lifeSupport.airScrubber);
-                if (playerSpaceShip.lifeSupport.airScrubber.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.airScrubber.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.airScrubber);
-                }
-                checkSystemOperational(playerSpaceShip.lifeSupport.gravityGenerator);
-                if (playerSpaceShip.lifeSupport.gravityGenerator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.gravityGenerator.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.gravityGenerator);
-                }
-                checkSystemOperational(playerSpaceShip.lifeSupport.temperatureControl);
-                if (playerSpaceShip.lifeSupport.temperatureControl.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.temperatureControl.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.temperatureControl);
-                }
-
-            }
-
-            if (playerSpaceShip.comms != null)
-            {
-                checkSystemOperational(playerSpaceShip.comms.transmitter);
-                if (playerSpaceShip.comms.transmitter.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.transmitter.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.comms.transmitter);
-                }
-                checkSystemOperational(playerSpaceShip.comms.receiver);
-                if (playerSpaceShip.comms.receiver.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.receiver.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.comms.receiver);
-                }
-                checkSystemOperational(playerSpaceShip.comms.cryptography);
-                if (playerSpaceShip.comms.cryptography.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.cryptography.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.comms.cryptography);
-                }
-            }
-
-            if (playerSpaceShip.fireControl != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl.weaponsTargeting);
-                if (playerSpaceShip.fireControl.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl.weaponsTargeting.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl.weaponsTargeting);
-                }
-                checkSystemOperational(playerSpaceShip.fireControl.weaponsFiring);
-                if (playerSpaceShip.fireControl.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl.weaponsFiring.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl.weaponsFiring);
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl2 != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl2.weaponsTargeting);
-                if (playerSpaceShip.fireControl2.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl2.weaponsTargeting.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl2.weaponsTargeting);
-                }
-                checkSystemOperational(playerSpaceShip.fireControl2.weaponsFiring);
-                if (playerSpaceShip.fireControl2.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl2.weaponsFiring.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl2.weaponsFiring);
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl3 != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl3.weaponsTargeting);
-                if (playerSpaceShip.fireControl3.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl3.weaponsTargeting.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl3.weaponsTargeting);
-                }
-                checkSystemOperational(playerSpaceShip.fireControl3.weaponsFiring);
-                if (playerSpaceShip.fireControl3.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl3.weaponsFiring.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl3.weaponsFiring);
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl4 != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl4.weaponsTargeting);
-                if (playerSpaceShip.fireControl4.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl4.weaponsTargeting.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl4.weaponsTargeting);
-                }
-                checkSystemOperational(playerSpaceShip.fireControl4.weaponsFiring);
-                if (playerSpaceShip.fireControl4.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl4.weaponsFiring.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl4.weaponsFiring);
-                }
-
-            }
-
-            if (playerSpaceShip.medibay != null)
-            {
-                checkSystemOperational(playerSpaceShip.medibay.surgeryTable);
-                if (playerSpaceShip.medibay.surgeryTable.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.medibay.surgeryTable.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.medibay.surgeryTable);
-                }
-            }
-
-            if (playerSpaceShip.cargoHold != null)
-            {
-
-            }
-
-            if (playerSpaceShip.shuttleBay != null)
-            {
-                checkSystemOperational(playerSpaceShip.shuttleBay.hangar);
-                if (playerSpaceShip.shuttleBay.hangar.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.shuttleBay.hangar.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.shuttleBay.hangar);
-                }
-                checkSystemOperational(playerSpaceShip.shuttleBay.repairBay);
-                if (playerSpaceShip.shuttleBay.repairBay.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.shuttleBay.repairBay.isOperational == true)
-                {
-                    dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.shuttleBay.repairBay);
-                }
-            }
-        }
-
-        public static void limitedSupplySystemPowerHierarchy(SpaceShip playerSpaceShip, int powerHierarchyPosition)
-        {
-            //checkPowerSystemHierarchy(playerSpaceShip);
-
-            if (playerSpaceShip.fighterCockpit != null)
-            {
-                checkSystemOperational(playerSpaceShip.fighterCockpit.pilotControls);
-                if (playerSpaceShip.fighterCockpit.pilotControls.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.pilotControls.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.pilotControls);
-                }
-                checkSystemOperational(playerSpaceShip.fighterCockpit.airScrubber);
-                if (playerSpaceShip.fighterCockpit.airScrubber.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.airScrubber.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.airScrubber);
-                }
-                checkSystemOperational(playerSpaceShip.fighterCockpit.heatExchanger);
-                if (playerSpaceShip.fighterCockpit.heatExchanger.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.heatExchanger.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.heatExchanger);
-                }
-                checkSystemOperational(playerSpaceShip.fighterCockpit.shields);
-                if (playerSpaceShip.fighterCockpit.shields.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.shields.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.shields);
-                }
-                checkSystemOperational(playerSpaceShip.fighterCockpit.powerDistributor);
-                if (playerSpaceShip.fighterCockpit.powerDistributor.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.powerDistributor.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.powerDistributor);
-                }
-
-
-            }
-
-            if (playerSpaceShip.bridge != null)
-            {
-                checkSystemOperational(playerSpaceShip.bridge.pilotControls);
-                if (playerSpaceShip.bridge.pilotControls.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.bridge.pilotControls.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.bridge.pilotControls);
-                }
-                checkSystemOperational(playerSpaceShip.bridge.aI);
-                if (playerSpaceShip.bridge.aI.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.bridge.aI.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.bridge.aI);
-                }
-            }
-
-            if (playerSpaceShip.engineering != null)
-            {
-                checkSystemOperational(playerSpaceShip.engineering.shields);
-                if (playerSpaceShip.engineering.shields.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.shields.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.shields);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.powerDistributor);
-                if (playerSpaceShip.engineering.powerDistributor.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.powerDistributor.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.powerDistributor);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.engines);
-                if (playerSpaceShip.engineering.engines.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.engines.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.engines);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.powerGenerator);
-                if (playerSpaceShip.engineering.powerGenerator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.powerGenerator.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.powerGenerator);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.fabricator);
-                if (playerSpaceShip.engineering.fabricator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.fabricator.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.fabricator);
-                }
-                checkSystemOperational(playerSpaceShip.engineering.wasteDisposal);
-                if (playerSpaceShip.engineering.wasteDisposal.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.wasteDisposal.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.wasteDisposal);
-                }
-            }
-
-            if (playerSpaceShip.lifeSupport != null)
-            {
-                checkSystemOperational(playerSpaceShip.lifeSupport.airScrubber);
-                if (playerSpaceShip.lifeSupport.airScrubber.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.airScrubber.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.airScrubber);
-                }
-                checkSystemOperational(playerSpaceShip.lifeSupport.gravityGenerator);
-                if (playerSpaceShip.lifeSupport.gravityGenerator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.gravityGenerator.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.gravityGenerator);
-                }
-                checkSystemOperational(playerSpaceShip.lifeSupport.temperatureControl);
-                if (playerSpaceShip.lifeSupport.temperatureControl.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.temperatureControl.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.temperatureControl);
-                }
-
-            }
-
-            if (playerSpaceShip.comms != null)
-            {
-                checkSystemOperational(playerSpaceShip.comms.transmitter);
-                if (playerSpaceShip.comms.transmitter.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.transmitter.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.comms.transmitter);
-                }
-                checkSystemOperational(playerSpaceShip.comms.receiver);
-                if (playerSpaceShip.comms.receiver.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.receiver.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.comms.receiver);
-                }
-                checkSystemOperational(playerSpaceShip.comms.cryptography);
-                if (playerSpaceShip.comms.cryptography.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.cryptography.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.comms.cryptography);
-                }
-            }
-
-            if (playerSpaceShip.fireControl != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl.weaponsTargeting);
-                if (playerSpaceShip.fireControl.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl.weaponsTargeting.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl.weaponsTargeting);
-                }
-                checkSystemOperational(playerSpaceShip.fireControl.weaponsFiring);
-                if (playerSpaceShip.fireControl.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl.weaponsFiring.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl.weaponsFiring);
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl2 != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl2.weaponsTargeting);
-                if (playerSpaceShip.fireControl2.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl2.weaponsTargeting.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl2.weaponsTargeting);
-                }
-                checkSystemOperational(playerSpaceShip.fireControl2.weaponsFiring);
-                if (playerSpaceShip.fireControl2.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl2.weaponsFiring.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl2.weaponsFiring);
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl3 != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl3.weaponsTargeting);
-                if (playerSpaceShip.fireControl3.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl3.weaponsTargeting.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl3.weaponsTargeting);
-                }
-                checkSystemOperational(playerSpaceShip.fireControl3.weaponsFiring);
-                if (playerSpaceShip.fireControl3.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl3.weaponsFiring.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl3.weaponsFiring);
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl4 != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl4.weaponsTargeting);
-                if (playerSpaceShip.fireControl4.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl4.weaponsTargeting.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl4.weaponsTargeting);
-                }
-                checkSystemOperational(playerSpaceShip.fireControl4.weaponsFiring);
-                if (playerSpaceShip.fireControl4.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl4.weaponsFiring.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl4.weaponsFiring);
-                }
-
-            }
-
-            if (playerSpaceShip.medibay != null)
-            {
-                checkSystemOperational(playerSpaceShip.medibay.surgeryTable);
-                if (playerSpaceShip.medibay.surgeryTable.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.medibay.surgeryTable.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.medibay.surgeryTable);
-                }
-            }
-
-            if (playerSpaceShip.cargoHold != null)
-            {
-
-            }
-
-            if (playerSpaceShip.shuttleBay != null)
-            {
-                checkSystemOperational(playerSpaceShip.shuttleBay.hangar);
-                if (playerSpaceShip.shuttleBay.hangar.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.shuttleBay.hangar.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.shuttleBay.hangar);
-                }
-                checkSystemOperational(playerSpaceShip.shuttleBay.repairBay);
-                if (playerSpaceShip.shuttleBay.repairBay.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.shuttleBay.repairBay.isOperational == true)
-                {
-                    dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.shuttleBay.repairBay);
-                }
-            }
-        }
-
-        public static void dishOutHierarchyOverflowPowerpacket(SpaceShip playerSpaceShip, ShipSystem shipSystem)
-        {
-            int powerStorageSpace = shipSystem.maxPowerStorage - shipSystem.currentPowerStored;
-            Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
-            if (playerSpaceShip.powerPool > 0)
-            {
-                if (powerStorageSpace <= playerSpaceShip.powerPool)
-                {
-                    playerSpaceShip.powerPool = playerSpaceShip.powerPool - powerStorageSpace;
-                    shipSystem.currentPowerStored = shipSystem.maxPowerStorage;
-                    Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
-                }
-
-                if (playerSpaceShip.powerPool < powerStorageSpace)
-                {
-                    shipSystem.currentPowerStored = shipSystem.currentPowerStored + playerSpaceShip.powerPool;
-                    playerSpaceShip.powerPool = 0;
-                    Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
-                }
-            }
-            Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
-            Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
-        }
-
-        public static void dishOutHierarchyBasePowerpacket(SpaceShip playerSpaceShip, ShipSystem shipSystem)
-        {
-            int systemPowerRequirement = shipSystem.operationalPowerConsumption;
-
-            if (playerSpaceShip.powerPool <= 0)
-            {
-                playerSpaceShip.powerPool = 0;
-
-                if (systemPowerRequirement <= shipSystem.currentPowerStored)
-                {
-                    shipSystem.currentPowerStored = shipSystem.currentPowerStored - systemPowerRequirement;
-                }
-
-                if (systemPowerRequirement > shipSystem.currentPowerStored)
-                {
-                    shipSystem.currentPowerStored = 0;
-                }
-
-                Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
-            }
-
-            if (playerSpaceShip.powerPool > 0)
-            {
-                Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
-
-
-
-                if (playerSpaceShip.powerPool > systemPowerRequirement)
-                {
-                    playerSpaceShip.powerPool = playerSpaceShip.powerPool - systemPowerRequirement;
-                }
-
-                if (playerSpaceShip.powerPool < systemPowerRequirement)
-                {
-                    if (playerSpaceShip.powerPool + shipSystem.currentPowerStored > systemPowerRequirement)
-                    {
-                        shipSystem.currentPowerStored = shipSystem.currentPowerStored - (systemPowerRequirement - playerSpaceShip.powerPool);
-                        playerSpaceShip.powerPool = 0;
-                        Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
-                    }
-
-                    if (playerSpaceShip.powerPool + shipSystem.currentPowerStored < systemPowerRequirement)
-                    {
-                        shipSystem.currentPowerStored = 0;
-                        playerSpaceShip.powerPool = 0;
-                        Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
-                        //turn system off
-                        shipSystem.isSwitchedOn = false;
-                    }
-                }
-
-                Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
-            }
-        }
-
-        public static int countShipSystems(SpaceShip playerSpaceShip) // needs developing further
-        {
-            int systemCount = 0;
-            if (playerSpaceShip.fighterCockpit != null)
-            {
-                if (playerSpaceShip.fighterCockpit.pilotControls != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.fighterCockpit.temperatureControl != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.fighterCockpit.airScrubber != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.fighterCockpit.heatExchanger != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.fighterCockpit.shields != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-            }
-
-            if (playerSpaceShip.bridge != null)
-            {
-                if (playerSpaceShip.bridge.pilotControls != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.bridge.aI != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-
-            }
-
-            if (playerSpaceShip.engineering != null)
-            {
-
-                if (playerSpaceShip.engineering.shields != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.engineering.engines != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.engineering.powerGenerator != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.engineering.fabricator != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.engineering.wasteDisposal != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.engineering.fuelStore != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-            }
-
-            if (playerSpaceShip.lifeSupport != null)
-            {
-                if (playerSpaceShip.lifeSupport.airScrubber != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.lifeSupport.gravityGenerator != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.lifeSupport.temperatureControl != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-            }
-
-            if (playerSpaceShip.comms != null)
-            {
-
-                if (playerSpaceShip.comms.transmitter != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.comms.receiver != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.comms.cryptography != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl != null)
-            {
-
-                if (playerSpaceShip.fireControl.weaponsTargeting != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.fireControl.weaponsFiring != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-
-            }
-
-            if (playerSpaceShip.fireControl2 != null)
-            {
-
-                if (playerSpaceShip.fireControl2.weaponsTargeting != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.fireControl2.weaponsFiring != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl3 != null)
-            {
-                if (playerSpaceShip.fireControl3.weaponsTargeting != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.fireControl3.weaponsFiring != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-
-
-            }
-
-            if (playerSpaceShip.fireControl4 != null)
-            {
-
-                if (playerSpaceShip.fireControl4.weaponsTargeting != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.fireControl4.weaponsFiring != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-            }
-
-            if (playerSpaceShip.medibay != null)
-            {
-                if (playerSpaceShip.medibay.surgeryTable != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-            }
-
-            if (playerSpaceShip.cargoHold != null)
-            {
-
-            }
-
-            if (playerSpaceShip.shuttleBay != null)
-            {
-
-                if (playerSpaceShip.shuttleBay.hangar != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-
-                if (playerSpaceShip.shuttleBay.repairBay != null)
-                {
-                    systemCount = systemCount + 1;
-                }
-            }
-
-            return systemCount;
-        }
-
-        public static void distributePowerPool(SpaceShip playerSpaceShip) // unfinished
-        {
-            if (playerSpaceShip.powerPool >= playerSpaceShip.spaceShipPowerOverhead)
-            {
-                playerSpaceShip.powerPool = playerSpaceShip.powerPool - playerSpaceShip.spaceShipPowerOverhead;
-
-
-
-
-                if (playerSpaceShip.powerPool > 0)
-                {
-                    int positionCurrentlyChecking = countShipSystems(playerSpaceShip);
-                    int highestPosition = positionCurrentlyChecking;
-                    bool keepGoing = true;
-                    positionCurrentlyChecking = 1;
-
-                    while (keepGoing == true)
-                    {
-                        abundantSupplySystemPowerHierarchy(playerSpaceShip, positionCurrentlyChecking);
-                        positionCurrentlyChecking++;
-
-                        if (positionCurrentlyChecking >= (highestPosition))
-                        {
-                            keepGoing = false;
-                        }
-                    }
-
-                }
-            }
-
-            if (playerSpaceShip.powerPool < playerSpaceShip.spaceShipPowerOverhead)
-            {
-                int positionCurrentlyChecking = countShipSystems(playerSpaceShip);
-                int highestPosition = positionCurrentlyChecking;
-                bool keepGoing = true;
-                positionCurrentlyChecking = 1;
-
-                while (keepGoing == true)
-                {
-                    limitedSupplySystemPowerHierarchy(playerSpaceShip, positionCurrentlyChecking);
-                    positionCurrentlyChecking++;
-
-                    if (positionCurrentlyChecking >= (highestPosition + 1))
-                    {
-                        keepGoing = false;
-                    }
-                }
-
-            }
-        }
+        //public static void abundantSupplySystemPowerHierarchy(SpaceShip playerSpaceShip, int powerHierarchyPosition)
+        //{
+        //    //checkPowerSystemHierarchy(playerSpaceShip);
+
+
+
+        //    if (playerSpaceShip.fighterCockpit != null)
+        //    {
+                
+        //        if (playerSpaceShip.fighterCockpit.pilotControls.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.pilotControls.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.pilotControls);
+        //        }
+                
+        //        if (playerSpaceShip.fighterCockpit.temperatureControl.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.temperatureControl.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.temperatureControl);
+        //        }
+                
+        //        if (playerSpaceShip.fighterCockpit.airScrubber.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.airScrubber.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.airScrubber);
+        //        }
+                
+        //        if (playerSpaceShip.fighterCockpit.heatExchanger.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.heatExchanger.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.heatExchanger);
+        //        }
+                
+        //        if (playerSpaceShip.fighterCockpit.shields.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.shields.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.shields);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.bridge != null)
+        //    {
+                
+        //        if (playerSpaceShip.bridge.pilotControls.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.bridge.pilotControls.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.bridge.pilotControls);
+        //        }
+                
+        //        if (playerSpaceShip.bridge.aI.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.bridge.aI.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.bridge.aI);
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.engineering != null)
+        //    {
+                
+        //        if (playerSpaceShip.engineering.shields.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.shields.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.shields);
+        //        }
+                
+        //        if (playerSpaceShip.engineering.engines.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.engines.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.engines);
+        //        }
+
+        //        if (playerSpaceShip.engineering.powerDistributor.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.powerDistributor.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.powerDistributor);
+        //        }
+
+        //        if (playerSpaceShip.engineering.powerGenerator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.powerGenerator.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.powerGenerator);
+        //        }
+
+        //        if (playerSpaceShip.engineering.fabricator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.fabricator.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.fabricator);
+        //        }
+
+        //        if (playerSpaceShip.engineering.wasteDisposal.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.wasteDisposal.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.engineering.wasteDisposal);
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.lifeSupport != null)
+        //    {
+
+        //        if (playerSpaceShip.lifeSupport.airScrubber.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.airScrubber.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.airScrubber);
+        //        }
+
+        //        if (playerSpaceShip.lifeSupport.gravityGenerator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.gravityGenerator.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.gravityGenerator);
+        //        }
+
+        //        if (playerSpaceShip.lifeSupport.temperatureControl.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.temperatureControl.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.temperatureControl);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.comms != null)
+        //    {
+
+        //        if (playerSpaceShip.comms.transmitter.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.transmitter.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.comms.transmitter);
+        //        }
+
+        //        if (playerSpaceShip.comms.receiver.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.receiver.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.comms.receiver);
+        //        }
+
+        //        if (playerSpaceShip.comms.cryptography.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.cryptography.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.comms.cryptography);
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.fireControl != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl.weaponsTargeting.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl.weaponsTargeting);
+        //        }
+
+        //        if (playerSpaceShip.fireControl.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl.weaponsFiring.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl.weaponsFiring);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl2 != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl2.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl2.weaponsTargeting.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl2.weaponsTargeting);
+        //        }
+
+        //        if (playerSpaceShip.fireControl2.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl2.weaponsFiring.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl2.weaponsFiring);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl3 != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl3.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl3.weaponsTargeting.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl3.weaponsTargeting);
+        //        }
+
+        //        if (playerSpaceShip.fireControl3.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl3.weaponsFiring.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl3.weaponsFiring);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl4 != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl4.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl4.weaponsTargeting.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl4.weaponsTargeting);
+        //        }
+
+        //        if (playerSpaceShip.fireControl4.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl4.weaponsFiring.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.fireControl4.weaponsFiring);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.medibay != null)
+        //    {
+
+        //        if (playerSpaceShip.medibay.surgeryTable.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.medibay.surgeryTable.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.medibay.surgeryTable);
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.cargoHold != null)
+        //    {
+
+        //    }
+
+        //    if (playerSpaceShip.shuttleBay != null)
+        //    {
+
+        //        if (playerSpaceShip.shuttleBay.hangar.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.shuttleBay.hangar.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.shuttleBay.hangar);
+        //        }
+
+        //        if (playerSpaceShip.shuttleBay.repairBay.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.shuttleBay.repairBay.isOperational == true)
+        //        {
+        //            dishOutHierarchyOverflowPowerpacket(playerSpaceShip, playerSpaceShip.shuttleBay.repairBay);
+        //        }
+        //    }
+        //}
+
+        //public static void limitedSupplySystemPowerHierarchy(SpaceShip playerSpaceShip, int powerHierarchyPosition)
+        //{
+        //    //checkPowerSystemHierarchy(playerSpaceShip);
+
+        //    if (playerSpaceShip.fighterCockpit != null)
+        //    {
+
+        //        if (playerSpaceShip.fighterCockpit.pilotControls.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.pilotControls.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.pilotControls);
+        //        }
+
+        //        if (playerSpaceShip.fighterCockpit.airScrubber.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.airScrubber.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.airScrubber);
+        //        }
+
+        //        if (playerSpaceShip.fighterCockpit.heatExchanger.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.heatExchanger.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.heatExchanger);
+        //        }
+
+        //        if (playerSpaceShip.fighterCockpit.shields.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.shields.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.shields);
+        //        }
+
+        //        if (playerSpaceShip.fighterCockpit.powerDistributor.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fighterCockpit.powerDistributor.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fighterCockpit.powerDistributor);
+        //        }
+
+
+        //    }
+
+        //    if (playerSpaceShip.bridge != null)
+        //    {
+                
+        //        if (playerSpaceShip.bridge.pilotControls.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.bridge.pilotControls.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.bridge.pilotControls);
+        //        }
+                
+        //        if (playerSpaceShip.bridge.aI.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.bridge.aI.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.bridge.aI);
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.engineering != null)
+        //    {
+                
+        //        if (playerSpaceShip.engineering.shields.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.shields.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.shields);
+        //        }
+                
+        //        if (playerSpaceShip.engineering.powerDistributor.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.powerDistributor.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.powerDistributor);
+        //        }
+                
+        //        if (playerSpaceShip.engineering.engines.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.engines.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.engines);
+        //        }
+                
+        //        if (playerSpaceShip.engineering.powerGenerator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.powerGenerator.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.powerGenerator);
+        //        }
+                
+        //        if (playerSpaceShip.engineering.fabricator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.fabricator.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.fabricator);
+        //        }
+                
+        //        if (playerSpaceShip.engineering.wasteDisposal.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.engineering.wasteDisposal.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.engineering.wasteDisposal);
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.lifeSupport != null)
+        //    {
+                
+        //        if (playerSpaceShip.lifeSupport.airScrubber.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.airScrubber.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.airScrubber);
+        //        }
+                
+        //        if (playerSpaceShip.lifeSupport.gravityGenerator.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.gravityGenerator.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.gravityGenerator);
+        //        }
+                
+        //        if (playerSpaceShip.lifeSupport.temperatureControl.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.lifeSupport.temperatureControl.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.lifeSupport.temperatureControl);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.comms != null)
+        //    {
+                
+        //        if (playerSpaceShip.comms.transmitter.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.transmitter.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.comms.transmitter);
+        //        }
+                
+        //        if (playerSpaceShip.comms.receiver.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.receiver.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.comms.receiver);
+        //        }
+                
+        //        if (playerSpaceShip.comms.cryptography.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.comms.cryptography.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.comms.cryptography);
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.fireControl != null)
+        //    {
+                
+        //        if (playerSpaceShip.fireControl.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl.weaponsTargeting.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl.weaponsTargeting);
+        //        }
+                
+        //        if (playerSpaceShip.fireControl.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl.weaponsFiring.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl.weaponsFiring);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl2 != null)
+        //    {
+                
+        //        if (playerSpaceShip.fireControl2.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl2.weaponsTargeting.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl2.weaponsTargeting);
+        //        }
+
+        //        if (playerSpaceShip.fireControl2.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl2.weaponsFiring.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl2.weaponsFiring);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl3 != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl3.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl3.weaponsTargeting.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl3.weaponsTargeting);
+        //        }
+
+        //        if (playerSpaceShip.fireControl3.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl3.weaponsFiring.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl3.weaponsFiring);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl4 != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl4.weaponsTargeting.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl4.weaponsTargeting.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl4.weaponsTargeting);
+        //        }
+
+        //        if (playerSpaceShip.fireControl4.weaponsFiring.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.fireControl4.weaponsFiring.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.fireControl4.weaponsFiring);
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.medibay != null)
+        //    {
+
+        //        if (playerSpaceShip.medibay.surgeryTable.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.medibay.surgeryTable.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.medibay.surgeryTable);
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.cargoHold != null)
+        //    {
+
+        //    }
+
+        //    if (playerSpaceShip.shuttleBay != null)
+        //    {
+
+        //        if (playerSpaceShip.shuttleBay.hangar.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.shuttleBay.hangar.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.shuttleBay.hangar);
+        //        }
+
+        //        if (playerSpaceShip.shuttleBay.repairBay.powerSupplyHierarchyPosition == powerHierarchyPosition && playerSpaceShip.shuttleBay.repairBay.isOperational == true)
+        //        {
+        //            dishOutHierarchyBasePowerpacket(playerSpaceShip, playerSpaceShip.shuttleBay.repairBay);
+        //        }
+        //    }
+        //}
+
+        //public static void dishOutHierarchyOverflowPowerpacket(SpaceShip playerSpaceShip, ShipSystem shipSystem)
+        //{
+        //    int powerStorageSpace = shipSystem.maxPowerStorage - shipSystem.currentPowerStored;
+        //    Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
+        //    if (playerSpaceShip.powerPool > 0)
+        //    {
+        //        if (powerStorageSpace <= playerSpaceShip.powerPool)
+        //        {
+        //            playerSpaceShip.powerPool = playerSpaceShip.powerPool - powerStorageSpace;
+        //            shipSystem.currentPowerStored = shipSystem.maxPowerStorage;
+        //            Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
+        //        }
+
+        //        if (playerSpaceShip.powerPool < powerStorageSpace)
+        //        {
+        //            shipSystem.currentPowerStored = shipSystem.currentPowerStored + playerSpaceShip.powerPool;
+        //            playerSpaceShip.powerPool = 0;
+        //            Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
+        //        }
+        //    }
+        //    Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
+        //    Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
+        //}
+
+        //public static void dishOutHierarchyBasePowerpacket(SpaceShip playerSpaceShip, ShipSystem shipSystem)
+        //{
+        //    int systemPowerRequirement = shipSystem.systemOperationalPowerConsumption;
+
+        //    if (playerSpaceShip.powerPool <= 0)
+        //    {
+        //        playerSpaceShip.powerPool = 0;
+
+        //        if (systemPowerRequirement <= shipSystem.currentPowerStored)
+        //        {
+        //            shipSystem.currentPowerStored = shipSystem.currentPowerStored - systemPowerRequirement;
+        //        }
+
+        //        if (systemPowerRequirement > shipSystem.currentPowerStored)
+        //        {
+        //            shipSystem.currentPowerStored = 0;
+        //        }
+
+        //        Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
+        //    }
+
+        //    if (playerSpaceShip.powerPool > 0)
+        //    {
+        //        Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
+
+
+
+        //        if (playerSpaceShip.powerPool > systemPowerRequirement)
+        //        {
+        //            playerSpaceShip.powerPool = playerSpaceShip.powerPool - systemPowerRequirement;
+        //        }
+
+        //        if (playerSpaceShip.powerPool < systemPowerRequirement)
+        //        {
+        //            if (playerSpaceShip.powerPool + shipSystem.currentPowerStored > systemPowerRequirement)
+        //            {
+        //                shipSystem.currentPowerStored = shipSystem.currentPowerStored - (systemPowerRequirement - playerSpaceShip.powerPool);
+        //                playerSpaceShip.powerPool = 0;
+        //                Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
+        //            }
+
+        //            if (playerSpaceShip.powerPool + shipSystem.currentPowerStored < systemPowerRequirement)
+        //            {
+        //                shipSystem.currentPowerStored = 0;
+        //                playerSpaceShip.powerPool = 0;
+        //                Console.WriteLine(shipSystem.systemName + " has " + shipSystem.currentPowerStored + " power points stored.");
+        //                //turn system off
+        //                shipSystem.isSwitchedOn = false;
+        //            }
+        //        }
+
+        //        Console.WriteLine("Current Power Pool: " + playerSpaceShip.powerPool);
+        //    }
+        //}
+
+        //public static int countShipSystems(SpaceShip playerSpaceShip) // needs developing further
+        //{
+        //    int systemCount = 0;
+        //    if (playerSpaceShip.fighterCockpit != null)
+        //    {
+        //        if (playerSpaceShip.fighterCockpit.pilotControls != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.fighterCockpit.temperatureControl != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.fighterCockpit.airScrubber != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.fighterCockpit.heatExchanger != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.fighterCockpit.shields != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.bridge != null)
+        //    {
+        //        if (playerSpaceShip.bridge.pilotControls != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.bridge.aI != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+
+        //    }
+
+        //    if (playerSpaceShip.engineering != null)
+        //    {
+
+        //        if (playerSpaceShip.engineering.shields != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.engineering.engines != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.engineering.powerGenerator != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.engineering.fabricator != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.engineering.wasteDisposal != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.engineering.fuelStore != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.lifeSupport != null)
+        //    {
+        //        if (playerSpaceShip.lifeSupport.airScrubber != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.lifeSupport.gravityGenerator != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.lifeSupport.temperatureControl != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.comms != null)
+        //    {
+
+        //        if (playerSpaceShip.comms.transmitter != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.comms.receiver != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.comms.cryptography != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl.weaponsTargeting != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.fireControl.weaponsFiring != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl2 != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl2.weaponsTargeting != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.fireControl2.weaponsFiring != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl3 != null)
+        //    {
+        //        if (playerSpaceShip.fireControl3.weaponsTargeting != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.fireControl3.weaponsFiring != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+
+
+        //    }
+
+        //    if (playerSpaceShip.fireControl4 != null)
+        //    {
+
+        //        if (playerSpaceShip.fireControl4.weaponsTargeting != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.fireControl4.weaponsFiring != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //    }
+
+        //    if (playerSpaceShip.medibay != null)
+        //    {
+        //        if (playerSpaceShip.medibay.surgeryTable != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+        //    }
+
+        //    if (playerSpaceShip.cargoHold != null)
+        //    {
+
+        //    }
+
+        //    if (playerSpaceShip.shuttleBay != null)
+        //    {
+
+        //        if (playerSpaceShip.shuttleBay.hangar != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+
+        //        if (playerSpaceShip.shuttleBay.repairBay != null)
+        //        {
+        //            systemCount = systemCount + 1;
+        //        }
+        //    }
+
+        //    return systemCount;
+        //}
+
+        //public static void distributePowerPool(SpaceShip playerSpaceShip) // unfinished
+        //{
+        //    if (playerSpaceShip.powerPool >= playerSpaceShip.spaceShipPowerOverhead)
+        //    {
+        //        playerSpaceShip.powerPool = playerSpaceShip.powerPool - playerSpaceShip.spaceShipPowerOverhead;
+
+        //        if (playerSpaceShip.powerPool < playerSpaceShip.spaceShipPowerOverhead)
+        //        {
+        //            int positionCurrentlyChecking = playerSpaceShip.countShipSystems();
+        //            int highestPosition = positionCurrentlyChecking;
+        //            bool keepGoing = true;
+        //            positionCurrentlyChecking = 1;
+
+        //            while (keepGoing == true)
+        //            {
+        //                limitedSupplySystemPowerHierarchy(playerSpaceShip, positionCurrentlyChecking);
+        //                positionCurrentlyChecking++;
+
+        //                if (positionCurrentlyChecking >= (highestPosition + 1))
+        //                {
+        //                    keepGoing = false;
+        //                }
+        //            }
+
+        //        }
+
+        //        if (playerSpaceShip.powerPool > 0)
+        //        {
+        //            int positionCurrentlyChecking = playerSpaceShip.countShipSystems();
+        //            int highestPosition = positionCurrentlyChecking;
+        //            bool keepGoing = true;
+        //            positionCurrentlyChecking = 1;
+
+        //            while (keepGoing == true)
+        //            {
+        //                abundantSupplySystemPowerHierarchy(playerSpaceShip, positionCurrentlyChecking);
+        //                positionCurrentlyChecking++;
+
+        //                if (positionCurrentlyChecking >= (highestPosition))
+        //                {
+        //                    keepGoing = false;
+        //                }
+        //            }
+
+        //        }
+        //    }
+
+
+        //}
 
         public static void powerBleed(SpaceShip playerSpaceShip)
         {
@@ -1367,276 +1085,7 @@ namespace SSGMadNess
             }
         }
 
-        public static int calculateStoredSystemPower(SpaceShip playerSpaceShip)
-        {
-            int storedSystemPower = 0;
 
-            // Find system level power consumption.
-
-            if (playerSpaceShip.fighterCockpit != null)
-            {
-                checkSystemOperational(playerSpaceShip.fighterCockpit.pilotControls);
-
-                if (playerSpaceShip.fighterCockpit.pilotControls != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fighterCockpit.pilotControls.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.fighterCockpit.temperatureControl);
-
-                if (playerSpaceShip.fighterCockpit.temperatureControl != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fighterCockpit.temperatureControl.currentPowerStored;
-
-                }
-
-                checkSystemOperational(playerSpaceShip.fighterCockpit.airScrubber);
-
-                if (playerSpaceShip.fighterCockpit.airScrubber != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fighterCockpit.airScrubber.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.fighterCockpit.heatExchanger);
-
-                if (playerSpaceShip.fighterCockpit.heatExchanger != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fighterCockpit.heatExchanger.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.fighterCockpit.shields);
-
-                if (playerSpaceShip.fighterCockpit.shields != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fighterCockpit.shields.currentPowerStored;
-                }
-
-            }
-
-            if (playerSpaceShip.bridge != null)
-            {
-                checkSystemOperational(playerSpaceShip.bridge.pilotControls);
-
-                if (playerSpaceShip.bridge.pilotControls != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.bridge.pilotControls.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.bridge.aI);
-
-                if (playerSpaceShip.bridge.aI != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.bridge.aI.currentPowerStored;
-                }
-
-            }
-
-            if (playerSpaceShip.engineering != null)
-            {
-                checkSystemOperational(playerSpaceShip.engineering.powerDistributor);
-
-                if (playerSpaceShip.engineering.powerDistributor != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.engineering.powerDistributor.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.engines);
-
-                if (playerSpaceShip.engineering.engines != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.engineering.engines.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.powerGenerator);
-
-                if (playerSpaceShip.engineering.powerGenerator != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.engineering.powerGenerator.currentPowerStored;
-                }
-
-
-                checkSystemOperational(playerSpaceShip.engineering.fabricator);
-
-                if (playerSpaceShip.engineering.fabricator != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.engineering.fabricator.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.wasteDisposal);
-
-                if (playerSpaceShip.engineering.wasteDisposal != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.engineering.wasteDisposal.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.engineering.fuelStore);
-
-                if (playerSpaceShip.engineering.fuelStore != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.engineering.fuelStore.currentPowerStored;
-                }
-
-            }
-
-            if (playerSpaceShip.lifeSupport != null)
-            {
-                checkSystemOperational(playerSpaceShip.lifeSupport.airScrubber);
-
-                if (playerSpaceShip.lifeSupport.airScrubber != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.lifeSupport.airScrubber.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.lifeSupport.gravityGenerator);
-
-                if (playerSpaceShip.lifeSupport.gravityGenerator != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.lifeSupport.gravityGenerator.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.lifeSupport.temperatureControl);
-
-                if (playerSpaceShip.lifeSupport.temperatureControl != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.lifeSupport.temperatureControl.currentPowerStored;
-                }
-
-            }
-
-            if (playerSpaceShip.comms != null)
-            {
-                checkSystemOperational(playerSpaceShip.comms.transmitter);
-
-                if (playerSpaceShip.comms.transmitter != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.comms.transmitter.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.comms.receiver);
-
-                if (playerSpaceShip.comms.receiver != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.comms.receiver.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.comms.cryptography);
-
-                if (playerSpaceShip.comms.cryptography != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.comms.cryptography.currentPowerStored;
-                }
-            }
-
-            if (playerSpaceShip.fireControl != null)
-            {
-
-                checkSystemOperational(playerSpaceShip.fireControl.weaponsTargeting);
-
-                if (playerSpaceShip.fireControl.weaponsTargeting != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fireControl.weaponsTargeting.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.fireControl.weaponsFiring);
-
-                if (playerSpaceShip.fireControl.weaponsFiring != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fireControl.weaponsFiring.currentPowerStored;
-                }
-
-
-            }
-
-            if (playerSpaceShip.fireControl2 != null)
-            {
-
-                checkSystemOperational(playerSpaceShip.fireControl2.weaponsTargeting);
-
-                if (playerSpaceShip.fireControl2.weaponsTargeting != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fireControl2.weaponsTargeting.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.fireControl2.weaponsFiring);
-
-                if (playerSpaceShip.fireControl2.weaponsFiring != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fireControl2.weaponsFiring.currentPowerStored;
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl3 != null)
-            {
-                checkSystemOperational(playerSpaceShip.fireControl3.weaponsTargeting);
-
-                if (playerSpaceShip.fireControl3.weaponsTargeting != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fireControl3.weaponsTargeting.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.fireControl3.weaponsFiring);
-
-                if (playerSpaceShip.fireControl3.weaponsFiring != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fireControl3.weaponsFiring.currentPowerStored;
-                }
-
-            }
-
-            if (playerSpaceShip.fireControl4 != null)
-            {
-
-                checkSystemOperational(playerSpaceShip.fireControl4.weaponsTargeting);
-
-                if (playerSpaceShip.fireControl4.weaponsTargeting != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fireControl4.weaponsTargeting.currentPowerStored;
-                }
-
-                checkSystemOperational(playerSpaceShip.fireControl4.weaponsFiring);
-
-                if (playerSpaceShip.fireControl4.weaponsFiring != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.fireControl4.weaponsFiring.currentPowerStored;
-                }
-
-            }
-
-            if (playerSpaceShip.medibay != null)
-            {
-                checkSystemOperational(playerSpaceShip.medibay.surgeryTable);
-
-                if (playerSpaceShip.medibay.surgeryTable != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.medibay.surgeryTable.currentPowerStored;
-                }
-            }
-
-            if (playerSpaceShip.cargoHold != null)
-            {
-
-            }
-
-            if (playerSpaceShip.shuttleBay != null)
-            {
-
-                checkSystemOperational(playerSpaceShip.shuttleBay.hangar);
-
-                if (playerSpaceShip.shuttleBay.hangar != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.shuttleBay.hangar.currentPowerStored;
-                }
-
-                if (playerSpaceShip.shuttleBay.repairBay != null)
-                {
-                    storedSystemPower = storedSystemPower + playerSpaceShip.shuttleBay.repairBay.currentPowerStored;
-                }
-            }
-
-            return storedSystemPower;
-
-        }
     }
 }
 //        public static void checkPowerSystemHierarchy(SpaceShip playerSpaceShip)//totally fucked
