@@ -12,6 +12,22 @@ namespace SSGMadNess
             this.systemName = systemName;
             this.systemRoomName = roomName;
 
+            //if (systemName == "Capacitor")
+            //{
+            //    this.mass = ;
+            //    this.maxHitPoints = ;
+            //    this.maxTemperature = ;
+            //    this.operationalHitPointThreshold = ;
+            //    this.maxPowerStorage = ;
+            //    this.canBurn = ;
+            //    this.canExplode = ;
+            //    this.canSpark = ;
+            //    this.powerSupplyHierarchyPosition = ;
+            //    this.maxHackPoints = ;
+            //    this.overHeatDamage = ;
+            //    this.breakHitPointThreshold = ;
+            //    this.systemOperationalPowerConsumption = ;
+
             if (systemName == "Pilot Controls")
             {
                 this.mass = 100;
@@ -477,12 +493,10 @@ namespace SSGMadNess
         {
             return maxPowerStorage - currentPowerStored;
         }
-
         
         public KeyValuePair<string,int> systemPowerHierarchyPosition()
         {
-            KeyValuePair<string, int> hierarchy = new KeyValuePair<string, int>(this.systemName, this.powerSupplyHierarchyPosition);
-            
+            KeyValuePair<string, int> hierarchy = new KeyValuePair<string, int>(this.systemName, this.powerSupplyHierarchyPosition);            
             return hierarchy;
         }
     }

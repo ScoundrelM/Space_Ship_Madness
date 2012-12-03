@@ -13,7 +13,7 @@ namespace SSGMadNess
             this.roomType = name;
             //this.systemSlots = 3; //placeholder for later when players select systems
             this.airPressure = 101; // kPa
-            this.bulkheadHitPoints = 100;
+            this.CurrentBulkheadHitPoints = 100;
             this.maxBulkheadHitPoints = 100;
             this.bulkheadMass = 100;
             this.oxygenLevel = 100; // %
@@ -49,7 +49,7 @@ namespace SSGMadNess
         //public int systemSlots { get; set; }
         //public ShipSystem[] shipSystems { get; set; }
         public int oxygenLevel { get; set; }
-        public int bulkheadHitPoints { get; set; }
+        public int CurrentBulkheadHitPoints { get; set; }
         public int maxBulkheadHitPoints { get; set; }
         public int airPressure { get; set; }
         public bool airScrubberInterface { get; set; }
@@ -80,26 +80,28 @@ namespace SSGMadNess
         public ShipSystem repairBay { get; set; }
         public ShipSystem heatExchanger { get; set; }
         public ShipSystem powerDistributor { get; set; }
+        public ShipSystem shipCapacitor { get; set; }
 
         public List<ShipSystem> getSystems()
         {
            var systems = new ShipSystem[] { powerGenerator,
-										 fabricator,
-										 wasteDisposal,
-										 fuelStore,
-										 airScrubber,
-										 gravityGenerator,
-										 temperatureControl,
-										 transmitter,
-										 receiver,
-										 cryptography,
-										 weaponsTargeting,
-										 weaponsFiring,
-										 surgeryTable,
-										 hangar,
-										 repairBay,
-										 heatExchanger,
-										 powerDistributor };
+                                            shipCapacitor,
+										    fabricator,
+										    wasteDisposal,
+										    fuelStore,
+										    airScrubber,
+										    gravityGenerator,
+										    temperatureControl,
+										    transmitter,
+										    receiver,
+										    cryptography,
+										    weaponsTargeting,
+										    weaponsFiring,
+										    surgeryTable,
+										    hangar,
+										    repairBay,
+										    heatExchanger,
+										    powerDistributor };
 
             return systems.Where(s => s != null).ToList();
         }
@@ -112,14 +114,8 @@ namespace SSGMadNess
         public int roomOperationalPowerConsumption()
                 {
                     return getSystems().Sum(systems => systems.systemOperationalPowerConsumption);
-                    //return (
-                    //        from system in getSystems()
-                    //        where system.isOperational
-                    //        select system.systemOperationalPowerConsumption
-                    //        )
-                    //        .Sum();
-
                 }
+
         public List<KeyValuePair<string,int>> roomPowerHierarchyPositions()
         {
             var hierarchy = new List<KeyValuePair<string, int>> {};
@@ -140,8 +136,8 @@ namespace SSGMadNess
         {
             return getSystems().Sum(systems => systems.currentPowerStored);
         }
+
     }
+
 }
 
-//return getRooms().Sum(room => room.roomOperationalPowerConsumption());
-//;list.Add(new KeyValuePair<string, int>("Cat", 1));

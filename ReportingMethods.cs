@@ -20,14 +20,12 @@ namespace SSGMadNess
             if (roomName != null)
             {
                 Console.WriteLine(roomName.roomType + " Oxygen Level: " + roomName.oxygenLevel + "% of ideal level.");
-                //Console.WriteLine(roomName.roomName + " Ship System Slots: " + roomName.systemSlots);
-                //Console.WriteLine(roomName.roomName + " Ship Systems: " + roomName.shipSystems);
                 Console.WriteLine(roomName.roomType + " Has Heat Exchanger: " + roomName.heatExchangerInterface);
                 Console.WriteLine(roomName.roomType + " Has Air Scrubber: " + roomName.airScrubber);
                 Console.WriteLine(roomName.roomType + " Air Pressure: " + roomName.airPressure + "kPa");
                 Console.WriteLine(roomName.roomType + " Air: Temperature " + roomName.airTemperature + " Degrees C");
                 Console.WriteLine(roomName.roomType + " Has Compromised Bulkhead: " + roomName.bulkheadCompromised);
-                Console.WriteLine(roomName.roomType + " Bulkhead Current Hit Points: " + roomName.bulkheadHitPoints);
+                Console.WriteLine(roomName.roomType + " Bulkhead Current Hit Points: " + roomName.CurrentBulkheadHitPoints);
                 Console.WriteLine(roomName.roomType + " Bulkhead Structural Integrity Threshold: " + roomName.bulkheadHitPointsStructuralIntegrityThreshold);
                 Console.WriteLine(roomName.roomType + " Bulkhead Mass: " + roomName.bulkheadMass);
                 Console.ReadLine();

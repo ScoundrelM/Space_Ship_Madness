@@ -40,12 +40,11 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 1000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
-                        playerSpaceShip.numberOfRooms = 1;
-                        playerSpaceShip.roomsOccupied = 0;
+
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 1000;
-                        playerSpaceShip.totalHitPointsStructuralIntegrityThreshold = 0;
-                        playerSpaceShip.totalMass = 0;
+                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+
                         //playerSpaceShip.requiredRooms = new string[1] { "Fighter Cockpit" };
 
                         isInputValid = true;
@@ -57,12 +56,11 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 10000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
-                        playerSpaceShip.numberOfRooms = 6;
-                        playerSpaceShip.roomsOccupied = 0;
+
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 10000;
-                        playerSpaceShip.totalHitPointsStructuralIntegrityThreshold = 0;
-                        playerSpaceShip.totalMass = 0;
+                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+
                         //playerSpaceShip.requiredRooms = new string[6] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Cargo Hold" };
 
                         isInputValid = true;
@@ -74,12 +72,11 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 100000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
-                        playerSpaceShip.numberOfRooms = 7;
-                        playerSpaceShip.roomsOccupied = 0;
+
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 100000;
-                        playerSpaceShip.totalHitPointsStructuralIntegrityThreshold = 0;
-                        playerSpaceShip.totalMass = 0;
+                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+
                         //playerSpaceShip.requiredRooms = new string[7] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Fire Control 2", "Medibay" };
 
                         isInputValid = true;
@@ -91,12 +88,11 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 1000000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
-                        playerSpaceShip.numberOfRooms = 9;
-                        playerSpaceShip.roomsOccupied = 0;
+
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 1000000;
-                        playerSpaceShip.totalHitPointsStructuralIntegrityThreshold = 0;
-                        playerSpaceShip.totalMass = 0;
+                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+
                         //playerSpaceShip.requiredRooms = new string[9] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Fire Control 2", "Fire Control 3", "Medibay", "Shuttle Bay" };
 
                         isInputValid = true;
@@ -108,12 +104,11 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 10000000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
-                        playerSpaceShip.numberOfRooms = 10;
-                        playerSpaceShip.roomsOccupied = 0;
+
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 10000000;
-                        playerSpaceShip.totalHitPointsStructuralIntegrityThreshold = 0;
-                        playerSpaceShip.totalMass = 0;
+                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+
                         //playerSpaceShip.requiredRooms = new string[10] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Fire Control 2", "Fire Control 3", "Fire Control 4", "Medibay", "Shuttle Bay" };
 
                         isInputValid = true;
@@ -137,7 +132,14 @@ namespace SSGMadNess
             if (playerSpaceShip.shipType == "Fighter")
             {
                 playerSpaceShip.fighterCockpit = new Room("Fighter Cockpit");
+                playerSpaceShip.isFighter = true;
             }
+
+            else
+            {
+                playerSpaceShip.isFighter = false;
+            }
+
             if (playerSpaceShip.shipType == "Shuttle")
             {
                 playerSpaceShip.bridge = new Room("Bridge");
@@ -201,6 +203,7 @@ namespace SSGMadNess
                 playerSpaceShip.fighterCockpit.receiver = new ShipSystem("Receiver", playerSpaceShip.fighterCockpit.roomType);
                 playerSpaceShip.fighterCockpit.cryptography = new ShipSystem("Cryptography", playerSpaceShip.fighterCockpit.roomType);
                 playerSpaceShip.fighterCockpit.powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.fighterCockpit.roomType);
+                playerSpaceShip.fighterCockpit.powerGenerator = new ShipSystem("Power Generator", playerSpaceShip.fighterCockpit.roomType);
 
             }
 
@@ -319,180 +322,77 @@ namespace SSGMadNess
 
         }
 
-        public static void calculateShipHitPoints(SpaceShip playerSpaceShip)
-        {
-            int shipHitPointsRunningTotal = 0;
+        //public static void calculateShipHitPoints(SpaceShip playerSpaceShip)
+        //{
+        //    int shipHitPointsRunningTotal = 0;
 
-            shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.maxStructureHitPoints;
+        //    shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.maxStructureHitPoints;
 
-            if (playerSpaceShip.fighterCockpit != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fighterCockpit.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.fighterCockpit != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fighterCockpit.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.bridge != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.bridge.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.bridge != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.bridge.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.engineering != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.engineering.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.engineering != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.engineering.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.lifeSupport != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.lifeSupport.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.lifeSupport != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.lifeSupport.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.comms != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.comms.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.comms != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.comms.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.fireControl != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.fireControl != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.fireControl2 != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl2.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.fireControl2 != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl2.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.fireControl3 != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl3.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.fireControl3 != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl3.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.fireControl4 != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl4.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.fireControl4 != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl4.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.medibay != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.medibay.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.medibay != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.medibay.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.cargoHold != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.cargoHold.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.cargoHold != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.cargoHold.maxBulkheadHitPoints;
+        //    }
 
-            if (playerSpaceShip.shuttleBay != null)
-            {
-                shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.shuttleBay.maxBulkheadHitPoints;
-            }
+        //    if (playerSpaceShip.shuttleBay != null)
+        //    {
+        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.shuttleBay.maxBulkheadHitPoints;
+        //    }
 
-            playerSpaceShip.maxTotalHitPoints = shipHitPointsRunningTotal;
-            playerSpaceShip.currentTotalHitPoints = shipHitPointsRunningTotal;
-        }
+        //    playerSpaceShip.maxTotalHitPoints = shipHitPointsRunningTotal;
 
-        public static void calculateShipMass(SpaceShip playerSpaceShip)
-        {
-            int shipMassRunningTotal = 0;
+        //}
 
-            shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.structureMass;
 
-            if (playerSpaceShip.fighterCockpit != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.fighterCockpit.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.fighterCockpit.pilotControls.mass + 
-                playerSpaceShip.fighterCockpit.temperatureControl.mass + playerSpaceShip.fighterCockpit.airScrubber.mass + 
-                playerSpaceShip.fighterCockpit.heatExchanger.mass + playerSpaceShip.fighterCockpit.shields.mass;
-            }
-
-            if (playerSpaceShip.bridge != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.bridge.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.bridge.pilotControls.mass + 
-                playerSpaceShip.bridge.aI.mass;
-            }
-
-            if (playerSpaceShip.engineering != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.engineering.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.engineering.shields.mass +
-                playerSpaceShip.engineering.engines.systemOperationalPowerConsumption +
-                playerSpaceShip.engineering.powerGenerator.mass +
-                playerSpaceShip.engineering.fabricator.mass +
-                playerSpaceShip.engineering.wasteDisposal.mass +
-                playerSpaceShip.engineering.fuelStore.mass;
-            }
-
-            if (playerSpaceShip.lifeSupport != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.lifeSupport.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.lifeSupport.airScrubber.mass +
-                playerSpaceShip.lifeSupport.gravityGenerator.mass +
-                playerSpaceShip.lifeSupport.temperatureControl.mass;
-            }
-
-            if (playerSpaceShip.comms != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.comms.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.comms.transmitter.mass +
-                playerSpaceShip.comms.receiver.mass +
-                playerSpaceShip.comms.cryptography.mass;
-            }
-
-            if (playerSpaceShip.fireControl != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.fireControl.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.fireControl.weaponsTargeting.mass +
-                playerSpaceShip.fireControl.weaponsFiring.mass;
-            }
-
-            if (playerSpaceShip.fireControl2 != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.fireControl2.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.fireControl2.weaponsTargeting.mass +
-                playerSpaceShip.fireControl2.weaponsFiring.mass;
-            }
-
-            if (playerSpaceShip.fireControl3 != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.fireControl3.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.fireControl3.weaponsTargeting.mass +
-                playerSpaceShip.fireControl3.weaponsFiring.mass;
-            }
-
-            if (playerSpaceShip.fireControl4 != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.fireControl4.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.fireControl4.weaponsTargeting.mass +
-                playerSpaceShip.fireControl4.weaponsFiring.mass;
-            }
-
-            if (playerSpaceShip.medibay != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.medibay.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.medibay.surgeryTable.mass;
-            }
-
-            if (playerSpaceShip.cargoHold != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.cargoHold.bulkheadMass;
-            }
-
-            if (playerSpaceShip.shuttleBay != null)
-            {
-                shipMassRunningTotal = shipMassRunningTotal + playerSpaceShip.shuttleBay.bulkheadMass;
-                shipMassRunningTotal = shipMassRunningTotal +
-                playerSpaceShip.shuttleBay.hangar.mass +
-                playerSpaceShip.shuttleBay.repairBay.mass;
-            }
-            playerSpaceShip.totalMass = shipMassRunningTotal;
-        }
 
     }
 }

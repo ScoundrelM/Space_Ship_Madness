@@ -14,11 +14,10 @@ namespace SSGMadNess
         }
         public static void executePowerTick(SpaceShip playerSpaceShip)
         {
-            PowerManagementMethods.primeGeneratorWithFuel(playerSpaceShip);
-            PowerManagementMethods.runGenerator(playerSpaceShip);
-           // playerSpaceShip.checkPowerHierarchyIntegrity();
+            playerSpaceShip.primeGeneratorWithFuel();
+            playerSpaceShip.runGenerator();
             playerSpaceShip.distributePower();
-            PowerManagementMethods.powerBleed(playerSpaceShip);
+            playerSpaceShip.powerBleed();
         }
 
         static void executeSystemTick()

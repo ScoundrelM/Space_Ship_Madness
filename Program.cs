@@ -19,9 +19,6 @@ namespace SSGMadNess
             ShipConstructionMethods.chooseShipClass(playerSpaceShip);
             ShipConstructionMethods.setShipRooms(playerSpaceShip);
             ShipConstructionMethods.setShipSystems(playerSpaceShip);
-            ShipConstructionMethods.calculateShipHitPoints(playerSpaceShip);
-            ShipConstructionMethods.calculateShipMass(playerSpaceShip);
-
                 ReportingMethods.roomReport(playerSpaceShip.bridge);
                 ReportingMethods.roomReport(playerSpaceShip.engineering);
                 ReportingMethods.roomReport(playerSpaceShip.lifeSupport);
@@ -34,9 +31,6 @@ namespace SSGMadNess
                 ReportingMethods.roomReport(playerSpaceShip.cargoHold);
                 ReportingMethods.roomReport(playerSpaceShip.fighterCockpit);
                 ReportingMethods.roomReport(playerSpaceShip.shuttleBay);
-
-                ReportingMethods.shipSystemReport(playerSpaceShip.bridge.pilotControls);
-
                 ReportingMethods.shipStatusReport(playerSpaceShip);
 
                 testingMethods.testPowerSystem(playerSpaceShip);

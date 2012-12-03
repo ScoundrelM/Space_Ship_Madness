@@ -75,7 +75,6 @@
     <Compile Include="ReportingMethods.cs" />
     <Compile Include="testingMethods.cs" />
     <Compile Include="ShipSystemMethods.cs" />
-    <Compile Include="PowerManagementMethods.cs" />
     <Compile Include="ShipConstructionMethods.cs" />
     <Compile Include="ShipSystem.cs" />
     <Compile Include="SpaceShip.cs" />
