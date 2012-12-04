@@ -28,6 +28,7 @@ namespace SSGMadNess
             while (keepGoing == true)
             {
                 TimeManagementMethods.executePowerTick(playerSpaceShip);
+                Console.ReadLine();
 
                 //ReportingMethods.shipSystemReport(playerSpaceShip.fighterCockpit.aI);
                 //ReportingMethods.shipSystemReport(playerSpaceShip.engineering.shields);

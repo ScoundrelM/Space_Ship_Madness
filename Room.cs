@@ -106,6 +106,13 @@ namespace SSGMadNess
             return systems.Where(s => s != null).ToList();
         }
 
+        public List<ShipSystem> getSpecificSystem(string systemName)
+        {
+            var systems = getSystems();
+            
+            return systems.Where(s => s.systemName == systemName).ToList();
+        }
+
         public int roomSystemCount()
         {
             return getSystems().Count();

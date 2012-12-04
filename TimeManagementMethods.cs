@@ -16,6 +16,7 @@ namespace SSGMadNess
         {
             playerSpaceShip.primeGeneratorWithFuel();
             playerSpaceShip.runGenerator();
+            playerSpaceShip.enforceValidityOnHierarchy();
             playerSpaceShip.distributePower();
             playerSpaceShip.powerBleed();
         }

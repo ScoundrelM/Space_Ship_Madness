@@ -71,10 +71,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RoomMethods.cs" />
     <Compile Include="ReportingMethods.cs" />
     <Compile Include="testingMethods.cs" />
-    <Compile Include="ShipSystemMethods.cs" />
     <Compile Include="ShipConstructionMethods.cs" />
     <Compile Include="ShipSystem.cs" />
     <Compile Include="SpaceShip.cs" />
@@ -82,9 +80,6 @@
     <Compile Include="TimeManagementMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Space Ship Madness_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -107,12 +102,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SpaceShipCharacterSheet.txt" />
-    <Content Include="RoomCharacterSheet.txt" />
-    <Content Include="ShipClassTemplates.txt" />
-    <Content Include="Ship Systems Character Sheet.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

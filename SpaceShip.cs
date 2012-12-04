@@ -58,7 +58,14 @@ namespace SSGMadNess
         public int operationalHitPointThreshold { get; set; }
         public int maxStructureHitPoints { get; set; }
         public int currentStructureHitPoints { get; set; }
-        public int StructuralIntegrityThreshold;
+        public int StructuralIntegrityThreshold
+        {
+            get
+            {
+                return maxStructureHitPoints / 4;
+            }
+
+        }
         public bool exteriorStructureCompromised { get; set; }
         public bool destroyed
         {
@@ -133,6 +140,21 @@ namespace SSGMadNess
 
         }
 
+        public void enforceValidityOnHierarchy()
+        {
+            //var hierarchy = shipPowerHierarchy();
+            //var hierarchy;
+            int newPosition = 1;
+            var hierarchy = (from entry in shipPowerHierarchy() orderby entry.Value ascending select entry)
+            .ToDictionary(pair => pair.Key, pair => pair.Value);
+            foreach (KeyValuePair<string, int> datablock in hierarchy)
+            {
+                ShipSystem system = getSpecificShipSystem(datablock.Key);
+                system.powerSupplyHierarchyPosition = newPosition;
+                newPosition ++;
+            }
+        }
+        
         public void distributePower()
         {
             bool distributorOperational = true;
@@ -374,6 +396,21 @@ namespace SSGMadNess
                     }
                 }
             }
+        }
+
+        public ShipSystem getSpecificShipSystem(string systemName)
+        {
+            ShipSystem output = null;
+
+            foreach (Room room in getRooms())
+            {
+                foreach (ShipSystem sys in room.getSpecificSystem(systemName))
+                {
+                    output = sys;
+                }
+            }
+
+            return output;
         }
 
 

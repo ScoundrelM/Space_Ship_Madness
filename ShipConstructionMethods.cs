@@ -43,7 +43,7 @@ namespace SSGMadNess
 
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 1000;
-                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+                        
 
                         //playerSpaceShip.requiredRooms = new string[1] { "Fighter Cockpit" };
 
@@ -59,7 +59,7 @@ namespace SSGMadNess
 
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 10000;
-                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+                        
 
                         //playerSpaceShip.requiredRooms = new string[6] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Cargo Hold" };
 
@@ -75,7 +75,7 @@ namespace SSGMadNess
 
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 100000;
-                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+                      
 
                         //playerSpaceShip.requiredRooms = new string[7] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Fire Control 2", "Medibay" };
 
@@ -91,7 +91,7 @@ namespace SSGMadNess
 
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 1000000;
-                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+                        
 
                         //playerSpaceShip.requiredRooms = new string[9] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Fire Control 2", "Fire Control 3", "Medibay", "Shuttle Bay" };
 
@@ -107,7 +107,7 @@ namespace SSGMadNess
 
                         playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 10000000;
-                        playerSpaceShip.StructuralIntegrityThreshold = 0;
+                        
 
                         //playerSpaceShip.requiredRooms = new string[10] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Fire Control 2", "Fire Control 3", "Fire Control 4", "Medibay", "Shuttle Bay" };
 
