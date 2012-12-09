@@ -12,21 +12,22 @@ namespace SSGMadNess
             this.systemName = systemName;
             this.systemRoomName = roomName;
 
-            //if (systemName == "Capacitor")
-            //{
-            //    this.mass = ;
-            //    this.maxHitPoints = ;
-            //    this.maxTemperature = ;
-            //    this.operationalHitPointThreshold = ;
-            //    this.maxPowerStorage = ;
-            //    this.canBurn = ;
-            //    this.canExplode = ;
-            //    this.canSpark = ;
-            //    this.powerSupplyHierarchyPosition = ;
-            //    this.maxHackPoints = ;
-            //    this.overHeatDamage = ;
-            //    this.breakHitPointThreshold = ;
-            //    this.systemOperationalPowerConsumption = ;
+            if (systemName == "Capacitor")
+            {
+                this.mass = 1000;
+                this.maxHitPoints = 1000;
+                this.maxTemperature = 1000;
+                this.operationalHitPointThreshold = 20;
+                this.maxPowerStorage = 1000;
+                this.canBurn = false;
+                this.canExplode = true;
+                this.canSpark = true;
+                this.powerSupplyHierarchyPosition = 0;
+                this.maxHackPoints = 100;
+                this.overHeatDamage = 1;
+                this.breakHitPointThreshold = 15;
+                this.systemOperationalPowerConsumption = 0;
+            }
 
             if (systemName == "Pilot Controls")
             {
@@ -43,6 +44,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 5;
+                this.systemActivationPowerConsumption = 0;
             }
 
             if (systemName == "A.I.")
@@ -60,6 +62,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 5;
                 this.breakHitPointThreshold = 25;
                 this.systemOperationalPowerConsumption = 5;
+                this.systemActivationPowerConsumption = 0;
             }
 
             if (systemName == "Shields")
@@ -108,10 +111,10 @@ namespace SSGMadNess
 
             if (systemName == "Power Generator")
             {
-                this.powerGeneration = 0; //don't accidentally remove
+                //this.powerGeneration = 0; //don't accidentally remove
                 this.fuelLevel = 0;//don't accidentally remove
                 this.maxFuelLevel = 50;//don't accidentally remove
-                this.efficiency = 50;//don't accidentally remove
+                //this.efficiency = 50;//don't accidentally remove
                 this.mass = 10;
                 this.maxHitPoints = 100;
                 this.maxTemperature = 300;
@@ -125,6 +128,10 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 10;
+                this.efficiencyForLowPowerOutput =10;
+                this.efficiencyForNormalPowerOutput =8;
+                this.efficiencyForHighPowerOutput =6;
+                this.efficiencyForOverDrivePowerOutput = 4;
             }
 
             if (systemName == "Fabricator")
@@ -134,7 +141,7 @@ namespace SSGMadNess
                 this.maxHitPoints = 100;
                 this.maxTemperature = 300;
                 this.operationalHitPointThreshold = 20;
-                this.maxPowerStorage = 10;
+                this.maxPowerStorage = 100;
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
@@ -143,6 +150,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 10;
             }
 
             if (systemName == "Waste Disposal")
@@ -160,6 +168,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 1;
             }
 
             if (systemName == "Fuel Store")
@@ -180,6 +189,7 @@ namespace SSGMadNess
             this.overHeatDamage = 2;
             this.breakHitPointThreshold = 10;
             this.systemOperationalPowerConsumption = 0;
+            this.systemActivationPowerConsumption = 0;
 
             }
 
@@ -198,6 +208,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 0;
             }
 
             if (systemName == "Gravity Generator")
@@ -215,6 +226,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 0;
             }
 
             if (systemName == "Temperature Control")
@@ -232,6 +244,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 0;
             }
 
             if (systemName == "Transmitter")
@@ -249,6 +262,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 1;
             }
 
             if (systemName == "Receiver")
@@ -266,6 +280,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 1;
             }
 
             if (systemName == "Cryptography")
@@ -283,6 +298,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 10;
             }
 
             if (systemName == "Weapons Targeting")
@@ -303,6 +319,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 0;
             }
 
             if (systemName == "Weapons Firing")
@@ -323,6 +340,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                //this.systemActivationPowerConsumption = 10; special case for weapons systems
             }
 
             if (systemName == "Surgery Table")
@@ -342,6 +360,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 10;
             }
 
             if (systemName == "Hangar")
@@ -359,6 +378,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 0;
             }
 
             if (systemName == "Repair Bay")
@@ -367,7 +387,7 @@ namespace SSGMadNess
                 this.maxHitPoints = 100;
                 this.maxTemperature = 300;
                 this.operationalHitPointThreshold = 20;
-                this.maxPowerStorage = 10;
+                this.maxPowerStorage = 100;
                 this.canBurn = true;
                 this.canExplode = true;
                 this.canSpark = true;
@@ -376,6 +396,7 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 10;
             }
 
             if (systemName == "Power Distributor")
@@ -393,6 +414,8 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 0;
+
             }
 
             this.currentHackPoints = maxHackPoints;
@@ -402,6 +425,7 @@ namespace SSGMadNess
             this.destructionHitPointThreshold = 0;
             this.currentPowerStored = 0;
             this.isSwitchedOn = true;
+            this.setToNormalPowerOutput = true;
 
         }
 
@@ -416,7 +440,11 @@ namespace SSGMadNess
             }
         }
         public int maxHitPoints { get; set; }
+
+
         public int currentHitPoints { get; set; }
+
+
         public int maxHackPoints { get; set; }
         public int currentHackPoints { get; set; }
         public int operationalHitPointThreshold { get; set; }
@@ -427,8 +455,9 @@ namespace SSGMadNess
         public int currentTemperature { get; set; }
         public int maxTemperature { get; set; }
         public int overHeatDamage { get; set; }
-        public int efficiency { get; set; }
+        
         public int fuelLevel { get; set; }
+        public int heatDissipationRate { get; set; }
         public int maxFuelLevel { get; set; }
         public bool isDestroyed
         {
@@ -436,6 +465,46 @@ namespace SSGMadNess
             {
                 return (currentHitPoints > destructionHitPointThreshold);
             }
+        }
+        public bool readyToActivate
+        {
+            get
+            {
+                if (currentPowerStored > systemActivationPowerConsumption)
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        private bool _isOverheating;
+        public bool isOverheating
+        {
+            get
+            {
+                if (currentTemperature > maxTemperature)
+                {
+                    _isOverheating = true;
+                    return _isOverheating;
+                }
+
+                else
+                {
+                    _isOverheating = false;
+                    return _isOverheating;
+                }
+            }
+        }
+
+        public void applyOverheatingDamage()
+        {
+            int damage = (currentTemperature - maxTemperature)*overHeatDamage;
+            currentHitPoints = currentHitPoints - damage;
         }
         
         public int destructionHitPointThreshold { get; set; }
@@ -450,21 +519,174 @@ namespace SSGMadNess
 
         public int breakHitPointThreshold { get; set; }
         public int systemOperationalPowerConsumption { get; set; }
-        public int currentPowerStored { get; set; }
+        public int systemActivationPowerConsumption { get; set; }
+
+        private int _currentPowerStored;
+        public int currentPowerStored
+        {
+            get
+            {
+                return _currentPowerStored;
+            }
+
+            set
+            {
+                if (value > maxPowerStorage)
+                {
+                    int difference = value - maxPowerStorage;
+                    currentTemperature = currentTemperature + difference;
+                    _currentPowerStored = maxPowerStorage;
+                    //raise temperature
+                }
+
+
+                else
+                {
+                    _currentPowerStored = value;
+                }
+            }
+        }
         public int maxPowerStorage { get; set; }
         public int powerSupplyHierarchyPosition { get; set; }
         public bool isSwitchedOn { get; set; }
 
         //generator stats
-        public int powerGeneration { get; set; }
-        public bool setToLowPowerOutput { get; set; }
-        public bool setToNormalPowerOutput { get; set; }
-        public bool setToHighPowerOutput { get; set; }
-        public bool setToOverDrivePowerOutput { get; set; }
+        //public int powerGeneration { get; set; }
+        private bool _setToLowPowerOutput;
+        public bool setToLowPowerOutput
+        {
+            get
+            {
+                return _setToLowPowerOutput;
+            }
+
+            set
+            {
+                if (value == true)
+                {
+                    _setToHighPowerOutput = false;
+                    _setToNormalPowerOutput = false;
+                    _setToOverDrivePowerOutput = false;
+                    _setToLowPowerOutput = true;
+                }
+
+                else
+                {
+                    _setToLowPowerOutput = false;
+                }
+            }
+        }
+
+        private bool _setToNormalPowerOutput { get; set; }
+        public bool setToNormalPowerOutput
+        {
+            get
+            {
+                return _setToNormalPowerOutput;
+            }
+
+            set
+            {
+                if (value == true)
+                {
+                    _setToHighPowerOutput = false;
+                    _setToLowPowerOutput = false;
+                    _setToOverDrivePowerOutput = false;
+                    _setToNormalPowerOutput = true;
+                }
+
+                else
+                {
+                    _setToNormalPowerOutput = false;
+                }
+            }
+        }
+
+        private  bool _setToHighPowerOutput { get; set; }
+        public bool setToHighPowerOutput
+        {
+            get
+            {
+                return _setToHighPowerOutput;
+            }
+
+            set
+            {
+                if (value == true)
+                {
+                    _setToNormalPowerOutput = false;
+                    _setToLowPowerOutput = false;
+                    _setToOverDrivePowerOutput = false;
+                    _setToHighPowerOutput = true;
+                }
+
+                else
+                {
+                    _setToHighPowerOutput = false;
+                }
+            }
+        }
+
+        private bool _setToOverDrivePowerOutput { get; set; }
+        public bool setToOverDrivePowerOutput
+        {
+            get
+            {
+                return _setToOverDrivePowerOutput;
+            }
+
+            set
+            {
+                if (value == true)
+                {
+                    _setToNormalPowerOutput = false;
+                    _setToLowPowerOutput = false;
+                    _setToHighPowerOutput = false;
+                    _setToOverDrivePowerOutput = true;
+                }
+
+                else
+                {
+                    _setToOverDrivePowerOutput = false;
+                }
+            }
+        }
+
         public int efficiencyForLowPowerOutput { get; set; }
         public int efficiencyForNormalPowerOutput { get; set; }
         public int efficiencyForHighPowerOutput { get; set; }
         public int efficiencyForOverDrivePowerOutput { get; set; }
+        public int efficiency
+        {
+            get
+            {
+                if (setToHighPowerOutput)
+                {
+                    return efficiencyForHighPowerOutput;
+                }
+
+                if (setToLowPowerOutput)
+                {
+                    return efficiencyForLowPowerOutput;
+                }
+
+                if (setToNormalPowerOutput)
+                {
+                    return efficiencyForNormalPowerOutput;
+                }
+
+                if (setToOverDrivePowerOutput)
+                {
+                    return efficiencyForOverDrivePowerOutput;
+                }
+
+                else
+                {
+                    return 0;
+                }
+            }
+            
+        }
 
         //engine stats
         public int thrust { get; set; }
@@ -498,6 +720,18 @@ namespace SSGMadNess
         {
             KeyValuePair<string, int> hierarchy = new KeyValuePair<string, int>(this.systemName, this.powerSupplyHierarchyPosition);            
             return hierarchy;
+        }
+
+        public void activateSystemFunctionPowerDrain()
+        {
+            if (systemActivationPowerConsumption < currentPowerStored)
+            {
+                currentPowerStored -= systemActivationPowerConsumption;
+            }
+            else
+            {
+                currentPowerStored = 0;
+            }
         }
     }
 }

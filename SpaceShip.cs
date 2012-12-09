@@ -81,8 +81,7 @@ namespace SSGMadNess
                 }
             }
         }
-        public int spaceShipPowerOverhead { get; set; }
-        public int powerPool { get; set; }
+        //public int spaceShipPowerOverhead { get; set; }
         public bool isFighter { get; set; }
 
         public List<Room> getRooms()
@@ -150,31 +149,29 @@ namespace SSGMadNess
             foreach (KeyValuePair<string, int> datablock in hierarchy)
             {
                 ShipSystem system = getSpecificShipSystem(datablock.Key);
+                if (system.powerSupplyHierarchyPosition <= 0)
+                {
+                   
+                }
+
+                else 
+                {
                 system.powerSupplyHierarchyPosition = newPosition;
                 newPosition ++;
+                }
+
             }
         }
         
         public void distributePower()
         {
-            bool distributorOperational = true;
-            foreach (Room room in getRooms())
-            {
-                foreach (ShipSystem shipSystem in room.getSystems())
-                {
-                    if (shipSystem.systemName == "Power Distributor")
-                    {
-                        distributorOperational = shipSystem.isOperational;
-                    }
-                }
-            }
+            Console.WriteLine("Current Power Pool: " + getSpecificShipSystem("Capacitor").currentPowerStored);
 
+            bool distributorOperational = getSpecificShipSystem("Power Distributor").isOperational ;
 
             if (distributorOperational)
             {
-
-
-                if (powerPool < shipOperationalPowerConsumption())
+                if (getSpecificShipSystem("Capacitor").currentPowerStored < shipOperationalPowerConsumption())
                 {
                     bool keepGoing = true;
                     int hierarchyPositionChecking = 1;
@@ -188,24 +185,35 @@ namespace SSGMadNess
                             {
                                 if (shipsystem.powerSupplyHierarchyPosition == hierarchyPositionChecking)
                                 {
-                                    ReportingMethods.shipSystemReport(shipsystem);
-                                    if (powerPool < shipsystem.systemOperationalPowerConsumption)
+                                    //ReportingMethods.shipSystemReport(shipsystem);
+                                    if (getSpecificShipSystem("Capacitor").currentPowerStored < shipsystem.systemOperationalPowerConsumption)
                                     {
-                                        if ((powerPool + shipsystem.currentPowerStored) < shipsystem.systemOperationalPowerConsumption)
+                                        if ((getSpecificShipSystem("Capacitor").currentPowerStored + shipsystem.currentPowerStored) < shipsystem.systemOperationalPowerConsumption)
                                         {
-                                            shipsystem.isSwitchedOn = false;
+                                            //shipsystem.isSwitchedOn = false;
                                             shipsystem.currentPowerStored = 0;
+                                            getSpecificShipSystem("Capacitor").currentPowerStored = 0;
                                         }
 
-                                        if ((powerPool + shipsystem.currentPowerStored) >= shipsystem.systemOperationalPowerConsumption)
+                                        if ((getSpecificShipSystem("Capacitor").currentPowerStored + shipsystem.currentPowerStored) >= shipsystem.systemOperationalPowerConsumption)
                                         {
-                                            shipsystem.currentPowerStored = shipsystem.currentPowerStored - (shipsystem.systemOperationalPowerConsumption - powerPool);
+                                            if (shipsystem.currentPowerStored >= shipsystem.systemOperationalPowerConsumption)
+                                            {
+                                                shipsystem.currentPowerStored = shipsystem.currentPowerStored - shipsystem.systemOperationalPowerConsumption;
+                                            }
+
+                                            else
+                                            {
+                                                getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored - (shipsystem.systemOperationalPowerConsumption - shipsystem.currentPowerStored);
+                                                shipsystem.currentPowerStored = 0;
+                                            }
+                                            
                                         }
                                     }
 
-                                    if (powerPool >= shipsystem.systemOperationalPowerConsumption)
+                                    if (getSpecificShipSystem("Capacitor").currentPowerStored >= shipsystem.systemOperationalPowerConsumption)
                                     {
-                                        powerPool = powerPool - shipsystem.systemOperationalPowerConsumption;
+                                        getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored - shipsystem.systemOperationalPowerConsumption;
                                     }
                                 }
                             }
@@ -220,13 +228,13 @@ namespace SSGMadNess
                     }
                 }
 
-                if (powerPool >= shipOperationalPowerConsumption())
+                if (getSpecificShipSystem("Capacitor").currentPowerStored >= shipOperationalPowerConsumption())
                 {
                     bool keepGoing = true;
                     int hierarchyPositionChecking = 1;
                     int numberOfSystems = countShipSystems();
 
-                    powerPool = powerPool - shipOperationalPowerConsumption();
+                    getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored - shipOperationalPowerConsumption();
 
                     while (keepGoing)
                     {
@@ -234,18 +242,18 @@ namespace SSGMadNess
                         {
                             foreach (ShipSystem shipsystem in room.getSystems())
                             {
-                                ReportingMethods.shipSystemReport(shipsystem);
+                                //ReportingMethods.shipSystemReport(shipsystem);
                                 if (shipsystem.powerSupplyHierarchyPosition == hierarchyPositionChecking)
                                 {
-                                    if (powerPool < shipsystem.systemtPowerShortfall())
+                                    if (getSpecificShipSystem("Capacitor").currentPowerStored < shipsystem.systemtPowerShortfall())
                                     {
-                                        shipsystem.currentPowerStored = shipsystem.currentPowerStored + powerPool;
-                                        powerPool = 0;
+                                        shipsystem.currentPowerStored = shipsystem.currentPowerStored + getSpecificShipSystem("Capacitor").currentPowerStored;
+                                        getSpecificShipSystem("Capacitor").currentPowerStored = 0;
                                     }
 
-                                    if (powerPool >= shipsystem.systemtPowerShortfall())
+                                    if (getSpecificShipSystem("Capacitor").currentPowerStored >= shipsystem.systemtPowerShortfall())
                                     {
-                                        powerPool = powerPool - shipsystem.systemtPowerShortfall();
+                                        getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored - shipsystem.systemtPowerShortfall();
                                         shipsystem.currentPowerStored = shipsystem.maxPowerStorage;
                                     }
 
@@ -254,7 +262,7 @@ namespace SSGMadNess
                         }
 
                         hierarchyPositionChecking++;
-                        if (hierarchyPositionChecking == numberOfSystems + 1 || powerPool <= 0)
+                        if (hierarchyPositionChecking == numberOfSystems + 1 || getSpecificShipSystem("Capacitor").currentPowerStored <= 0)
                         {
                             keepGoing = false;
                         }
@@ -268,18 +276,8 @@ namespace SSGMadNess
 
         public void runPowerGenerator()
         {
-            ShipSystem powerGenerator = null;
-
-            if (isFighter)
-            {
-                powerGenerator = fighterCockpit.powerGenerator;
-            }
-
-            else
-            {
-                powerGenerator = engineering.powerGenerator;
-            }
-
+            ShipSystem powerGenerator = getSpecificShipSystem("Power Generator");
+                        
             if (powerGenerator.isOperational)
             {
                 if (powerGenerator.fuelLevel <= 0)
@@ -290,36 +288,36 @@ namespace SSGMadNess
 
                 if (powerGenerator.fuelLevel > 0)
                 {
-                    powerPool = powerPool + (powerGenerator.fuelLevel * powerGenerator.efficiency);
-                    powerPool = powerPool + powerGenerator.currentPowerStored;
+                    getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + (powerGenerator.fuelLevel * powerGenerator.efficiency);
+                    getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + powerGenerator.currentPowerStored;
                     engineering.powerGenerator.fuelLevel = 0;
                 }
             }
 
-            Console.WriteLine("Current Power Pool: " + powerPool);
+            Console.WriteLine("Current Power Pool: " + getSpecificShipSystem("Capacitor").currentPowerStored);
         }
 
         public void primeGeneratorWithFuel()
         {
-            int fuelRequrement;
+            
+            ShipSystem generator = getSpecificShipSystem("Power Generator");
+            ShipSystem fuelStore = getSpecificShipSystem("Fuel Store");
+            int fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
 
-            ShipSystem generator = null;
-            ShipSystem fuelStore = null;
+            //if (isFighter)
+            //{
+            //    generator = fighterCockpit.powerGenerator;
+            //    fuelStore = fighterCockpit.fuelStore;
+            //    fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
+            //}
 
-            if (isFighter)
-            {
-                generator = fighterCockpit.powerGenerator;
-                fuelStore = fighterCockpit.fuelStore;
-                fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
-            }
+            //else
+            //{
+            //    generator = engineering.powerGenerator;
+            //    fuelStore = engineering.fuelStore;
 
-            else
-            {
-                generator = engineering.powerGenerator;
-                fuelStore = engineering.fuelStore;
-
-                fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
-            }
+            //    fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
+            //}
 
 
             if (fuelStore.fuelLevel == 0)
@@ -375,13 +373,13 @@ namespace SSGMadNess
 
                 if (generatorFuelInput > 0)
                 {
-                    powerPool = powerPool + (generatorFuelInput * generator.efficiency);
-                    powerPool = powerPool + generator.currentPowerStored;
+                    getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + (generatorFuelInput * generator.efficiency);
+                    getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + generator.currentPowerStored;
                     generator.fuelLevel = 0;
                 }
             }
 
-            Console.WriteLine("Current Power Pool: " + powerPool);
+            Console.WriteLine("Current Power Pool: " + getSpecificShipSystem("Capacitor").currentPowerStored);
         }
 
         public void powerBleed()
@@ -406,12 +404,57 @@ namespace SSGMadNess
             {
                 foreach (ShipSystem sys in room.getSpecificSystem(systemName))
                 {
-                    output = sys;
+                    if (sys.systemName == systemName)
+                    {
+                        output = sys;
+                    }
+
                 }
             }
 
             return output;
         }
+
+        public void checkForOverheating()
+        {
+            foreach (Room room in getRooms())
+            {
+                foreach (ShipSystem sys in room.getSystems())
+                {
+                    if (sys.currentTemperature > room.airTemperature)
+                    {
+                        room.airTemperature = room.airTemperature + sys.heatDissipationRate;
+                        sys.currentTemperature = sys.currentTemperature - sys.heatDissipationRate;
+                    }
+
+                    if (sys.currentTemperature < room.airTemperature)
+                    {
+                        room.airTemperature = room.airTemperature - sys.heatDissipationRate;
+                        sys.currentTemperature = sys.currentTemperature + sys.heatDissipationRate;
+                    }
+
+                    if (sys.isOverheating)
+                    {
+                        sys.applyOverheatingDamage();
+                                                
+                    }
+                }
+            }
+        }
+
+        public void checkAirPressure()
+        {
+            foreach (Room room in getRooms())
+            {
+                if (room.airPressure > room.maxAirPressure)
+                {
+                    //Pressure Damage to bulkhead
+                    room.CurrentBulkheadHitPoints = room.CurrentBulkheadHitPoints - (room.airPressure - room.maxAirPressure);
+                }
+            }
+        }
+
+
 
 
 

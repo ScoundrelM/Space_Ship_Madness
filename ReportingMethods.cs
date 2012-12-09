@@ -11,7 +11,8 @@ namespace SSGMadNess
         {
             Console.WriteLine("Ship Status Report");
             Console.WriteLine("Current Shipwide Total Hit Points " + playerSpaceShip.currentTotalHitPoints);
-            Console.WriteLine("Current Power Requirement " + playerSpaceShip.spaceShipPowerOverhead);
+            int powerRequirement = playerSpaceShip.shipOperationalPowerConsumption();
+            Console.WriteLine("Current Power Requirement " + powerRequirement);
             Console.WriteLine("Total Ship Mass: " + playerSpaceShip.totalMass);
         }
 

@@ -14,11 +14,11 @@ namespace SSGMadNess
         {
             SpaceShip playerSpaceShip = null;
 
-            playerSpaceShip = ShipConstructionMethods.initialShipCreation();
-            Console.WriteLine(playerSpaceShip.shipName);
-            ShipConstructionMethods.chooseShipClass(playerSpaceShip);
-            ShipConstructionMethods.setShipRooms(playerSpaceShip);
-            ShipConstructionMethods.setShipSystems(playerSpaceShip);
+                playerSpaceShip = ShipConstructionMethods.initialShipCreation();
+                Console.WriteLine(playerSpaceShip.shipName);
+                ShipConstructionMethods.chooseShipClass(playerSpaceShip);
+                ShipConstructionMethods.setShipRooms(playerSpaceShip);
+                ShipConstructionMethods.setShipSystems(playerSpaceShip);
                 ReportingMethods.roomReport(playerSpaceShip.bridge);
                 ReportingMethods.roomReport(playerSpaceShip.engineering);
                 ReportingMethods.roomReport(playerSpaceShip.lifeSupport);

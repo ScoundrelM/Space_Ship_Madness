@@ -47,17 +47,46 @@ namespace SSGMadNess
         public string roomName { get; set; }
         public string shipName { get; set; }
         //public int systemSlots { get; set; }
-        //public ShipSystem[] shipSystems { get; set; }
         public int oxygenLevel { get; set; }
         public int CurrentBulkheadHitPoints { get; set; }
         public int maxBulkheadHitPoints { get; set; }
-        public int airPressure { get; set; }
+
+        private int _airPressure;
+        public int airPressure
+        {
+            get
+            {
+                return _airPressure;
+            }
+
+            set
+            {
+                if (value >= blowoutAirPressure)
+                {
+                    bulkheadCompromised = true;
+                }
+
+                if (value > maxAirPressure)
+                {
+                    CurrentBulkheadHitPoints = CurrentBulkheadHitPoints - (value - maxAirPressure);
+                }
+
+                _airPressure = value;
+            }
+        }
+
         public bool airScrubberInterface { get; set; }
         public bool heatExchangerInterface { get; set; }
         public int airTemperature { get; set; }
         public int bulkheadMass { get; set; }
         public bool bulkheadCompromised { get; set; }
         public int bulkheadHitPointsStructuralIntegrityThreshold { get; set; }
+
+        public int blowoutAirPressure { get; set; }
+
+        public int maxAirPressure{get;set;}
+
+
 
         public ShipSystem pilotControls { get; set; }
         public ShipSystem shields { get; set; }

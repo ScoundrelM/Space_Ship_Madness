@@ -10,7 +10,7 @@ namespace SSGMadNess
         public static void executeMainTick(SpaceShip playerSpaceShip)
         {
             executePowerTick(playerSpaceShip);
-            executeSystemTick();
+            playerInteractionTime();
         }
         public static void executePowerTick(SpaceShip playerSpaceShip)
         {
@@ -18,10 +18,11 @@ namespace SSGMadNess
             playerSpaceShip.runGenerator();
             playerSpaceShip.enforceValidityOnHierarchy();
             playerSpaceShip.distributePower();
+            playerSpaceShip.checkForOverheating();
             playerSpaceShip.powerBleed();
         }
 
-        static void executeSystemTick()
+        static void playerInteractionTime()
         {
 
         }

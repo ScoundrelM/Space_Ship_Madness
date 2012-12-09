@@ -41,7 +41,7 @@ namespace SSGMadNess
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
 
-                        playerSpaceShip.spaceShipPowerOverhead = 0;
+                        //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 1000;
                         
 
@@ -57,7 +57,7 @@ namespace SSGMadNess
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
 
-                        playerSpaceShip.spaceShipPowerOverhead = 0;
+                        //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 10000;
                         
 
@@ -73,7 +73,7 @@ namespace SSGMadNess
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
 
-                        playerSpaceShip.spaceShipPowerOverhead = 0;
+                        //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 100000;
                       
 
@@ -89,7 +89,7 @@ namespace SSGMadNess
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
 
-                        playerSpaceShip.spaceShipPowerOverhead = 0;
+                        //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 1000000;
                         
 
@@ -105,7 +105,7 @@ namespace SSGMadNess
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
 
-                        playerSpaceShip.spaceShipPowerOverhead = 0;
+                        //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 10000000;
                         
 
@@ -204,6 +204,7 @@ namespace SSGMadNess
                 playerSpaceShip.fighterCockpit.cryptography = new ShipSystem("Cryptography", playerSpaceShip.fighterCockpit.roomType);
                 playerSpaceShip.fighterCockpit.powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.fighterCockpit.roomType);
                 playerSpaceShip.fighterCockpit.powerGenerator = new ShipSystem("Power Generator", playerSpaceShip.fighterCockpit.roomType);
+                playerSpaceShip.fighterCockpit.shipCapacitor = new ShipSystem("Capacitor", playerSpaceShip.fighterCockpit.roomType);
 
             }
 
@@ -241,6 +242,7 @@ namespace SSGMadNess
                 playerSpaceShip.engineering.wasteDisposal = new ShipSystem("Waste Disposal", playerSpaceShip.engineering.roomType);
                 playerSpaceShip.engineering.fuelStore = new ShipSystem("Fuel Store", playerSpaceShip.engineering.roomType);
                 playerSpaceShip.engineering.powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.engineering.roomType);
+                playerSpaceShip.engineering.shipCapacitor = new ShipSystem("Capacitor", playerSpaceShip.engineering.roomType);
                 //playerSpaceShip.engineering.airScrubber = new ShipSystem ("Air Scrubber", playerSpaceShip.bridge.roomType);
                 //playerSpaceShip.engineering.gravityGenerator = new ShipSystem ("Gravity Generator", playerSpaceShip.bridge.roomType);
                 //playerSpaceShip.engineering.temperatureControl = new ShipSystem ("Temperature Control", playerSpaceShip.bridge.roomType);

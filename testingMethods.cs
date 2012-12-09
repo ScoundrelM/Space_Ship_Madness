@@ -28,7 +28,7 @@ namespace SSGMadNess
             while (keepGoing == true)
             {
                 TimeManagementMethods.executePowerTick(playerSpaceShip);
-                Console.ReadLine();
+                //Console.ReadLine();
 
                 //ReportingMethods.shipSystemReport(playerSpaceShip.fighterCockpit.aI);
                 //ReportingMethods.shipSystemReport(playerSpaceShip.engineering.shields);
@@ -38,7 +38,7 @@ namespace SSGMadNess
                 if (playerSpaceShip.shipType == "Fighter")
                 {
                     int storedSystemPower = playerSpaceShip.shipStoredPower();
-                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0 && playerSpaceShip.powerPool <= 0 &&  storedSystemPower <= 0) 
+                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0 && playerSpaceShip.getSpecificShipSystem("Capacitor").currentPowerStored <= 0 && storedSystemPower <= 0) 
                     {
                         keepGoing = false;
                     }
@@ -47,7 +47,7 @@ namespace SSGMadNess
                 if (playerSpaceShip.shipType != "Fighter")
                 {
                     int storedSystemPower = playerSpaceShip.shipStoredPower();
-                    if (playerSpaceShip.engineering.fuelStore.fuelLevel <= 0 && playerSpaceShip.powerPool <= 0 && storedSystemPower <= 0)
+                    if (playerSpaceShip.engineering.fuelStore.fuelLevel <= 0 && playerSpaceShip.getSpecificShipSystem("Capacitor").currentPowerStored <= 0 && storedSystemPower <= 0)
                     {
                         keepGoing = false;
                     }
