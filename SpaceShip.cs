@@ -22,6 +22,8 @@ namespace SSGMadNess
             this.medibay = null;
             this.shuttleBay = null;
             this.cargoHold = null;
+            this.structuralAirPressure = 26;
+            this.maxStructuralAirPressure = 100;
         }
 
         public Room fighterCockpit { get; set; }
@@ -43,7 +45,7 @@ namespace SSGMadNess
         {
             get
             {
-                return structureMass + getRooms().Sum(room => room.bulkheadMass) + getRooms().Sum(room => room.getSystems().Sum(system => system.mass));
+                return cargoMass + structureMass + getRooms().Sum(room => room.bulkheadMass) + getRooms().Sum(room => room.getSystems().Sum(system => system.mass));
             }
         }
         public int structureMass { get; set; }
@@ -52,13 +54,46 @@ namespace SSGMadNess
         {
             get
             {
-                return currentStructureHitPoints + getRooms().Sum(room => room.CurrentBulkheadHitPoints) + getRooms().Sum(room => room.getSystems().Sum(system => system.currentHitPoints));
+                return currentStructureHitPoints + getRooms().Sum(room => room.currentBulkheadHitPoints) + getRooms().Sum(room => room.getSystems().Sum(system => system.currentHitPoints));
             }
         }
         public int operationalHitPointThreshold { get; set; }
         public int maxStructureHitPoints { get; set; }
-        public int currentStructureHitPoints { get; set; }
-        public int StructuralIntegrityThreshold
+
+        private int _currentStructureHitPoints { get; set; }
+        public int currentStructureHitPoints
+        {
+            get
+            {
+                return _currentStructureHitPoints;
+            }
+
+            set
+            {
+                if(value < structuralIntegrityThreshold)
+                {
+                    exteriorStructureCompromised = true;
+                    structuralBulkheadBreachArea = structuralIntegrityThreshold - value;
+                }
+
+                _currentStructureHitPoints = value;
+
+                if (value <= 0)
+                {
+                    _currentStructureHitPoints = 0;
+                }
+
+                if (value > maxStructureHitPoints)
+                {
+                    _currentStructureHitPoints = maxStructureHitPoints;
+                }
+                
+            }
+
+        }
+
+
+        public int structuralIntegrityThreshold
         {
             get
             {
@@ -67,6 +102,29 @@ namespace SSGMadNess
 
         }
         public bool exteriorStructureCompromised { get; set; }
+        public int maxStructuralAirPressure { get; set; }
+        public int cargoMass { get; set; }
+
+        private int _structuralAirPressure { get; set; }
+        public int structuralAirPressure
+        {
+            get
+            {
+                return _structuralAirPressure;
+            }
+
+            set
+            {
+                if (value > maxStructuralAirPressure)
+                {
+                    exteriorStructureCompromised = true;
+                    structuralBulkheadBreachArea = value - maxStructuralAirPressure;
+                }
+            }
+        }
+
+        public int structuralBulkheadBreachArea { get; set; }
+
         public bool destroyed
         {
             get
@@ -81,7 +139,9 @@ namespace SSGMadNess
                 }
             }
         }
+        
         //public int spaceShipPowerOverhead { get; set; }
+        
         public bool isFighter { get; set; }
 
         public List<Room> getRooms()
@@ -151,23 +211,23 @@ namespace SSGMadNess
                 ShipSystem system = getSpecificShipSystem(datablock.Key);
                 if (system.powerSupplyHierarchyPosition <= 0)
                 {
-                   
+
                 }
 
-                else 
+                else
                 {
-                system.powerSupplyHierarchyPosition = newPosition;
-                newPosition ++;
+                    system.powerSupplyHierarchyPosition = newPosition;
+                    newPosition++;
                 }
 
             }
         }
-        
+
         public void distributePower()
         {
             Console.WriteLine("Current Power Pool: " + getSpecificShipSystem("Capacitor").currentPowerStored);
 
-            bool distributorOperational = getSpecificShipSystem("Power Distributor").isOperational ;
+            bool distributorOperational = getSpecificShipSystem("Power Distributor").isOperational;
 
             if (distributorOperational)
             {
@@ -207,7 +267,7 @@ namespace SSGMadNess
                                                 getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored - (shipsystem.systemOperationalPowerConsumption - shipsystem.currentPowerStored);
                                                 shipsystem.currentPowerStored = 0;
                                             }
-                                            
+
                                         }
                                     }
 
@@ -272,12 +332,12 @@ namespace SSGMadNess
 
             }
 
-        }        
+        }
 
         public void runPowerGenerator()
         {
             ShipSystem powerGenerator = getSpecificShipSystem("Power Generator");
-                        
+
             if (powerGenerator.isOperational)
             {
                 if (powerGenerator.fuelLevel <= 0)
@@ -299,7 +359,7 @@ namespace SSGMadNess
 
         public void primeGeneratorWithFuel()
         {
-            
+
             ShipSystem generator = getSpecificShipSystem("Power Generator");
             ShipSystem fuelStore = getSpecificShipSystem("Fuel Store");
             int fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
@@ -388,7 +448,7 @@ namespace SSGMadNess
             {
                 foreach (ShipSystem shipSys in room.getSystems())
                 {
-                    if(shipSys.currentPowerStored > 0)
+                    if (shipSys.currentPowerStored > 0)
                     {
                         shipSys.currentPowerStored--;
                     }
@@ -409,6 +469,21 @@ namespace SSGMadNess
                         output = sys;
                     }
 
+                }
+            }
+
+            return output;
+        }
+
+        public Room getSpecificRoom(string roomName)
+        {
+            Room output = null;
+
+            foreach (Room room in getRooms())
+            {
+                if(room.roomName == roomName)
+                {
+                   output = room;
                 }
             }
 
@@ -436,7 +511,7 @@ namespace SSGMadNess
                     if (sys.isOverheating)
                     {
                         sys.applyOverheatingDamage();
-                                                
+
                     }
                 }
             }
@@ -449,15 +524,59 @@ namespace SSGMadNess
                 if (room.airPressure > room.maxAirPressure)
                 {
                     //Pressure Damage to bulkhead
-                    room.CurrentBulkheadHitPoints = room.CurrentBulkheadHitPoints - (room.airPressure - room.maxAirPressure);
+                    room.currentBulkheadHitPoints = room.currentBulkheadHitPoints - (room.airPressure - room.maxAirPressure);
+                }
+
+                if (room.bulkheadCompromised)
+                {
+                    if (room.airPressure > structuralAirPressure)
+                    {
+                        room.airPressure = room.airPressure - room.bulkheadBreachArea;
+                        structuralAirPressure = structuralAirPressure + room.bulkheadBreachArea;
+                    }
+
+                    if (room.airPressure < structuralAirPressure)
+                    {
+                        room.airPressure = room.airPressure + room.bulkheadBreachArea;
+                        structuralAirPressure = structuralAirPressure - room.bulkheadBreachArea;
+                    }
+
+                    if (room.airPressure < 0)
+                    {
+                        room.airPressure = 0;
+                    }
+                }
+
+                if (exteriorStructureCompromised == true)
+                {
+                    if (structuralAirPressure > 0)
+                    {
+                        structuralAirPressure = structuralAirPressure - structuralBulkheadBreachArea;
+                    }
+
+                    if (structuralAirPressure < 0)
+                    {
+                        structuralAirPressure = 0;
+                    }
                 }
             }
         }
 
+        public void receiveDamagePacket(int value, string type, string[] targets)
+        {
+            //Damage has: Value, Type & Targets
+            
+            //First it Has to pass through the shield layer
 
+            //second it hits the hull armour
 
+            //third it hits the hull
 
+            //fourth plus it hits any rooms and systems in the target path
 
+            //each layer absorbs or negates a certain amount of damage based on the damage type.
+
+        }
     }
 }
 

@@ -26,7 +26,7 @@ namespace SSGMadNess
                 Console.WriteLine(roomName.roomType + " Air Pressure: " + roomName.airPressure + "kPa");
                 Console.WriteLine(roomName.roomType + " Air: Temperature " + roomName.airTemperature + " Degrees C");
                 Console.WriteLine(roomName.roomType + " Has Compromised Bulkhead: " + roomName.bulkheadCompromised);
-                Console.WriteLine(roomName.roomType + " Bulkhead Current Hit Points: " + roomName.CurrentBulkheadHitPoints);
+                Console.WriteLine(roomName.roomType + " Bulkhead Current Hit Points: " + roomName.currentBulkheadHitPoints);
                 Console.WriteLine(roomName.roomType + " Bulkhead Structural Integrity Threshold: " + roomName.bulkheadHitPointsStructuralIntegrityThreshold);
                 Console.WriteLine(roomName.roomType + " Bulkhead Mass: " + roomName.bulkheadMass);
                 Console.ReadLine();

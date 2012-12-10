@@ -20,6 +20,7 @@ namespace SSGMadNess
             playerSpaceShip.distributePower();
             playerSpaceShip.checkForOverheating();
             playerSpaceShip.powerBleed();
+            playerSpaceShip.checkAirPressure();
         }
 
         static void playerInteractionTime()

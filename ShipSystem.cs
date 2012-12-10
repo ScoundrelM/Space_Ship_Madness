@@ -426,6 +426,7 @@ namespace SSGMadNess
             this.currentPowerStored = 0;
             this.isSwitchedOn = true;
             this.setToNormalPowerOutput = true;
+            this.heatDissipationRate = 5;
 
         }
 

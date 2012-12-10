@@ -13,7 +13,7 @@ namespace SSGMadNess
             this.roomType = name;
             //this.systemSlots = 3; //placeholder for later when players select systems
             this.airPressure = 101; // kPa
-            this.CurrentBulkheadHitPoints = 100;
+            this.currentBulkheadHitPoints = 100;
             this.maxBulkheadHitPoints = 100;
             this.bulkheadMass = 100;
             this.oxygenLevel = 100; // %
@@ -48,7 +48,31 @@ namespace SSGMadNess
         public string shipName { get; set; }
         //public int systemSlots { get; set; }
         public int oxygenLevel { get; set; }
-        public int CurrentBulkheadHitPoints { get; set; }
+
+        public int roomVolume { get; set; }
+        public int roomSurfaceArea { get; set; }
+
+
+        private int _currentBulkheadHitPoints { get; set; }
+        public int currentBulkheadHitPoints
+        {
+            get
+            {
+                return _currentBulkheadHitPoints;
+            }
+
+            set
+            {
+                if(value < bulkheadHitPointsStructuralIntegrityThreshold)
+                {
+                    bulkheadCompromised = true;
+                    bulkheadBreachArea = bulkheadHitPointsStructuralIntegrityThreshold - value;
+                }
+
+                _currentBulkheadHitPoints = value;
+            }
+        }
+
         public int maxBulkheadHitPoints { get; set; }
 
         private int _airPressure;
@@ -64,11 +88,12 @@ namespace SSGMadNess
                 if (value >= blowoutAirPressure)
                 {
                     bulkheadCompromised = true;
+                    bulkheadBreachArea = value - blowoutAirPressure;
                 }
 
                 if (value > maxAirPressure)
                 {
-                    CurrentBulkheadHitPoints = CurrentBulkheadHitPoints - (value - maxAirPressure);
+                    currentBulkheadHitPoints = currentBulkheadHitPoints - (value - maxAirPressure);
                 }
 
                 _airPressure = value;
@@ -86,7 +111,7 @@ namespace SSGMadNess
 
         public int maxAirPressure{get;set;}
 
-
+        public int bulkheadBreachArea { get; set; }
 
         public ShipSystem pilotControls { get; set; }
         public ShipSystem shields { get; set; }

@@ -40,7 +40,8 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 1000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
-
+                        playerSpaceShip.structuralAirPressure = 26;
+                        
                         //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 1000;
                         
@@ -59,6 +60,7 @@ namespace SSGMadNess
 
                         //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 10000;
+                        playerSpaceShip.structuralAirPressure = 26;
                         
 
                         //playerSpaceShip.requiredRooms = new string[6] { "Bridge", "Engineering", "Life Support", "Comms", "Fire Control", "Cargo Hold" };
@@ -72,7 +74,8 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 100000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
-
+                        playerSpaceShip.structuralAirPressure = 26;
+                       
                         //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 100000;
                       
@@ -88,6 +91,7 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 1000000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
+                        playerSpaceShip.structuralAirPressure = 26;
 
                         //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 1000000;
@@ -104,6 +108,7 @@ namespace SSGMadNess
                         playerSpaceShip.maxStructureHitPoints = 10000000;
                         playerSpaceShip.maxTotalHitPoints = 0;
                         playerSpaceShip.operationalHitPointThreshold = 0;
+                        playerSpaceShip.structuralAirPressure = 26;
 
                         //playerSpaceShip.spaceShipPowerOverhead = 0;
                         playerSpaceShip.structureMass = 10000000;
@@ -324,75 +329,7 @@ namespace SSGMadNess
 
         }
 
-        //public static void calculateShipHitPoints(SpaceShip playerSpaceShip)
-        //{
-        //    int shipHitPointsRunningTotal = 0;
 
-        //    shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.maxStructureHitPoints;
-
-        //    if (playerSpaceShip.fighterCockpit != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fighterCockpit.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.bridge != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.bridge.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.engineering != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.engineering.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.lifeSupport != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.lifeSupport.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.comms != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.comms.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.fireControl != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.fireControl2 != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl2.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.fireControl3 != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl3.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.fireControl4 != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.fireControl4.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.medibay != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.medibay.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.cargoHold != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.cargoHold.maxBulkheadHitPoints;
-        //    }
-
-        //    if (playerSpaceShip.shuttleBay != null)
-        //    {
-        //        shipHitPointsRunningTotal = shipHitPointsRunningTotal + playerSpaceShip.shuttleBay.maxBulkheadHitPoints;
-        //    }
-
-        //    playerSpaceShip.maxTotalHitPoints = shipHitPointsRunningTotal;
-
-        //}
 
 
 
