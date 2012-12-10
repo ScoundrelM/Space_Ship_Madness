@@ -111,10 +111,8 @@ namespace SSGMadNess
 
             if (systemName == "Power Generator")
             {
-                //this.powerGeneration = 0; //don't accidentally remove
-                this.fuelLevel = 0;//don't accidentally remove
-                this.maxFuelLevel = 50;//don't accidentally remove
-                //this.efficiency = 50;//don't accidentally remove
+                
+                this.generatorFuelLevel = 0;//don't accidentally remove
                 this.mass = 10;
                 this.maxHitPoints = 100;
                 this.maxTemperature = 300;
@@ -128,10 +126,11 @@ namespace SSGMadNess
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 10;
                 this.systemOperationalPowerConsumption = 10;
-                this.efficiencyForLowPowerOutput =10;
-                this.efficiencyForNormalPowerOutput =8;
-                this.efficiencyForHighPowerOutput =6;
+                this.efficiencyForLowPowerOutput = 10;
+                this.efficiencyForNormalPowerOutput = 8;
+                this.efficiencyForHighPowerOutput = 6;
                 this.efficiencyForOverDrivePowerOutput = 4;
+                this.setToHighPowerOutput = true;
             }
 
             if (systemName == "Fabricator")
@@ -425,7 +424,7 @@ namespace SSGMadNess
             this.destructionHitPointThreshold = 0;
             this.currentPowerStored = 0;
             this.isSwitchedOn = true;
-            this.setToNormalPowerOutput = true;
+
             this.heatDissipationRate = 5;
 
         }
@@ -457,7 +456,7 @@ namespace SSGMadNess
         public int maxTemperature { get; set; }
         public int overHeatDamage { get; set; }
         
-        public int fuelLevel { get; set; }
+        
         public int heatDissipationRate { get; set; }
         public int maxFuelLevel { get; set; }
         public bool isDestroyed
@@ -569,6 +568,7 @@ namespace SSGMadNess
                     _setToNormalPowerOutput = false;
                     _setToOverDrivePowerOutput = false;
                     _setToLowPowerOutput = true;
+             
                 }
 
                 else
@@ -594,6 +594,7 @@ namespace SSGMadNess
                     _setToLowPowerOutput = false;
                     _setToOverDrivePowerOutput = false;
                     _setToNormalPowerOutput = true;
+    
                 }
 
                 else
@@ -619,6 +620,7 @@ namespace SSGMadNess
                     _setToLowPowerOutput = false;
                     _setToOverDrivePowerOutput = false;
                     _setToHighPowerOutput = true;
+     
                 }
 
                 else
@@ -644,11 +646,67 @@ namespace SSGMadNess
                     _setToLowPowerOutput = false;
                     _setToHighPowerOutput = false;
                     _setToOverDrivePowerOutput = true;
+                 
                 }
 
                 else
                 {
                     _setToOverDrivePowerOutput = false;
+                }
+            }
+        }
+
+        public int _generatorFuelLevel { get; set; }
+        public int generatorFuelLevel
+        {
+            get
+            {
+                return _generatorFuelLevel;
+            }
+
+            set
+            {
+                if (value > maxGeneratorFuelLevel)
+                {
+                    _generatorFuelLevel = maxGeneratorFuelLevel;
+                    
+                }
+
+                else
+                {
+                    _generatorFuelLevel = value;
+                }
+            }
+        }
+
+        
+        public int maxGeneratorFuelLevel
+        {
+            get
+            {
+                if (setToLowPowerOutput == true)
+                {
+                    return 25;
+                }
+
+                if (setToNormalPowerOutput == true)
+                {
+                    return 50;
+                }
+
+                if (setToHighPowerOutput == true)
+                {
+                    return 100;
+                }
+
+                if (setToOverDrivePowerOutput == true)
+                {
+                    return 200;
+                }
+
+                else
+                {
+                    return 400;
                 }
             }
         }
@@ -688,6 +746,10 @@ namespace SSGMadNess
             }
             
         }
+
+        //fuelstore ststs
+
+        public int fuelLevel { get; set; }
 
         //engine stats
         public int thrust { get; set; }

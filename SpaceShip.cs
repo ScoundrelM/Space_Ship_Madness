@@ -340,17 +340,17 @@ namespace SSGMadNess
 
             if (powerGenerator.isOperational)
             {
-                if (powerGenerator.fuelLevel <= 0)
+                if (powerGenerator.generatorFuelLevel <= 0)
                 {
                     Console.WriteLine("Not enough fuel to run generator.");
                 }
 
 
-                if (powerGenerator.fuelLevel > 0)
+                if (powerGenerator.generatorFuelLevel > 0)
                 {
-                    getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + (powerGenerator.fuelLevel * powerGenerator.efficiency);
+                    getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + (powerGenerator.generatorFuelLevel * powerGenerator.efficiency);
                     getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + powerGenerator.currentPowerStored;
-                    engineering.powerGenerator.fuelLevel = 0;
+                    engineering.powerGenerator.generatorFuelLevel = 0;
                 }
             }
 
@@ -362,22 +362,9 @@ namespace SSGMadNess
 
             ShipSystem generator = getSpecificShipSystem("Power Generator");
             ShipSystem fuelStore = getSpecificShipSystem("Fuel Store");
-            int fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
+            int fuelRequrement = generator.maxGeneratorFuelLevel - generator.generatorFuelLevel;
 
-            //if (isFighter)
-            //{
-            //    generator = fighterCockpit.powerGenerator;
-            //    fuelStore = fighterCockpit.fuelStore;
-            //    fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
-            //}
 
-            //else
-            //{
-            //    generator = engineering.powerGenerator;
-            //    fuelStore = engineering.fuelStore;
-
-            //    fuelRequrement = generator.maxFuelLevel - generator.fuelLevel;
-            //}
 
 
             if (fuelStore.fuelLevel == 0)
@@ -390,7 +377,7 @@ namespace SSGMadNess
 
                 if (fuelRequrement <= fuelStore.fuelLevel)
                 {
-                    generator.fuelLevel = generator.maxFuelLevel;
+                    generator.generatorFuelLevel = generator.maxGeneratorFuelLevel;
                     fuelStore.fuelLevel = fuelStore.fuelLevel - fuelRequrement;
 
                     Console.WriteLine("Your generator is primed. Ship fuel stores are now: " + fuelStore.fuelLevel);
@@ -398,7 +385,7 @@ namespace SSGMadNess
 
                 if (fuelRequrement > fuelStore.fuelLevel)
                 {
-                    generator.fuelLevel = generator.fuelLevel + fuelStore.fuelLevel;
+                    generator.generatorFuelLevel = generator.generatorFuelLevel + fuelStore.fuelLevel;
                     fuelStore.fuelLevel = 0;
 
                     Console.WriteLine("You have used the last of your fuel priming your generator.");
@@ -414,13 +401,13 @@ namespace SSGMadNess
             if (isFighter)
             {
                 generator = fighterCockpit.powerGenerator;
-                generatorFuelInput = fighterCockpit.powerGenerator.fuelLevel;
+                generatorFuelInput = fighterCockpit.powerGenerator.generatorFuelLevel;
             }
 
             else
             {
                 generator = engineering.powerGenerator;
-                generatorFuelInput = engineering.powerGenerator.fuelLevel;
+                generatorFuelInput = engineering.powerGenerator.generatorFuelLevel;
             }
 
             if (generator.isOperational)
@@ -435,7 +422,7 @@ namespace SSGMadNess
                 {
                     getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + (generatorFuelInput * generator.efficiency);
                     getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + generator.currentPowerStored;
-                    generator.fuelLevel = 0;
+                    generator.generatorFuelLevel = 0;
                 }
             }
 
