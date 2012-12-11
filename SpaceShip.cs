@@ -506,6 +506,8 @@ namespace SSGMadNess
 
         public void checkAirForLeaks()
         {
+            // Time frsme needs determining.
+
             foreach (Room room in getRooms())
             {
                 if (room.bulkheadCompromised)
