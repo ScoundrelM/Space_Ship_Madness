@@ -12,16 +12,16 @@ namespace SSGMadNess
         {
             this.roomType = name;
             //this.systemSlots = 3; //placeholder for later when players select systems
-            this.airPressure = 101; // kPa
-            this.currentBulkheadHitPoints = 100;
-            this.maxBulkheadHitPoints = 100;
+            //this.airPressure = 101; // kPa
+
+            this.maxBulkheadHitPoints = 500;
+            this.currentBulkheadHitPoints = maxBulkheadHitPoints;
             this.bulkheadMass = 100;
             this.oxygenLevel = 100; // %
             this.airScrubberInterface = true;
-            this.airTemperature = 20; // degrees c
+            this.airTemperature = 293; // degrees K
             this.heatExchangerInterface = true;
             this.bulkheadCompromised = false;
-            this.bulkheadHitPointsStructuralIntegrityThreshold = 20;
             this.pilotControls = null;
             this.shields = null;
             this.aI = null;
@@ -49,7 +49,7 @@ namespace SSGMadNess
         //public int systemSlots { get; set; }
         public int oxygenLevel { get; set; }
 
-        public int roomVolume { get; set; }
+        public int roomVolume { get; set; } //litres or m cubed
         public int roomSurfaceArea { get; set; }
 
 
@@ -75,8 +75,9 @@ namespace SSGMadNess
 
         public int maxBulkheadHitPoints { get; set; }
 
+        public int idealRoomPressure = 1013; // 1 atmosphere
         private int _airPressure;
-        public int airPressure
+        public int airPressure // Pa
         {
             get
             {
@@ -100,16 +101,69 @@ namespace SSGMadNess
             }
         }
 
+        private int _massOfAirInRoom {get;set;}
+        public int massOfAirInRoom
+        {
+            get
+            {
+                return _massOfAirInRoom;
+            }
+
+            set
+            {
+                 airPressure = (value/29) * 29 * airTemperature;
+                 _massOfAirInRoom = value;
+            }
+        }
+
         public bool airScrubberInterface { get; set; }
         public bool heatExchangerInterface { get; set; }
-        public int airTemperature { get; set; }
+        
+        private int _airTemperature {get;set;}
+        public int airTemperature // degrees kelvin
+        {
+            get
+            {
+                return _airTemperature;
+            }
+
+            set
+            {
+                
+                airPressure = (massOfAirInRoom / 29) * 29 * value;
+                _airTemperature = value;
+            }
+        }
+
+
         public int bulkheadMass { get; set; }
         public bool bulkheadCompromised { get; set; }
-        public int bulkheadHitPointsStructuralIntegrityThreshold { get; set; }
+        public int bulkheadHitPointsStructuralIntegrityThreshold
+        {
+            get
+            {
+                return maxBulkheadHitPoints / 5;
+            }
+        }
 
-        public int blowoutAirPressure { get; set; }
+        public int blowoutAirPressure
+        {
+            get
+            {
+                return idealRoomPressure * 4;
+            }
+        }
 
-        public int maxAirPressure{get;set;}
+        public int maxAirPressure
+        {
+            get
+            {
+                return idealRoomPressure * 3;
+            }
+
+        }
+
+
 
         public int bulkheadBreachArea { get; set; }
 
@@ -135,6 +189,7 @@ namespace SSGMadNess
         public ShipSystem heatExchanger { get; set; }
         public ShipSystem powerDistributor { get; set; }
         public ShipSystem shipCapacitor { get; set; }
+        public ShipSystem airPump { get; set; }
 
         public List<ShipSystem> getSystems()
         {

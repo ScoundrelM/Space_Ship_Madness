@@ -504,47 +504,13 @@ namespace SSGMadNess
             }
         }
 
-        public void checkAirPressure()
+        public void checkAirForLeaks()
         {
             foreach (Room room in getRooms())
             {
-                if (room.airPressure > room.maxAirPressure)
-                {
-                    //Pressure Damage to bulkhead
-                    room.currentBulkheadHitPoints = room.currentBulkheadHitPoints - (room.airPressure - room.maxAirPressure);
-                }
-
                 if (room.bulkheadCompromised)
                 {
-                    if (room.airPressure > structuralAirPressure)
-                    {
-                        room.airPressure = room.airPressure - room.bulkheadBreachArea;
-                        structuralAirPressure = structuralAirPressure + room.bulkheadBreachArea;
-                    }
 
-                    if (room.airPressure < structuralAirPressure)
-                    {
-                        room.airPressure = room.airPressure + room.bulkheadBreachArea;
-                        structuralAirPressure = structuralAirPressure - room.bulkheadBreachArea;
-                    }
-
-                    if (room.airPressure < 0)
-                    {
-                        room.airPressure = 0;
-                    }
-                }
-
-                if (exteriorStructureCompromised == true)
-                {
-                    if (structuralAirPressure > 0)
-                    {
-                        structuralAirPressure = structuralAirPressure - structuralBulkheadBreachArea;
-                    }
-
-                    if (structuralAirPressure < 0)
-                    {
-                        structuralAirPressure = 0;
-                    }
                 }
             }
         }

@@ -267,6 +267,7 @@ namespace SSGMadNess
                 playerSpaceShip.lifeSupport.airScrubber = new ShipSystem("Air Scrubber", playerSpaceShip.lifeSupport.roomType);
                 playerSpaceShip.lifeSupport.gravityGenerator = new ShipSystem("Gravity Generator", playerSpaceShip.lifeSupport.roomType);
                 playerSpaceShip.lifeSupport.temperatureControl = new ShipSystem("Temperature Control", playerSpaceShip.lifeSupport.roomType);
+                playerSpaceShip.lifeSupport.airPump = new ShipSystem("Air Pump", playerSpaceShip.lifeSupport.roomType);
 
             }
 

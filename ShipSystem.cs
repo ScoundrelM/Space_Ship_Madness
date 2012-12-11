@@ -130,7 +130,7 @@ namespace SSGMadNess
                 this.efficiencyForNormalPowerOutput = 8;
                 this.efficiencyForHighPowerOutput = 6;
                 this.efficiencyForOverDrivePowerOutput = 4;
-                this.setToHighPowerOutput = true;
+                this.setToNormalPowerOutput = true;
             }
 
             if (systemName == "Fabricator")
@@ -193,6 +193,24 @@ namespace SSGMadNess
             }
 
             if (systemName == "Air Scrubber")
+            {
+                this.mass = 10;
+                this.maxHitPoints = 100;
+                this.maxTemperature = 300;
+                this.operationalHitPointThreshold = 20;
+                this.maxPowerStorage = 10;
+                this.canBurn = true;
+                this.canExplode = true;
+                this.canSpark = true;
+                this.powerSupplyHierarchyPosition = 9;
+                this.maxHackPoints = 100;
+                this.overHeatDamage = 2;
+                this.breakHitPointThreshold = 10;
+                this.systemOperationalPowerConsumption = 1;
+                this.systemActivationPowerConsumption = 0;
+            }
+
+            if (systemName == "Air Pump")
             {
                 this.mass = 10;
                 this.maxHitPoints = 100;
@@ -419,7 +437,7 @@ namespace SSGMadNess
 
             this.currentHackPoints = maxHackPoints;
             this.currentHitPoints = maxHitPoints;
-            this.currentTemperature = 28;
+            this.currentTemperature = 293;
             this.operationalHackPointThreshold = 0;
             this.destructionHitPointThreshold = 0;
             this.currentPowerStored = 0;
