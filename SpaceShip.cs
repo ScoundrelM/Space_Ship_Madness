@@ -22,8 +22,8 @@ namespace SSGMadNess
             this.medibay = null;
             this.shuttleBay = null;
             this.cargoHold = null;
-            this.structuralAirPressure = 26;
-            this.maxStructuralAirPressure = 100;
+            this.structuralAirPressure = 1013;
+            
         }
 
         public Room fighterCockpit { get; set; }
@@ -102,7 +102,55 @@ namespace SSGMadNess
 
         }
         public bool exteriorStructureCompromised { get; set; }
-        public int maxStructuralAirPressure { get; set; }
+
+        public int structuralVolume { get; set; }
+
+        public int structureBlowOutPressure
+        {
+            get
+            {
+                return idealStructuralAirPressure * 4;
+            }
+        }
+
+        private int _massOfAirInStructure { get; set; }
+        public int massOfAirInStructure
+        {
+            get
+            {
+                return _massOfAirInStructure;
+            }
+
+            set
+            {
+                structuralAirPressure = (value / 29) * 29 * structuralAirTemperature;
+                _massOfAirInStructure = value;
+            }
+        }
+
+        private int _structuralAirTemperature { get; set; }
+        public int structuralAirTemperature
+        {
+            get
+            {
+                return _structuralAirTemperature;
+            }
+
+            set
+            {
+                structuralAirPressure = (massOfAirInStructure / 29) * 29 * value;
+                _structuralAirTemperature = value;
+            }
+        }
+
+        public int maxStructuralAirPressure
+        {
+            get
+            {
+                return idealStructuralAirPressure * 3;
+            }
+        }
+        
         public int cargoMass { get; set; }
 
         private int _structuralAirPressure { get; set; }
@@ -115,13 +163,20 @@ namespace SSGMadNess
 
             set
             {
-                if (value > maxStructuralAirPressure)
+                if (value > structureBlowOutPressure)
                 {
                     exteriorStructureCompromised = true;
                     structuralBulkheadBreachArea = value - maxStructuralAirPressure;
                 }
+
+                if (value > maxStructuralAirPressure)
+                {
+                    currentStructureHitPoints = currentStructureHitPoints - (value - maxStructuralAirPressure);
+                }
             }
         }
+
+        public int idealStructuralAirPressure = 1013;
 
         public int structuralBulkheadBreachArea { get; set; }
 
@@ -506,12 +561,61 @@ namespace SSGMadNess
 
         public void checkAirForLeaks()
         {
-            // Time frsme needs determining.
+            // Time frame needs determining.
+
+
 
             foreach (Room room in getRooms())
             {
+                //needs pruning
+                double volumeRoom = room.roomVolume;
+                double volumeStruct = structuralVolume;
+                double pressureRoom = room.airPressure;
+                double pressureStruct = structuralAirPressure;
+                double molsRoom = room.massOfAirInRoom / 29;
+                double molsStruct = massOfAirInStructure / 29;
+                double gasConstant = 29;
+                double temperatureRoom = room.airTemperature;
+                double structuralAirTemperatureStruct = structuralAirTemperature;
+                double densityRoom = pressureRoom / (gasConstant * temperatureRoom);
+                double densityStruct = pressureStruct / (gasConstant * structuralAirTemperatureStruct);
+                double timeFrame = 6;
+                double roomGasVelocity = Math.Sqrt((2 * pressureRoom) / densityRoom);
+                double structuralGasVelocity = Math.Sqrt((2 * pressureStruct) / densityStruct);
+                double areaOfBulkheadBreach = room.bulkheadBreachArea;
+                double mFPTRoom = timeFrame * areaOfBulkheadBreach * pressureRoom * roomGasVelocity;
+                int massFlowPerTickRoom = Convert.ToInt32(mFPTRoom);
+                double areaOfHullBreach = structuralBulkheadBreachArea * pressureStruct * structuralGasVelocity;
+                double mFPTStruct = timeFrame * areaOfBulkheadBreach * pressureStruct * structuralGasVelocity;
+                int massFlowPerTickHull = Convert.ToInt32(mFPTStruct);
+               
                 if (room.bulkheadCompromised)
                 {
+                    //check for air mass lost in timeframe of about six seconds
+                    room.massOfAirInRoom = room.massOfAirInRoom - massFlowPerTickRoom;
+                    _massOfAirInStructure = massOfAirInStructure + massFlowPerTickRoom;
+                }
+
+                if (exteriorStructureCompromised)
+                {
+                    massOfAirInStructure = massOfAirInStructure - massFlowPerTickHull;
+                }
+
+            }
+        }
+
+        public void runPassiveShipSystems()
+        {
+            //find all Passive systems and activate their function
+
+            foreach (Room room in getRooms())
+            {
+                foreach (ShipSystem sys in room.getSystems())
+                {
+                    if (sys.isPassive)
+                    {
+                        sys.activateSystemFunction();
+                    }
 
                 }
             }

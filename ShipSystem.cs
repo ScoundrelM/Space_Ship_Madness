@@ -67,10 +67,12 @@ namespace SSGMadNess
 
             if (systemName == "Shields")
             {
-                this.damageReduction = 0;//don't accidentally remove
-                this.shieldPoints = 0;//don't accidentally remove
+                //this.damageReduction = 0;//don't accidentally remove
+                //this.shieldHitPoints = 0;//don't accidentally remove
                 this.shieldRechargeRate = 0;//don't accidentally remove
                 this.shieldEfficiency = 0;//don't accidentally remove
+
+
 
                 this.mass = 1000;
                 this.maxHitPoints = 350;
@@ -84,7 +86,7 @@ namespace SSGMadNess
                 this.maxHackPoints = 100;
                 this.overHeatDamage = 2;
                 this.breakHitPointThreshold = 50;
-                this.systemOperationalPowerConsumption = 100;
+                this.systemOperationalPowerConsumption = 0;
             }
 
             if (systemName == "Engines")
@@ -473,6 +475,21 @@ namespace SSGMadNess
         public int currentTemperature { get; set; }
         public int maxTemperature { get; set; }
         public int overHeatDamage { get; set; }
+
+        public bool isPassive
+        {
+            get
+            {
+                if (systemActivationPowerConsumption == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
         
         
         public int heatDissipationRate { get; set; }
@@ -488,34 +505,16 @@ namespace SSGMadNess
         {
             get
             {
-                if (currentPowerStored > systemActivationPowerConsumption)
-                {
-                    return true;
-                }
-
-                else
-                {
-                    return false;
-                }
+                return (currentPowerStored > systemActivationPowerConsumption);               
             }
         }
 
-        private bool _isOverheating;
+        
         public bool isOverheating
         {
             get
             {
-                if (currentTemperature > maxTemperature)
-                {
-                    _isOverheating = true;
-                    return _isOverheating;
-                }
-
-                else
-                {
-                    _isOverheating = false;
-                    return _isOverheating;
-                }
+                return (currentTemperature > maxTemperature);
             }
         }
 
@@ -702,30 +701,34 @@ namespace SSGMadNess
         {
             get
             {
-                if (setToLowPowerOutput == true)
+                int result;
+
+                if (setToLowPowerOutput)
                 {
-                    return 25;
+                    result = 25;
                 }
 
-                if (setToNormalPowerOutput == true)
+                if (setToNormalPowerOutput)
                 {
-                    return 50;
+                    result = 50;
                 }
 
-                if (setToHighPowerOutput == true)
+                if (setToHighPowerOutput)
                 {
-                    return 100;
+                    result = 100;
                 }
 
-                if (setToOverDrivePowerOutput == true)
+                if (setToOverDrivePowerOutput)
                 {
-                    return 200;
+                    result = 200;
                 }
 
                 else
                 {
-                    return 400;
+                    result = 400;
                 }
+
+                return result;
             }
         }
 
@@ -774,7 +777,7 @@ namespace SSGMadNess
 
         //shield stats
         public int damageReduction { get; set; }
-        public int shieldPoints { get; set; }
+        public int shieldHitPoints { get; set; }
         public int shieldRechargeRate { get; set; }//maximum recharge per tick
         public int shieldEfficiency { get; set; }//power units per shield point restored
 
@@ -803,15 +806,26 @@ namespace SSGMadNess
             return hierarchy;
         }
 
-        public void activateSystemFunctionPowerDrain()
+        public void activateSystemFunction()
         {
             if (systemActivationPowerConsumption < currentPowerStored)
             {
-                currentPowerStored -= systemActivationPowerConsumption;
+
+                currentPowerStored = 0;
             }
+            
             else
             {
-                currentPowerStored = 0;
+                currentPowerStored -= systemActivationPowerConsumption;
+            }
+
+            switch (systemName)
+            {
+                case "Life Support":
+
+                    break;
+
+
             }
         }
     }

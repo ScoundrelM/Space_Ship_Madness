@@ -52,7 +52,6 @@ namespace SSGMadNess
         public int roomVolume { get; set; } //litres or m cubed
         public int roomSurfaceArea { get; set; }
 
-
         private int _currentBulkheadHitPoints { get; set; }
         public int currentBulkheadHitPoints
         {
@@ -138,6 +137,7 @@ namespace SSGMadNess
 
         public int bulkheadMass { get; set; }
         public bool bulkheadCompromised { get; set; }
+        
         public int bulkheadHitPointsStructuralIntegrityThreshold
         {
             get
@@ -162,8 +162,6 @@ namespace SSGMadNess
             }
 
         }
-
-
 
         public int bulkheadBreachArea { get; set; }
 
