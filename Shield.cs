@@ -7,66 +7,481 @@ namespace SSGMadNess
 {
     class Shield
     {
-        public string sheildType;
-
-        public int shieldLayer1HitPoints;
-        public int shieldLayer1MaxHitPoints;
-        public int shieldLayer1DamageReduction;
-        public bool isShieldLayer1Full
+        public void regenerateShield(ShipSystem shieldGenerator)
         {
-            get
+
+            int efficiency = shieldGenerator.shieldEfficiency;
+            int recharge = shieldGenerator.shieldRechargeRate;
+            focusPanel = shieldGenerator.powerPanelFocus;
+
+            //List<object> panelList = ;
+            
+
+            if (shieldGenerator.setShieldsToEvenDistribution)
             {
-                if (shieldLayer1HitPoints >= shieldLayer1MaxHitPoints)
+                int splitValue = recharge / 12;                
+            }
+
+            if (shieldGenerator.setShieldsToPreferential)
+            {
+                int focusValue = (recharge / 12) * 7;
+                int otherValue = (recharge / 12) * 1;
+            }
+
+            if (shieldGenerator.setShieldsToExclusive)
+            {
+
+            }
+        }
+
+        public Shield()
+        {
+            Front frontPanel = new Front();
+            Rear rearPanel = new Rear();
+            Top topPanel = new Top();
+            Bottom bottomPanel = new Bottom();
+            Right rightPanel = new Right();
+            Left leftPanel = new Left();
+        }
+
+        //general Shield Stats
+        public string shieldType;
+        public int maxShieldHitPoints;
+        public string focusPanel;
+
+        //Panel stats
+        class Front : Shield
+        {
+            public bool isFocusPanel
+            {
+                get
                 {
-                    return true;
+                    if(focusPanel == "Front")
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
                 }
+            }
 
-                else
+            public int layer1;
+            public int layer2;
+            public int layer3;
+
+            public bool layer1Full
+            {
+                get
                 {
-                    return false;
+                    if (layer1 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
 
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer2Full
+            {
+                get
+                {
+                    if (layer2 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer3Full
+            {
+                get
+                {
+                    if (layer3 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
                 }
             }
         }
 
-        public int shieldLayer2HitPoints;
-        public int shieldLayer2MaxHitPoints;
-        public int shieldLayer2DamageReduction;
-        public bool isShieldLayer2Full
+        class Rear : Shield
         {
-            get
+            public bool isFocusPanel
             {
-                if (shieldLayer2HitPoints >= shieldLayer2MaxHitPoints)
+                get
                 {
-                    return true;
+                    if (focusPanel == "Rear")
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
                 }
+            }
 
-                else
+            public int layer1;
+            public int layer2;
+            public int layer3;
+
+            public bool layer1Full
+            {
+                get
                 {
-                    return false;
+                    if (layer1 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
 
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer2Full
+            {
+                get
+                {
+                    if (layer2 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer3Full
+            {
+                get
+                {
+                    if (layer3 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
                 }
             }
         }
 
-        public int shieldLayer3HitPoints;
-        public int shieldLayer3MaxHitPoints;
-        public int shieldLayer3DamageReduction;
-        public bool isShieldLayer3Full
+        class Top : Shield
         {
-            get
+            public bool isFocusPanel
             {
-                if (shieldLayer3HitPoints >= shieldLayer3MaxHitPoints)
+                get
                 {
-                    return true;
+                    if (focusPanel == "Top")
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
                 }
+            }
 
-                else
+            public int layer1;
+            public int layer2;
+            public int layer3;
+
+            public bool layer1Full
+            {
+                get
                 {
-                    return false;
+                    if (layer1 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
 
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer2Full
+            {
+                get
+                {
+                    if (layer2 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer3Full
+            {
+                get
+                {
+                    if (layer3 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
                 }
             }
         }
+
+        class Bottom : Shield
+        {
+            public bool isFocusPanel
+            {
+                get
+                {
+                    if (focusPanel == "Bottom")
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            public int layer1;
+            public int layer2;
+            public int layer3;
+
+            public bool layer1Full
+            {
+                get
+                {
+                    if (layer1 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer2Full
+            {
+                get
+                {
+                    if (layer2 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer3Full
+            {
+                get
+                {
+                    if (layer3 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+        }
+
+        class Right : Shield
+        {
+
+            public bool isFocusPanel
+            {
+                get
+                {
+                    if (focusPanel == "Right")
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            public int layer1;
+            public int layer2;
+            public int layer3;
+
+            public bool layer1Full
+            {
+                get
+                {
+                    if (layer1 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer2Full
+            {
+                get
+                {
+                    if (layer2 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer3Full
+            {
+                get
+                {
+                    if (layer3 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+        }
+
+        class Left : Shield
+        {
+            public bool isFocusPanel
+            {
+                get
+                {
+                    if (focusPanel == "Left")
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            public int layer1;
+            public int layer2;
+            public int layer3;
+
+            public bool layer1Full
+            {
+                get
+                {
+                    if (layer1 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer2Full
+            {
+                get
+                {
+                    if (layer2 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+            public bool layer3Full
+            {
+                get
+                {
+                    if (layer3 >= maxShieldHitPoints)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+
+                    }
+                }
+            }
+        }
+        
     }
 }

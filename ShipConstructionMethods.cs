@@ -42,7 +42,7 @@ namespace SSGMadNess
                         playerSpaceShip.operationalHitPointThreshold = 0;
                         playerSpaceShip.structuralAirPressure = 26;
                         
-                        //playerSpaceShip.spaceShipPowerOverhead = 0;
+                        
                         playerSpaceShip.structureMass = 1000;
                         
 
@@ -134,9 +134,11 @@ namespace SSGMadNess
 
         public static void setShipRooms(SpaceShip playerSpaceShip)
         {
+            playerSpaceShip.rooms = new List<Room>();
+
             if (playerSpaceShip.shipType == "Fighter")
             {
-                playerSpaceShip.fighterCockpit = new Room("Fighter Cockpit");
+                playerSpaceShip.rooms.Add (new Room ("Fighter Cockpit"));
                 playerSpaceShip.isFighter = true;
             }
 
@@ -147,185 +149,160 @@ namespace SSGMadNess
 
             if (playerSpaceShip.shipType == "Shuttle")
             {
-                playerSpaceShip.bridge = new Room("Bridge");
-                playerSpaceShip.engineering = new Room("Engineering");
-                playerSpaceShip.lifeSupport = new Room("Life Support");
-                playerSpaceShip.comms = new Room("Comms");
-                playerSpaceShip.fireControl = new Room("Fire Control");
-                playerSpaceShip.cargoHold = new Room("Cargo Hold");
+                Room bridge = new Room("Bridge");
+
+                playerSpaceShip.rooms.Add (bridge);
+                playerSpaceShip.rooms.Add ( new Room("Engineering"));
+                playerSpaceShip.rooms.Add ( new Room("Life Support"));
+                playerSpaceShip.rooms.Add ( new Room("Comms"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control"));
+                playerSpaceShip.rooms.Add ( new Room("Cargo Hold"));
             }
             if (playerSpaceShip.shipType == "Frigate")
             {
-                playerSpaceShip.bridge = new Room("Bridge");
-                playerSpaceShip.engineering = new Room("Engineering");
-                playerSpaceShip.lifeSupport = new Room("Life Support");
-                playerSpaceShip.comms = new Room("Comms");
-                playerSpaceShip.fireControl = new Room("Fire Control");
-                playerSpaceShip.fireControl2 = new Room("Fire Control 2");
-                playerSpaceShip.medibay = new Room("Medibay");
+                playerSpaceShip.rooms.Add ( new Room("Bridge"));
+                playerSpaceShip.rooms.Add ( new Room("Engineering"));
+                playerSpaceShip.rooms.Add ( new Room("Life Support"));
+                playerSpaceShip.rooms.Add ( new Room("Comms"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control 2"));
+                playerSpaceShip.rooms.Add ( new Room("Medibay"));
             }
             if (playerSpaceShip.shipType == "Cruiser")
             {
-                playerSpaceShip.bridge = new Room("Bridge");
-                playerSpaceShip.engineering = new Room("Engineering");
-                playerSpaceShip.lifeSupport = new Room("Life Support");
-                playerSpaceShip.comms = new Room("Comms");
-                playerSpaceShip.fireControl = new Room("Fire Control");
-                playerSpaceShip.fireControl2 = new Room("Fire Control 2");
-                playerSpaceShip.fireControl3 = new Room("Fire Control 3");
-                playerSpaceShip.medibay = new Room("Medibay");
-                playerSpaceShip.shuttleBay = new Room("Shuttle Bay");
+                playerSpaceShip.rooms.Add ( new Room("Bridge"));
+                playerSpaceShip.rooms.Add ( new Room("Engineering"));
+                playerSpaceShip.rooms.Add ( new Room("Life Support"));
+                playerSpaceShip.rooms.Add ( new Room("Comms"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control 2"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control 3"));
+                playerSpaceShip.rooms.Add ( new Room("Medibay"));
+                playerSpaceShip.rooms.Add ( new Room("Shuttle Bay"));
 
             }
             if (playerSpaceShip.shipType == "Capital")
             {
-
-                playerSpaceShip.bridge = new Room("Bridge");
-                playerSpaceShip.engineering = new Room("Engineering");
-                playerSpaceShip.lifeSupport = new Room("Life Support");
-                playerSpaceShip.comms = new Room("Comms");
-                playerSpaceShip.fireControl = new Room("Fire Control");
-                playerSpaceShip.fireControl2 = new Room("Fire Control 2");
-                playerSpaceShip.fireControl3 = new Room("Fire Control 3");
-                playerSpaceShip.fireControl4 = new Room("Fire Control 4");
-                playerSpaceShip.medibay = new Room("Medibay");
-                playerSpaceShip.shuttleBay = new Room("Shuttle Bay");
+                playerSpaceShip.rooms.Add ( new Room("Bridge"));
+                playerSpaceShip.rooms.Add ( new Room("Engineering"));
+                playerSpaceShip.rooms.Add ( new Room("Life Support"));
+                playerSpaceShip.rooms.Add ( new Room("Comms"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control 2"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control 3"));
+                playerSpaceShip.rooms.Add ( new Room("Fire Control 4"));
+                playerSpaceShip.rooms.Add ( new Room("Medibay"));
+                playerSpaceShip.rooms.Add ( new Room("Shuttle Bay"));
             }
         }
 
         public static void setShipSystems(SpaceShip playerSpaceShip)
         {
-            if (playerSpaceShip.fighterCockpit != null)
+            if (playerSpaceShip.getSpecificRoom("Fighter Cockpit") != null)
             {
-                playerSpaceShip.fighterCockpit.pilotControls = new ShipSystem("Pilot Controls", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.temperatureControl = new ShipSystem("Temperature Control", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.airScrubber = new ShipSystem("Air Scrubber", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.heatExchanger = new ShipSystem("Heat Exchanger", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.shields = new ShipSystem("Shields", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.engines = new ShipSystem("Engines", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.fuelStore = new ShipSystem("Fuel Store", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.transmitter = new ShipSystem("Transmitter", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.receiver = new ShipSystem("Receiver", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.cryptography = new ShipSystem("Cryptography", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.powerGenerator = new ShipSystem("Power Generator", playerSpaceShip.fighterCockpit.roomType);
-                playerSpaceShip.fighterCockpit.shipCapacitor = new ShipSystem("Capacitor", playerSpaceShip.fighterCockpit.roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").pilotControls = new ShipSystem("Pilot Controls", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").temperatureControl = new ShipSystem("Temperature Control", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").airScrubber = new ShipSystem("Air Scrubber", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").heatExchanger = new ShipSystem("Heat Exchanger", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").shields = new ShipSystem("Shields", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").engines = new ShipSystem("Engines", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").fuelStore = new ShipSystem("Fuel Store", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").transmitter = new ShipSystem("Transmitter", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").receiver = new ShipSystem("Receiver", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").cryptography = new ShipSystem("Cryptography", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").powerGenerator = new ShipSystem("Power Generator", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").shipCapacitor = new ShipSystem("Capacitor", playerSpaceShip.getSpecificRoom("Fighter Cockpit").roomType);
 
             }
 
-            if (playerSpaceShip.bridge != null)
+            if (playerSpaceShip.getSpecificRoom("Bridge") != null)
             {
-                playerSpaceShip.bridge.pilotControls = new ShipSystem ("Pilot Controls", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.shields = new ShipSystem ("Shields", playerSpaceShip.bridge.roomType);
-                playerSpaceShip.bridge.aI = new ShipSystem ("A.I.", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.engines = new ShipSystem ("Engines", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.powerGenerator = new ShipSystem ("Power Generator", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.fabricator = new ShipSystem ("Fabricator", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.wasteDisposal = new ShipSystem ("Waste Disposal", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.fuelStore = new ShipSystem ("Fuel Store", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.airScrubber = new ShipSystem ("Air Scrubber", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.gravityGenerator = new ShipSystem ("Gravity Generator", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.temperatureControl = new ShipSystem ("Temperature Control", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.transmitter = new ShipSystem ("Transmitter", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.receiver = new ShipSystem ("Receiver", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.cryptography = new ShipSystem ("Cryptography", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.weaponsTargeting = new ShipSystem ("Weapons Targeting", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.weaponsFiring = new ShipSystem ("Weapons Firing", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.surgeryTable = new ShipSystem ("Surgery Table", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.hangar = new ShipSystem ("Hangar", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.bridge.repairBay = new ShipSystem ("Repair Bay", playerSpaceShip.bridge.roomType);
+                playerSpaceShip.getSpecificRoom("Bridge").pilotControls = new ShipSystem("Pilot Controls", playerSpaceShip.getSpecificRoom("Bridge").roomType);
+                
+                playerSpaceShip.getSpecificRoom("Bridge").aI = new ShipSystem("A.I.", playerSpaceShip.getSpecificRoom("Bridge").roomType);
+                
             }
 
-            if (playerSpaceShip.engineering != null)
+            if (playerSpaceShip.getSpecificRoom("Engineering") != null)
             {
-                //playerSpaceShip.engineering.pilotControls = new ShipSystem("Pilot Controls", playerSpaceShip.bridge.roomType);
-                playerSpaceShip.engineering.shields = new ShipSystem("Shields", playerSpaceShip.engineering.roomType);
-                //playerSpaceShip.engineering.aI = new ShipSystem("A.I.", playerSpaceShip.bridge.roomType);
-                playerSpaceShip.engineering.engines = new ShipSystem("Engines", playerSpaceShip.engineering.roomType);
-                playerSpaceShip.engineering.powerGenerator = new ShipSystem("Power Generator", playerSpaceShip.engineering.roomType);
-                playerSpaceShip.engineering.fabricator = new ShipSystem("Fabricator", playerSpaceShip.engineering.roomType);
-                playerSpaceShip.engineering.wasteDisposal = new ShipSystem("Waste Disposal", playerSpaceShip.engineering.roomType);
-                playerSpaceShip.engineering.fuelStore = new ShipSystem("Fuel Store", playerSpaceShip.engineering.roomType);
-                playerSpaceShip.engineering.powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.engineering.roomType);
-                playerSpaceShip.engineering.shipCapacitor = new ShipSystem("Capacitor", playerSpaceShip.engineering.roomType);
-                //playerSpaceShip.engineering.airScrubber = new ShipSystem ("Air Scrubber", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.gravityGenerator = new ShipSystem ("Gravity Generator", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.temperatureControl = new ShipSystem ("Temperature Control", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.transmitter = new ShipSystem ("Transmitter", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.receiver = new ShipSystem ("Receiver", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.cryptography = new ShipSystem ("Cryptography", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.weaponsTargeting = new ShipSystem ("Weapons Targeting", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.weaponsFiring = new ShipSystem ("Weapons Firing", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.surgeryTable = new ShipSystem ("Surgery Table", playerSpaceShip.bridge.roomType);
-                //playerSpaceShip.engineering.hangar = new ShipSystem ("Hangar", playerSpaceShip.bridge.roomType);
+                playerSpaceShip.getSpecificRoom("Engineering").shields = new ShipSystem("Shields", playerSpaceShip.getSpecificRoom("Engineering").roomType);
+                playerSpaceShip.getSpecificRoom("Engineering").engines = new ShipSystem("Engines", playerSpaceShip.getSpecificRoom("Engineering").roomType);
+                playerSpaceShip.getSpecificRoom("Engineering").powerGenerator = new ShipSystem("Power Generator", playerSpaceShip.getSpecificRoom("Engineering").roomType);
+                playerSpaceShip.getSpecificRoom("Engineering").fabricator = new ShipSystem("Fabricator", playerSpaceShip.getSpecificRoom("Engineering").roomType);
+                playerSpaceShip.getSpecificRoom("Engineering").wasteDisposal = new ShipSystem("Waste Disposal", playerSpaceShip.getSpecificRoom("Engineering").roomType);
+                playerSpaceShip.getSpecificRoom("Engineering").fuelStore = new ShipSystem("Fuel Store", playerSpaceShip.getSpecificRoom("Engineering").roomType);
+                playerSpaceShip.getSpecificRoom("Engineering").powerDistributor = new ShipSystem("Power Distributor", playerSpaceShip.getSpecificRoom("Engineering").roomType);
+                playerSpaceShip.getSpecificRoom("Engineering").shipCapacitor = new ShipSystem("Capacitor", playerSpaceShip.getSpecificRoom("Engineering").roomType);
+                
                 //playerSpaceShip.engineering.repairBay = new ShipSystem ("Repair Bay", playerSpaceShip.bridge.roomType);
             }
 
-            if (playerSpaceShip.lifeSupport != null)
+            if (playerSpaceShip.getSpecificRoom("Life Support") != null)
             {
 
-                playerSpaceShip.lifeSupport.airScrubber = new ShipSystem("Air Scrubber", playerSpaceShip.lifeSupport.roomType);
-                playerSpaceShip.lifeSupport.gravityGenerator = new ShipSystem("Gravity Generator", playerSpaceShip.lifeSupport.roomType);
-                playerSpaceShip.lifeSupport.temperatureControl = new ShipSystem("Temperature Control", playerSpaceShip.lifeSupport.roomType);
-                playerSpaceShip.lifeSupport.airPump = new ShipSystem("Air Pump", playerSpaceShip.lifeSupport.roomType);
+                playerSpaceShip.getSpecificRoom("Life Support").airScrubber = new ShipSystem("Air Scrubber", playerSpaceShip.getSpecificRoom("Life Support").roomType);
+                playerSpaceShip.getSpecificRoom("Life Support").gravityGenerator = new ShipSystem("Gravity Generator", playerSpaceShip.getSpecificRoom("Life Support").roomType);
+                playerSpaceShip.getSpecificRoom("Life Support").temperatureControl = new ShipSystem("Temperature Control", playerSpaceShip.getSpecificRoom("Life Support").roomType);
+                playerSpaceShip.getSpecificRoom("Life Support").airPump = new ShipSystem("Air Pump", playerSpaceShip.getSpecificRoom("Life Support").roomType);
 
             }
 
-            if (playerSpaceShip.comms != null)
+            if (playerSpaceShip.getSpecificRoom("Comms") != null)
             {
 
-                playerSpaceShip.comms.transmitter = new ShipSystem("Transmitter", playerSpaceShip.comms.roomType);
-                playerSpaceShip.comms.receiver = new ShipSystem("Receiver", playerSpaceShip.comms.roomType);
-                playerSpaceShip.comms.cryptography = new ShipSystem("Cryptography", playerSpaceShip.comms.roomType);
+                playerSpaceShip.getSpecificRoom("Comms").transmitter = new ShipSystem("Transmitter", playerSpaceShip.getSpecificRoom("Comms").roomType);
+                playerSpaceShip.getSpecificRoom("Comms").receiver = new ShipSystem("Receiver", playerSpaceShip.getSpecificRoom("Comms").roomType);
+                playerSpaceShip.getSpecificRoom("Comms").cryptography = new ShipSystem("Cryptography", playerSpaceShip.getSpecificRoom("Comms").roomType);
 
             }
 
-            if (playerSpaceShip.fireControl != null)
+            if (playerSpaceShip.getSpecificRoom("Fire Control") != null)
             {
 
-                playerSpaceShip.fireControl.weaponsTargeting = new ShipSystem("Weapons Targeting", playerSpaceShip.fireControl.roomType);
-                playerSpaceShip.fireControl.weaponsFiring = new ShipSystem("Weapons Firing", playerSpaceShip.fireControl.roomType);
+                playerSpaceShip.getSpecificRoom("Fire Control").weaponsTargeting = new ShipSystem("Weapons Targeting", playerSpaceShip.getSpecificRoom("Fire Control").roomType);
+                playerSpaceShip.getSpecificRoom("Fire Control").weaponsFiring = new ShipSystem("Weapons Firing", playerSpaceShip.getSpecificRoom("Fire Control").roomType);
 
             }
 
-            if (playerSpaceShip.fireControl2 != null)
+            if (playerSpaceShip.getSpecificRoom("Fire Control 2") != null)
             {
 
-                playerSpaceShip.fireControl2.weaponsTargeting = new ShipSystem("Weapons Targeting", playerSpaceShip.fireControl2.roomType);
-                playerSpaceShip.fireControl2.weaponsFiring = new ShipSystem("Weapons Firing", playerSpaceShip.fireControl2.roomType);
+                playerSpaceShip.getSpecificRoom("Fire Control 2").weaponsTargeting = new ShipSystem("Weapons Targeting", playerSpaceShip.getSpecificRoom("Fire Control 2").roomType);
+                playerSpaceShip.getSpecificRoom("Fire Control 2").weaponsFiring = new ShipSystem("Weapons Firing", playerSpaceShip.getSpecificRoom("Fire Control 2").roomType);
 
             }
 
-            if (playerSpaceShip.fireControl3 != null)
+            if (playerSpaceShip.getSpecificRoom("Fire Control 3") != null)
             {
 
-                playerSpaceShip.fireControl3.weaponsTargeting = new ShipSystem("Weapons Targeting", playerSpaceShip.fireControl3.roomType);
-                playerSpaceShip.fireControl3.weaponsFiring = new ShipSystem("Weapons Firing", playerSpaceShip.fireControl3.roomType);
+                playerSpaceShip.getSpecificRoom("Fire Control 3").weaponsTargeting = new ShipSystem("Weapons Targeting", playerSpaceShip.getSpecificRoom("Fire Control 3").roomType);
+                playerSpaceShip.getSpecificRoom("Fire Control 3").weaponsFiring = new ShipSystem("Weapons Firing", playerSpaceShip.getSpecificRoom("Fire Control 3").roomType);
 
             }
 
-            if (playerSpaceShip.fireControl4 != null)
+            if (playerSpaceShip.getSpecificRoom("Fire Control 4") != null)
             {
 
-                playerSpaceShip.fireControl4.weaponsTargeting = new ShipSystem("Weapons Targeting", playerSpaceShip.fireControl4.roomType);
-                playerSpaceShip.fireControl4.weaponsFiring = new ShipSystem("Weapons Firing", playerSpaceShip.fireControl4.roomType);
+                playerSpaceShip.getSpecificRoom("Fire Control 4").weaponsTargeting = new ShipSystem("Weapons Targeting", playerSpaceShip.getSpecificRoom("Fire Control 4").roomType);
+                playerSpaceShip.getSpecificRoom("Fire Control 4").weaponsFiring = new ShipSystem("Weapons Firing", playerSpaceShip.getSpecificRoom("Fire Control 4").roomType);
 
             }
 
-            if (playerSpaceShip.medibay != null)
+            if (playerSpaceShip.getSpecificRoom("Medibay") != null)
             {
-                playerSpaceShip.medibay.surgeryTable = new ShipSystem("Surgery Table", playerSpaceShip.medibay.roomType);
+                playerSpaceShip.getSpecificRoom("Medibay").surgeryTable = new ShipSystem("Surgery Table", playerSpaceShip.getSpecificRoom("Medibay").roomType);
             }
 
-            if (playerSpaceShip.cargoHold != null)
+            if (playerSpaceShip.getSpecificRoom("Cargo Hold") != null)
             {
 
             }
 
-            if (playerSpaceShip.shuttleBay != null)
+            if (playerSpaceShip.getSpecificRoom("Shuttle Bay") != null)
             {
-                playerSpaceShip.shuttleBay.hangar = new ShipSystem("Hangar", playerSpaceShip.shuttleBay.roomType);
-                playerSpaceShip.shuttleBay.repairBay = new ShipSystem("Repair Bay", playerSpaceShip.shuttleBay.roomType);
+                playerSpaceShip.getSpecificRoom("Shuttle Bay").hangar = new ShipSystem("Hangar", playerSpaceShip.getSpecificRoom("Shuttle Bay").roomType);
+                playerSpaceShip.getSpecificRoom("Shuttle Bay").repairBay = new ShipSystem("Repair Bay", playerSpaceShip.getSpecificRoom("Shuttle Bay").roomType);
             }
 
         }

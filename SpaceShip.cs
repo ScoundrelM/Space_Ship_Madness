@@ -10,34 +10,13 @@ namespace SSGMadNess
         public SpaceShip(string name)
         {
             this.exteriorStructureCompromised = false;
-            this.fighterCockpit = null;
-            this.bridge = null;
-            this.engineering = null;
-            this.lifeSupport = null;
-            this.comms = null;
-            this.fireControl = null;
-            this.fireControl2 = null;
-            this.fireControl3 = null;
-            this.fireControl4 = null;
-            this.medibay = null;
-            this.shuttleBay = null;
-            this.cargoHold = null;
             this.structuralAirPressure = 1013;
             
         }
 
-        public Room fighterCockpit { get; set; }
-        public Room bridge { get; set; }
-        public Room engineering { get; set; }
-        public Room lifeSupport { get; set; }
-        public Room comms { get; set; }
-        public Room fireControl { get; set; }
-        public Room fireControl2 { get; set; }
-        public Room fireControl3 { get; set; }
-        public Room fireControl4 { get; set; }
-        public Room medibay { get; set; }
-        public Room shuttleBay { get; set; }
-        public Room cargoHold { get; set; }
+        public List<Room> rooms { get; set; }
+
+        public Shield shipShield { get; set; }
 
         public string shipName { get; set; }
         public string shipType { get; set; }
@@ -45,7 +24,7 @@ namespace SSGMadNess
         {
             get
             {
-                return cargoMass + structureMass + getRooms().Sum(room => room.bulkheadMass) + getRooms().Sum(room => room.getSystems().Sum(system => system.mass));
+                return cargoMass + structureMass + rooms.Sum(room => room.bulkheadMass) + rooms.Sum(room => room.getSystems().Sum(system => system.mass));
             }
         }
         public int structureMass { get; set; }
@@ -54,7 +33,7 @@ namespace SSGMadNess
         {
             get
             {
-                return currentStructureHitPoints + getRooms().Sum(room => room.currentBulkheadHitPoints) + getRooms().Sum(room => room.getSystems().Sum(system => system.currentHitPoints));
+                return currentStructureHitPoints + rooms.Sum(room => room.currentBulkheadHitPoints) + rooms.Sum(room => room.getSystems().Sum(system => system.currentHitPoints));
             }
         }
         public int operationalHitPointThreshold { get; set; }
@@ -194,48 +173,46 @@ namespace SSGMadNess
                 }
             }
         }
-        
-        //public int spaceShipPowerOverhead { get; set; }
-        
+                     
         public bool isFighter { get; set; }
 
-        public List<Room> getRooms()
-        {
+        //public List<Room> getRooms()
+        //{
 
-            var rooms = new Room[] { fighterCockpit,
-        					  	 bridge,
-						         engineering,
-						         lifeSupport,
-						         comms,
-						         fireControl,
-						         fireControl2,
-						         fireControl3,
-						         fireControl4,
-						         medibay,
-						         shuttleBay,
-						         cargoHold
-						       };
+        //    var rooms = new Room[] { fighterCockpit,
+        //                         bridge,
+        //                         engineering,
+        //                         lifeSupport,
+        //                         comms,
+        //                         fireControl,
+        //                         fireControl2,
+        //                         fireControl3,
+        //                         fireControl4,
+        //                         medibay,
+        //                         shuttleBay,
+        //                         cargoHold
+        //                       };
 
-            return rooms.Where(r => r != null).ToList();
+        //    return rooms.Where(r => r != null).ToList();
 
-        }
+        //}
 
         public int countShipSystems()
         {
-            return getRooms().Sum(room => room.roomSystemCount());
+            return rooms.Sum(room => room.roomSystemCount());
         }
 
         public int shipOperationalPowerConsumption()
         {
 
-            return getRooms().Sum(room => room.roomOperationalPowerConsumption());
+            return rooms.Sum(room => room.roomOperationalPowerConsumption());
 
         }
 
         public int shipStoredPower()
         {
 
-            return getRooms().Sum(room => room.roomStoredPower());
+            return rooms.Sum(room => room.roomStoredPower());
 
         }
 
@@ -243,7 +220,7 @@ namespace SSGMadNess
         {
             var hierarchy = new List<KeyValuePair<string, int>> { };
 
-            foreach (Room room in getRooms())
+            foreach (Room room in rooms)
             {
                 foreach (KeyValuePair<string, int> hierarchyData in room.roomPowerHierarchyPositions())
                 {
@@ -294,7 +271,7 @@ namespace SSGMadNess
 
                     while (keepGoing)
                     {
-                        foreach (Room room in getRooms())
+                        foreach (Room room in rooms)
                         {
                             foreach (ShipSystem shipsystem in room.getSystems())
                             {
@@ -353,7 +330,7 @@ namespace SSGMadNess
 
                     while (keepGoing)
                     {
-                        foreach (Room room in getRooms())
+                        foreach (Room room in rooms)
                         {
                             foreach (ShipSystem shipsystem in room.getSystems())
                             {
@@ -405,7 +382,7 @@ namespace SSGMadNess
                 {
                     getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + (powerGenerator.generatorFuelLevel * powerGenerator.efficiency);
                     getSpecificShipSystem("Capacitor").currentPowerStored = getSpecificShipSystem("Capacitor").currentPowerStored + powerGenerator.currentPowerStored;
-                    engineering.powerGenerator.generatorFuelLevel = 0;
+                    getSpecificRoom("Engineering").powerGenerator.generatorFuelLevel = 0;
                 }
             }
 
@@ -455,14 +432,14 @@ namespace SSGMadNess
 
             if (isFighter)
             {
-                generator = fighterCockpit.powerGenerator;
-                generatorFuelInput = fighterCockpit.powerGenerator.generatorFuelLevel;
+                generator = getSpecificRoom("Fighter Cockpit").powerGenerator;
+                generatorFuelInput = getSpecificRoom("FighterCockpit").powerGenerator.generatorFuelLevel;
             }
 
             else
             {
-                generator = engineering.powerGenerator;
-                generatorFuelInput = engineering.powerGenerator.generatorFuelLevel;
+                generator = getSpecificRoom("Engineering").powerGenerator;
+                generatorFuelInput = getSpecificRoom("Engineering").powerGenerator.generatorFuelLevel;
             }
 
             if (generator.isOperational)
@@ -486,7 +463,7 @@ namespace SSGMadNess
 
         public void powerBleed()
         {
-            foreach (Room room in getRooms())
+            foreach (Room room in rooms)
             {
                 foreach (ShipSystem shipSys in room.getSystems())
                 {
@@ -502,7 +479,7 @@ namespace SSGMadNess
         {
             ShipSystem output = null;
 
-            foreach (Room room in getRooms())
+            foreach (Room room in rooms)
             {
                 foreach (ShipSystem sys in room.getSpecificSystem(systemName))
                 {
@@ -521,9 +498,9 @@ namespace SSGMadNess
         {
             Room output = null;
 
-            foreach (Room room in getRooms())
+            foreach (Room room in rooms)
             {
-                if(room.roomName == roomName)
+                if(room.roomType == roomName)
                 {
                    output = room;
                 }
@@ -534,7 +511,7 @@ namespace SSGMadNess
 
         public void checkForOverheating()
         {
-            foreach (Room room in getRooms())
+            foreach (Room room in rooms)
             {
                 foreach (ShipSystem sys in room.getSystems())
                 {
@@ -565,9 +542,11 @@ namespace SSGMadNess
 
 
 
-            foreach (Room room in getRooms())
+            foreach (Room room in rooms)
             {
                 //needs pruning
+
+
                 double volumeRoom = room.roomVolume;
                 double volumeStruct = structuralVolume;
                 double pressureRoom = room.airPressure;
@@ -592,6 +571,7 @@ namespace SSGMadNess
                 if (room.bulkheadCompromised)
                 {
                     //check for air mass lost in timeframe of about six seconds
+
                     room.massOfAirInRoom = room.massOfAirInRoom - massFlowPerTickRoom;
                     _massOfAirInStructure = massOfAirInStructure + massFlowPerTickRoom;
                 }
@@ -608,7 +588,7 @@ namespace SSGMadNess
         {
             //find all Passive systems and activate their function
 
-            foreach (Room room in getRooms())
+            foreach (Room room in rooms)
             {
                 foreach (ShipSystem sys in room.getSystems())
                 {

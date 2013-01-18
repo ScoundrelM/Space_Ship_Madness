@@ -43,15 +43,77 @@ namespace SSGMadNess
             this.repairBay = null;
 
         }
+        
         public string roomType { get; set; }
         public string roomName { get; set; }
         public string shipName { get; set; }
+
         //public int systemSlots { get; set; }
+        
+        
+        
+        //air variables
         public int oxygenLevel { get; set; }
+        public double roomVolume { get; set; } //litres or m cubed
+        public double roomSurfaceArea { get; set; }
+        public double idealRoomPressure = 1013; // 1 atmosphere
+        private double _airPressure;
+        public double airPressure // Pa
+        {
+            get
+            {
+                return _airPressure;
+            }
 
-        public int roomVolume { get; set; } //litres or m cubed
-        public int roomSurfaceArea { get; set; }
+            set
+            {
+                if (value >= blowoutAirPressure)
+                {
+                    if (value >= blowoutAirPressure)
+                        bulkheadBreachArea = value - blowoutAirPressure;
+                }
 
+                if (value > maxAirPressure)
+                {
+                    currentBulkheadHitPoints = currentBulkheadHitPoints - Convert.ToInt32(value - maxAirPressure);
+                }
+
+                _airPressure = value;
+            }
+        }
+        private double _massOfAirInRoom { get; set; }
+        public double massOfAirInRoom
+        {
+            get
+            {
+                return _massOfAirInRoom;
+            }
+
+            set
+            {
+                airPressure = (value / 29) * 29 * airTemperature;
+                _massOfAirInRoom = value;
+            }
+        }
+        private double _airTemperature { get; set; }
+        public double airTemperature // degrees kelvin
+        {
+            get
+            {
+                return _airTemperature;
+            }
+
+            set
+            {
+
+                airPressure = (massOfAirInRoom / 29) * 29 * value;
+                _airTemperature = value;
+            }
+        }
+
+
+
+        
         private int _currentBulkheadHitPoints { get; set; }
         public int currentBulkheadHitPoints
         {
@@ -74,65 +136,14 @@ namespace SSGMadNess
 
         public int maxBulkheadHitPoints { get; set; }
 
-        public int idealRoomPressure = 1013; // 1 atmosphere
-        private int _airPressure;
-        public int airPressure // Pa
-        {
-            get
-            {
-                return _airPressure;
-            }
+        
 
-            set
-            {
-                if (value >= blowoutAirPressure)
-                {
-                    bulkheadCompromised = true;
-                    bulkheadBreachArea = value - blowoutAirPressure;
-                }
-
-                if (value > maxAirPressure)
-                {
-                    currentBulkheadHitPoints = currentBulkheadHitPoints - (value - maxAirPressure);
-                }
-
-                _airPressure = value;
-            }
-        }
-
-        private int _massOfAirInRoom {get;set;}
-        public int massOfAirInRoom
-        {
-            get
-            {
-                return _massOfAirInRoom;
-            }
-
-            set
-            {
-                 airPressure = (value/29) * 29 * airTemperature;
-                 _massOfAirInRoom = value;
-            }
-        }
+        
 
         public bool airScrubberInterface { get; set; }
         public bool heatExchangerInterface { get; set; }
         
-        private int _airTemperature {get;set;}
-        public int airTemperature // degrees kelvin
-        {
-            get
-            {
-                return _airTemperature;
-            }
-
-            set
-            {
-                
-                airPressure = (massOfAirInRoom / 29) * 29 * value;
-                _airTemperature = value;
-            }
-        }
+        
 
 
         public int bulkheadMass { get; set; }
@@ -146,7 +157,7 @@ namespace SSGMadNess
             }
         }
 
-        public int blowoutAirPressure
+        public double blowoutAirPressure
         {
             get
             {
@@ -154,7 +165,7 @@ namespace SSGMadNess
             }
         }
 
-        public int maxAirPressure
+        public double maxAirPressure
         {
             get
             {
@@ -163,7 +174,7 @@ namespace SSGMadNess
 
         }
 
-        public int bulkheadBreachArea { get; set; }
+        public double bulkheadBreachArea { get; set; }
 
         public ShipSystem pilotControls { get; set; }
         public ShipSystem shields { get; set; }

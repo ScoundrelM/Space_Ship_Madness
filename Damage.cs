@@ -9,7 +9,7 @@ namespace SSGMadNess
     {
         public string damageType;
         /*
-         *Possible types: Laser, Accelerated Particle, Projectile, Explosive, EMP,Quantum Tunneler.     
+         *Possible types: Laser, Accelerated Particle, Projectile, Explosive, EMP, Quantum Tunneler.     
         */
         public string[] targets;
         /*

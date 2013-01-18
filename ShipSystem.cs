@@ -67,13 +67,6 @@ namespace SSGMadNess
 
             if (systemName == "Shields")
             {
-                //this.damageReduction = 0;//don't accidentally remove
-                //this.shieldHitPoints = 0;//don't accidentally remove
-                this.shieldRechargeRate = 0;//don't accidentally remove
-                this.shieldEfficiency = 0;//don't accidentally remove
-
-
-
                 this.mass = 1000;
                 this.maxHitPoints = 350;
                 this.maxTemperature = 1000;
@@ -460,7 +453,7 @@ namespace SSGMadNess
             }
         }
         public int maxHitPoints { get; set; }
-
+        
 
         public int currentHitPoints { get; set; }
 
@@ -768,7 +761,7 @@ namespace SSGMadNess
             
         }
 
-        //fuelstore ststs
+        //fuelstore stats
 
         public int fuelLevel { get; set; }
 
@@ -777,9 +770,248 @@ namespace SSGMadNess
 
         //shield stats
         public int damageReduction { get; set; }
-        public int shieldHitPoints { get; set; }
-        public int shieldRechargeRate { get; set; }//maximum recharge per tick
-        public int shieldEfficiency { get; set; }//power units per shield point restored
+        public int maxShieldHitPoints { get; set; }
+        public int shieldRechargeRate
+        {
+            get
+            {
+                if (setShieldToLow)
+                {
+                    return 24;
+                }
+
+                if (setShieldToNormal)
+                {
+                    return 36;
+                }
+
+                if (setShieldToHigh)
+                {
+                    return 48;
+                }
+
+                if (setShieldToOverdrive)
+                {
+                    return 60;
+                }
+
+                else
+                {
+                    return 1;
+                }
+            }
+        }
+
+        public int shieldEfficiency
+        {
+            get
+            {
+                if (setShieldToLow)
+                {
+                    return 2;
+                }
+
+                if (setShieldToNormal)
+                {
+                    return 4;
+                }
+
+                if (setShieldToHigh)
+                {
+                    return 6;
+                }
+
+                if (setShieldToOverdrive)
+                {
+                    return 8;
+                }
+
+                else
+                {
+                    return 10;
+                }
+
+            }
+        }
+
+        private bool _setShieldToLow { get; set; }
+        public bool setShieldToLow
+        {
+            get
+            {
+                return _setShieldToLow;
+            }
+
+            set
+            {
+                if (value)
+                {
+                    _setShieldToLow = true;
+                    setShieldToNormal = false;
+                    setShieldToHigh = false;
+                    setShieldToOverdrive = false;
+                }
+
+                else
+                {
+                    _setShieldToLow = false;
+                }
+            }
+        }
+
+        private bool _setShieldToNormal { get; set; }
+        public bool setShieldToNormal
+        {
+            get
+            {
+                return _setShieldToNormal;
+            }
+
+            set
+            {
+                if (value)
+                {
+                    setShieldToLow = false;
+                    _setShieldToNormal = true;
+                    setShieldToHigh = false;
+                    setShieldToOverdrive = false;
+                }
+
+                else
+                {
+                    _setShieldToNormal = false;
+                }
+            }
+        }
+
+        private bool _setShieldToHigh { get; set; }
+        public bool setShieldToHigh
+        {
+            get
+            {
+                return _setShieldToHigh;
+            }
+
+            set
+            {
+                if (value)
+                {
+                    setShieldToLow = false;
+                    setShieldToNormal = false;
+                    _setShieldToHigh = true;
+                    setShieldToOverdrive = false;
+                }
+
+                else
+                {
+                    _setShieldToLow = false;
+                }
+            }
+        }
+
+        private bool _setShieldToOverdrive { get; set; }
+        public bool setShieldToOverdrive
+        {
+            get
+            {
+                return _setShieldToOverdrive;
+            }
+
+            set
+            {
+                if (value)
+                {
+                    setShieldToLow = false;
+                    setShieldToNormal = false;
+                    setShieldToHigh = false;
+                    _setShieldToOverdrive = true;
+                }
+
+                else
+                {
+                    _setShieldToOverdrive = false;
+                }
+            }
+        }
+
+
+
+        public string powerPanelFocus {get;set;}
+
+        private bool _setShieldsToEvenDistribution { get; set; }
+        public bool setShieldsToEvenDistribution
+        {
+            get
+            {
+                return _setShieldsToEvenDistribution;
+            }
+
+            set
+            {
+                if (value)
+                {
+                    _setShieldsToEvenDistribution = true;
+                    setShieldsToPreferential = false;
+                    setShieldsToExclusive = false;
+                }
+
+                else
+                {
+                    _setShieldsToEvenDistribution = false;
+                }
+            }
+        }
+
+        private bool _setShieldsToPreferential {get;set;}
+        public bool setShieldsToPreferential
+        {
+            get
+            {
+                return _setShieldsToPreferential;
+            }
+
+            set
+            {
+                if (value)
+                {
+                    _setShieldsToPreferential = true;
+                    setShieldsToEvenDistribution = false;
+                    setShieldsToExclusive = false;
+                }
+
+                else
+                {
+                    _setShieldsToPreferential = false;
+                }
+            }
+        }
+
+        private bool _setShieldsToExclusive { get; set; }
+        public bool setShieldsToExclusive
+        {
+            get
+            {
+                return _setShieldsToExclusive;
+            }
+
+            set
+            {
+                if (value)
+                {
+                    _setShieldsToExclusive = true;
+                    setShieldsToEvenDistribution = false;
+                    setShieldsToPreferential = false;
+                }
+
+                else
+                {
+                    _setShieldsToExclusive = false;
+                }
+            }
+        }
+
+
+
 
         //Weaponry stats
         public int reloadRate { get; set; }
@@ -825,7 +1057,11 @@ namespace SSGMadNess
 
                     break;
 
+                case "Shields":
 
+
+
+                    break;
             }
         }
     }

@@ -17,12 +17,14 @@ namespace SSGMadNess
 
             if (playerSpaceShip.shipType == "Fighter")
             {
-                playerSpaceShip.fighterCockpit.fuelStore.fuelLevel = testLevel;
+                playerSpaceShip.getSpecificRoom("Fighter Cockpit").fuelStore.fuelLevel = testLevel;
+                //playerSpaceShip.fighterCockpit.fuelStore.fuelLevel = testLevel;
             }
 
             if (playerSpaceShip.shipType != "Fighter")
             {
-                playerSpaceShip.engineering.fuelStore.fuelLevel = testLevel;
+                playerSpaceShip.getSpecificRoom("Engineering").fuelStore.fuelLevel = testLevel;
+                //playerSpaceShip.getSpecificRoom("Engineering").fuelStore.fuelLevel = testLevel;
             }
 
             while (keepGoing == true)
@@ -38,7 +40,7 @@ namespace SSGMadNess
                 if (playerSpaceShip.shipType == "Fighter")
                 {
                     int storedSystemPower = playerSpaceShip.shipStoredPower();
-                    if (playerSpaceShip.fighterCockpit.fuelStore.fuelLevel <= 0 && playerSpaceShip.getSpecificShipSystem("Capacitor").currentPowerStored <= 0 && storedSystemPower <= 0) 
+                    if (playerSpaceShip.getSpecificRoom("Fighter Cockpit").fuelStore.fuelLevel <= 0 && playerSpaceShip.getSpecificShipSystem("Capacitor").currentPowerStored <= 0 && storedSystemPower <= 0) 
                     {
                         keepGoing = false;
                     }
@@ -47,7 +49,7 @@ namespace SSGMadNess
                 if (playerSpaceShip.shipType != "Fighter")
                 {
                     int storedSystemPower = playerSpaceShip.shipStoredPower();
-                    if (playerSpaceShip.engineering.fuelStore.fuelLevel <= 0 && playerSpaceShip.getSpecificShipSystem("Capacitor").currentPowerStored <= 0 && storedSystemPower <= 0)
+                    if (playerSpaceShip.getSpecificRoom("Engineering").fuelStore.fuelLevel <= 0 && playerSpaceShip.getSpecificShipSystem("Capacitor").currentPowerStored <= 0 && storedSystemPower <= 0)
                     {
                         keepGoing = false;
                     }
